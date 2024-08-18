@@ -31,7 +31,13 @@ export default function Bundles() {
     const fetchData = async () => {
       try {
         const response = await api.get('/bundles/'); // Adjust endpoint as needed
-        setBundles(response.data);
+        if (Array.isArray(response.data)) {
+          setData(response.data);
+        } else {
+          // Set data to an empty array if the response is not an array
+          setData([]);
+        }
+        // setBundles(response.data);
       } catch (error) {
         setError(error);
       } finally {

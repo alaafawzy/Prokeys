@@ -24,9 +24,9 @@ class UserManager(BaseUserManager):
             raise ValueError('Users must have a first name')
         if not last_name:
             raise ValueError('Users must have a last name')
-        if not tax_record:
-            raise ValueError('Users must have a Tax record')
         
+        if not tax_record and not extra_fields.get('is_superuser', False):
+            raise ValueError('Users must have a Tax record')
         user = self.model(email=self.normalize_email(email),first_name=first_name,
             last_name=last_name, tax_record=tax_record)
         user.set_password(password)
@@ -60,16 +60,17 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_active', True)
         extra_fields.setdefault('is_superuser', True)
 
+
         if password is None:
             raise ValueError('Superusers must have a password')
 
-        return self.create_user(email, password,first_name,last_name, **extra_fields)
+        return self.create_user(email, password, first_name, last_name, tax_record=None, **extra_fields)
 
 class CustomUser(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
-    tax_record = models.ImageField(upload_to='tax_records/', blank=True,validators=[validate_image])
+    tax_record = models.ImageField(upload_to='tax_records/',null=True, blank=True,validators=[validate_image])
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['password','first_name','last_name']
 

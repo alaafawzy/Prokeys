@@ -17,7 +17,13 @@ export default function Footer() {
     const fetchData = async () => {
       try {
         const response = await api.get('/footer/'); // Adjust endpoint as needed
-        setData(response.data);
+        if (Array.isArray(response.data)) {
+          setData(response.data);
+        } else {
+          // Set data to an empty array if the response is not an array
+          setData([]);
+        }
+        
       } catch (error) {
         setError(error);
       } finally {
@@ -30,8 +36,8 @@ export default function Footer() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-  const location=theme.direction=='rtl'?data[0].arabic_address:data[0].english_address
-  const phone=data[0].phone
+  const location=theme.direction=='rtl'?data[0]?.arabic_address:data[0]?.english_address
+  const phone=data[0]?.phone
   return (
     <Container>
       <Grid

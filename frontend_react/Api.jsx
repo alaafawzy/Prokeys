@@ -2,6 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance
 const api = axios.create({
+  // baseURL: '/http://127.0.0.1:8000/api/', // Replace with your backend URL
   baseURL: '/api/', // Replace with your backend URL
   timeout: 10000, // Optional timeout
   headers: {
@@ -16,6 +17,7 @@ export default api;
 export const checkAuthStatus = async () => {
   try {
     const response = await axios.get('/api/user/', {
+    // const response = await axios.get('http://127.0.0.1:8000/api/user/', {
       withCredentials: true, // Include HttpOnly cookies
     });
 
@@ -32,6 +34,7 @@ export const login = async (email, password) => {
   try {
     const response = await axios.post(
       '/api/login/',
+      // 'http://127.0.0.1:8000/api/login/',
       { email, password },
       {
         withCredentials: true, // Include HttpOnly cookies
@@ -53,6 +56,7 @@ export const login = async (email, password) => {
 export async function logout() {
   try {
     const response = await fetch('/api/logout/', {
+    // const response = await fetch('http://127.0.0.1:8000/api/logout/', {
       method: 'GET',
       credentials: 'include', // Ensure cookies are sent with the request
     });
@@ -72,7 +76,8 @@ export async function logout() {
 export const register = async (email, password) => {
   try {
     const response = await axios.post(
-      '/api/login/',
+      '/api/register/',
+      // 'http://127.0.0.1:8000/api/register/',
       { email, password },
       {
         withCredentials: true, // Include HttpOnly cookies

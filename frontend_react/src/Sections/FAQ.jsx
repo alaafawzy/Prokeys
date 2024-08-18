@@ -23,7 +23,12 @@ export default function FAQ() {
     const fetchData = async () => {
       try {
         const response = await api.get('/faq/'); // Adjust endpoint as needed
-        setData(response.data);
+        if (Array.isArray(response.data)) {
+          setData(response.data);
+        } else {
+          // Set data to an empty array if the response is not an array
+          setData([]);
+        }
       } catch (error) {
         setError(error);
       } finally {
