@@ -1,4 +1,7 @@
+import { Description } from '@mui/icons-material';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+axios.defaults.withCredentials = true;
 
 // Create an Axios instance
 const api = axios.create({
@@ -22,7 +25,9 @@ export const checkAuthStatus = async () => {
     });
 
     // Return the response data if successful
-    return response.data;
+    console.log(response.status);
+    
+    return response;
   } catch (error) {
     console.error('Error checking authentication status:', error);
     // Handle errors (e.g., return null or an error message)
@@ -73,16 +78,16 @@ export async function logout() {
   }
 }
 
-export const register = async (email, password) => {
+export const RegisterApi = async (first_name, last_name,email,password,phone,tax_record) => {
   try {
     const response = await axios.post(
       '/api/register/',
       // 'http://127.0.0.1:8000/api/register/',
-      { email, password },
+      { first_name, last_name,email,password,phone,tax_record},
       {
         withCredentials: true, // Include HttpOnly cookies
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
         },
       }
     );
@@ -95,3 +100,48 @@ export const register = async (email, password) => {
     return null;
   }
 };
+
+// Example function to submit feedback with CSRF token
+export const AddFeedback = async (description, role) => {
+  try {
+    const csrfToken = Cookies.get('csrftoken'); // Get CSRF token from cookies
+    console.log(csrfToken)
+    const csrfToken1 = document.cookie.split('; ').find(row => row.startsWith('csrftoken=')).split('=')[1];
+    console.log(csrfToken1);
+    const response = await axios.post(
+      // 'http://127.0.0.1:8000/api/comment/',
+      '/api/comment/',
+      { description, role },
+      {
+        withCredentials: true,
+        headers: {'X-CSRFToken': csrfToken  },
+      }
+    );
+    return response;
+  } catch (error) {
+    console.error('Feedback submission failed:', error);
+    return error;
+  }
+};
+export const ForgetPasswordApi = async (email) => {
+  try {
+    const csrfToken = Cookies.get('csrftoken'); // Get CSRF token from cookies
+    console.log(csrfToken)
+    const response = await axios.post(
+      // 'http://127.0.0.1:8000/api/comment/',
+      // '/api/reset/',
+      '/api/forget-password/',
+      { email },
+      {
+        withCredentials: true,
+        headers: {'X-CSRFToken': csrfToken  },
+      }
+    );
+    return response;
+  } catch (error) {
+    console.error('Forget Password failed:', error);
+    return error;
+  }
+};
+
+

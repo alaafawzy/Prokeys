@@ -28,8 +28,10 @@ class FooterSerializer(serializers.ModelSerializer):
         fields = ['id', 'english_address','arabic_address', 'phone']
 
 class CommentSerializer(serializers.ModelSerializer):
+    user_first_name = serializers.CharField(source='user.first_name', read_only=True)
+    user_last_name = serializers.CharField(source='user.last_name', read_only=True)
+
     class Meta:
         model = Comment
-        fields = ['id', 'user', 'role', 'description']
-
+        fields = ['id', 'user_first_name', 'user_last_name', 'role', 'description']
 

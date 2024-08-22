@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import LoginBackground from "../components/LoginBackground";
 import FormFrame from "../components/FormFrame";
 import InputField from "../components/InputField";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import InputError from "../components/InputError";
 import Btn from "../components/Btn";
 import Joi from "joi";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
-import { RegisterApi } from "../utils/Http";
+import { RegisterApi } from "../../Api";
 import { useTheme } from "@emotion/react";
 import { Link } from "react-router-dom";
 
@@ -17,47 +17,66 @@ export default function Register() {
   const theme = useTheme();
   const { t } = useTranslation();
   const registerText = t("Register");
-  const [isLoading, setisLoading] = useState(false);
-  //   const { checkLoggedIn } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const schema = Joi.object({
-    Email: Joi.string().required().messages({
-      "string.empty": "Email can't be empty",
-      "string.pattern.base": "Email not right",
-    }),
-    Name: Joi.string().required().messages({
+    first_name: Joi.string().required().messages({
       "string.empty": "Name can't be empty",
       "string.pattern.base": "Name not right",
     }),
-    Phone: Joi.string().required().messages({
+    last_name: Joi.string().required().messages({
+      "string.empty": "Name can't be empty",
+      "string.pattern.base": "Name not right",
+    }),
+    email: Joi.string().required().messages({
+      "string.empty": "Email can't be empty",
+      "string.pattern.base": "Email not right",
+    }),
+    password: Joi.string().messages({ "string.empty": "Password empty" }),
+    phone: Joi.string().required().messages({
       "string.empty": "Phone can't be empty",
       "string.pattern.base": "Phone not right",
     }),
-    Password: Joi.string().messages({ "string.empty": "password empty" }),
+    tax_record: Joi.any().optional(),
   });
+
   const form = useForm({
     resolver: joiResolver(schema),
   });
-  const { register, handleSubmit, control, formState, setError } = form;
+
+  const { register, handleSubmit, control, formState, reset } = form;
   const { errors } = formState;
+
   const onSubmit = async (inputs) => {
-    console.log("firssazt", inputs);
-    // setisLoading(true);
-    const { data, status } = await RegisterApi(inputs);
-    console.log("XX", data, status);
-    // if (status) {
-    //   localStorage.setItem(
-    //     "USER",
-    //     JSON.stringify({
-    //       accessToken: data.access_token,
-    //       userData: data.manager,
-    //     })
-    //   );
-    //   checkLoggedIn();
-    // } else {
-    //   setError("Email", { type: "focus", message: "d" }, { shouldFocus: true });
-    // }
-    // setisLoading(false);
+    try {
+      setIsLoading(true);
+      setSuccessMessage("");
+      setErrorMessage("");
+
+      const response = await RegisterApi(
+        inputs.first_name,
+        inputs.last_name,
+        inputs.email,
+        inputs.password,
+        inputs.phone,
+        inputs.tax_record[0]
+      );
+      console.log(response)
+      if (response.status === '201') { // assuming 201 is the status code for success
+        setSuccessMessage(registerText.Success);
+        reset(); // Clear the form fields
+      } else {
+        setErrorMessage("An error occurred. Please try again.");
+      }
+    } catch (error) {
+      setErrorMessage(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
   return (
     <>
       <LoginBackground>
@@ -75,12 +94,30 @@ export default function Register() {
               xs={12}
               sx={{
                 display: "flex",
-                direction: `${theme.direction}`,
+                direction: `${theme.direction==='rtl'?'ltr':'rtl'}`,
                 justifyContent: { xs: "center", md: "space-between" },
               }}
             >
               <InputField
-                ele="Email"
+                ele="first_name"
+                label={`${registerText.FirstName}`}
+                xs={10}
+                md={5.8}
+                register={register}
+                errors={errors}
+                type="Name"
+              />
+              <InputField
+                ele="last_name"
+                label={`${registerText.LastName}`}
+                xs={10}
+                md={5.8}
+                register={register}
+                errors={errors}
+                type="Name"
+              />
+              <InputField
+                ele="email"
                 label={`${registerText.Email}`}
                 xs={10}
                 md={5.8}
@@ -89,16 +126,7 @@ export default function Register() {
                 type="Email"
               />
               <InputField
-                ele="Name"
-                label={`${registerText.Name}`}
-                xs={10}
-                md={5.8}
-                register={register}
-                errors={errors}
-                type="Name"
-              />
-              <InputField
-                ele="Password"
+                ele="password"
                 label={`${registerText.Password}`}
                 xs={10}
                 md={5.8}
@@ -107,7 +135,7 @@ export default function Register() {
                 type="Password"
               />
               <InputField
-                ele="Phone"
+                ele="phone"
                 label={`${registerText.Phone}`}
                 xs={10}
                 md={5.8}
@@ -115,7 +143,17 @@ export default function Register() {
                 errors={errors}
                 type="Phone"
               />
+              <InputField
+                ele="tax_record"
+                label={`${registerText.Image}`}
+                xs={10}
+                md={5.8}
+                register={register}
+                errors={errors}
+                type="File"
+              />
             </Grid>
+
             <Grid
               item
               container
@@ -126,22 +164,33 @@ export default function Register() {
                 height: "30px",
               }}
             >
-              {Object.entries(errors).map((error, index) => {
-                return <InputError key={index} message={error[1].message} />;
-              })}
+              {Object.entries(errors).map((error, index) => (
+                <InputError key={index} message={error[1].message} />
+              ))}
             </Grid>
+
+            {successMessage && (
+              <Typography color="success.main" sx={{ marginBottom: 2 }}>
+                {successMessage}
+              </Typography>
+            )}
+
+            {errorMessage && (
+              <Typography color="error.main" sx={{ marginBottom: 2 }}>
+                {errorMessage}
+              </Typography>
+            )}
 
             <Btn
               bg={"#131F89"}
               FontColor={"white"}
               component={"button"}
               type="Submit"
-              onClick={() => {
-                console.log("clickex");
-              }}
+              isLoading={isLoading}
             >
               {registerText.btn}
             </Btn>
+
             <Grid
               container
               sx={{

@@ -32,8 +32,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework',
     'corsheaders',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -149,11 +149,31 @@ EMAIL_USE_SSL = False
 BUSINESS_EMAIL = 'Business.Development@111prokeys.com'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# CORS_ALLOW_CREDENTIALS = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# CORS_ALLOW_ALL_ORIGINS = True
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        #'knox.auth.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.AllowAny'
+    ]
+}
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:5173',
+    # Add other trusted origins here if needed
+]
 CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # React app origin
-    "http://127.0.0.1:5173",  # React app origin
-]

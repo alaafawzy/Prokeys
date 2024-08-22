@@ -10,14 +10,17 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       const userData = await checkAuthStatus();
-      setUser(userData);
+      if(userData.status==200){
+        setUser(userData);
+      }
+      
       console.log(userData);
-      setLoading(false);
+      // setLoading(false);
     };
 
     fetchUserData();
   }, []);
-
+  // setUser({first_name:"alaa",last_name:"fawzy",email:"alaafawzy963@gmail.com"})
   return (
     <UserContext.Provider value={{ user,setUser, loading }}>
       {children}

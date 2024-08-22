@@ -17,6 +17,10 @@ import CountactUs from "../Pages/CountactUs";
 // import Files from "../Pages/Profile/Files";
 import StepperComp from "../components/Stepper";
 import StepperMobile from "../components/StepperMobile";
+import ForgetPassword from "../Pages/ForgetPassword";
+import ConfirmPassword from "../Pages/ConfirmPass";
+import Reset from "../Pages/Reset";
+import ChangePassword from "../Pages/ChangePassword";
 
 export default function Routers() {
   let routers = createBrowserRouter([
@@ -36,7 +40,9 @@ export default function Routers() {
         { path: "/login",element: <Login /> },
         { path: "/logout",element: <Logout /> },
         { path: "/register",element: <Register /> },
-        
+        { path: "/forgetPassword",element: <ForgetPassword /> },
+        { path: "/reset-password/:uid/:token/",element: <Reset /> },
+        { path: "/ChangePassword",element: <ChangePassword /> },
       ],
     },
     

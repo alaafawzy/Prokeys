@@ -34,6 +34,7 @@ const BootstrapInput = styled(InputBase)(({ theme, errors }) => ({
     borderColor: errors ? "red" : "#E0E3E7",
     fontSize: 16,
     width: "100%",
+    padding:'7px 15px',
     transition: theme.transitions.create([
       "border-color",
       "background-color",
@@ -56,15 +57,20 @@ export default function InputField({
   label,
   multiline,
   errors,
+  onChange,  // Add onChange prop to handle file changes
 }) {
   const theme = useTheme();
-  console.log("register inp", { ...register(ele) });
+
+  const handleFileChange = (event) => {
+    if (onChange) onChange(event);  // Call onChange if provided
+  };
+
   return (
     <Grid
       item
       xs={xs}
       md={md}
-      sx={{ direction: `${theme.direction}`, padding: ".5rem 0" }}
+      sx={{ direction: `${theme.direction}`, padding: ".3rem 0" }}
     >
       <FormControl
         variant="standard"
@@ -88,7 +94,7 @@ export default function InputField({
           size="small"
           fullWidth
           type={type}
-          {...register(ele)}
+          {...register(ele, { onChange: type === "file" ? handleFileChange : undefined })}
           multiline={multiline}
           rows={4}
           errors={errors[ele]}

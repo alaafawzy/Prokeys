@@ -4,26 +4,45 @@ import { Link, useLocation } from "react-router-dom";
 import Btn from "../components/Btn";
 import { useTheme } from "@emotion/react";
 import logo from "../assets/newLogo.svg";
-import oldlogo from "../assets/oldLogo.svg";
 import Switcher from "../components/Switcher";
 import { useTranslation } from "react-i18next";
 import { UserContext } from '../context/UserContext';
+import { Menu, MenuItem, IconButton } from "@mui/material";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { useNavigate } from "react-router-dom";
 export default function Navber() {
   const location = useLocation();
   const theme = useTheme();
   const { t } = useTranslation();
   const NavTitles = t("Navbar");
-  const [currentPage, setcurrentPage] = useState(
-    location.pathname.split("/")[1]
-  );
+  const [currentPage, setcurrentPage] = useState(location.pathname.split("/")[1]);
   const [openMobileNav, setopenMobileNav] = useState(false);
   const { user, loading } = useContext(UserContext);
   const currentUser = user;
+  const navigate = useNavigate();
+  // Dropdown state
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
   const handleNavToggle = (val) => {
-    setopenMobileNav((prev) => {
-      return val || !prev;
-    });
+    setopenMobileNav((prev) => val || !prev);
+  };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    handleClose();
+    navigate('/logout')
+  };
+  const handleChangePassword = () => {
+    handleClose();
+    navigate('/ChangePassword')
   };
 
   useEffect(() => {
@@ -31,9 +50,11 @@ export default function Navber() {
       handleNavToggle(false);
     };
   }, []);
+
   useEffect(() => {
     setcurrentPage(location.pathname.split("/")[1]);
   }, [location.pathname]);
+
   return (
     <Container
       sx={{ padding: { xs: "0 !important", direction: `${theme.direction}` } }}
@@ -61,51 +82,35 @@ export default function Navber() {
           }}
         >
           <Switcher />
-          {currentUser ? (
+          {user? (
             <>
               <Grid
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   position: "relative",
-                  "&:hover": {
-                    "& > div:last-child": {
-                      animation: "mymove2 ",
-                      animationDuration: "1s",
-                      animationFillMode: "both",
-                    },
-                  },
                 }}
               >
-                <Grid sx={{ marginLeft: "1rem" }}></Grid>
-                <Grid
-                  sx={{
-                    height: "90%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-around",
-                  }}
+                <IconButton
+                  onClick={handleClick}
+                  sx={{ marginLeft: "0.5rem", color: "#005288" }}
                 >
-                  <Box
-                    sx={{
-                      color: "#005288",
-                      fontSize: "15px",
-                      fontWeight: "400",
-                      lineHeight: "20.25px",
-                    }}
-                  >
-                     {theme.direction === 'rtl' ? (
-        <>
-          <strong>{currentUser.first_name}</strong> مرحبا
-        </>
-      ) : (
-        <>
-          welcome <strong>{currentUser.first_name}</strong>
-        </>
-      )}
-                  </Box>
+                      <strong> { user.first_name } </strong> 
                   
-                </Grid>
+                  <ArrowDropDownIcon />
+                </IconButton>
+                <Menu
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={handleChangePassword}>
+                    change password
+                  </MenuItem>
+                  <MenuItem onClick={handleLogout}>
+                    Logout
+                  </MenuItem>
+                </Menu>
               </Grid>
             </>
           ) : (
@@ -135,9 +140,6 @@ export default function Navber() {
           <NavTitle to={"/FQA"} active={currentPage == "FQA"}>
             {NavTitles.FQA}
           </NavTitle>
-          {/* <NavTitle to={"/FreeProducts"} active={currentPage == "FreeProducts"}>
-            {NavTitles.free}
-          </NavTitle> */}
           <NavTitle to={"/OurServises"} active={currentPage == "OurServises"}>
             {NavTitles.services}
           </NavTitle>
@@ -169,7 +171,7 @@ export default function Navber() {
         </Grid>
       </Grid>
 
-      {/* for mob  purpose */}
+      {/* for mob purpose */}
       <Grid
         container
         sx={{
@@ -235,7 +237,7 @@ export default function Navber() {
               >
                 <path
                   fill="black"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M19 4a1 1 0 01-1 1H2a1 1 0 010-2h16a1 1 0 011 1zm0 6a1 1 0 01-1 1H2a1 1 0 110-2h16a1 1 0 011 1zm-1 7a1 1 0 100-2H2a1 1 0 100 2h16z"
                 />
               </svg>
@@ -268,6 +270,7 @@ export default function Navber() {
     </Container>
   );
 }
+
 function NavTitle({ children, active, to, handleNavToggle }) {
   return (
     <Grid
@@ -294,7 +297,10 @@ function NavTitle({ children, active, to, handleNavToggle }) {
             letterSpacing: "0em",
             padding: "5px 0",
             cursor: "pointer",
-            color: active ? "#1a1a1a" : "#828282",
+            textDecoration: "none",
+            color: active ? "#131F89" : "rgba(41, 44, 63, 0.6)",
+            transition: "all 0.5s",
+            borderBottom: active ? "3px solid #131F89" : "none",
           }}
         >
           {children}

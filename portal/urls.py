@@ -9,7 +9,8 @@ router.register(r'footer', FooterViewSet)
 
 urlpatterns = [
     path('carousel/', NewsView.as_view(), name='news-list'),
-    path('comments/', CommentListCreateView.as_view(), name='comment-list-create'),
+    path('comment/', CommentCreateView.as_view(), name='comment-list-create'),
+    path('yarb/', CommentCreateView.as_view(), name='comment'),
     path('comments/<int:pk>/', CommentDetailView.as_view(), name='comment-detail'),
     path('all-comments/', AllCommentsListView.as_view(), name='all-comments-list'),
     path('', include(router.urls)),

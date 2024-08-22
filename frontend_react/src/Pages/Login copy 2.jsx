@@ -50,6 +50,20 @@ export default function Login() {
       // Show error message
     }
   };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const success = await login(username, password);
+  //   if (success) {
+  //     console.log('Login successful');
+  //     // Fetch user data after successful login
+  //     // fetchUserData();
+  //     // Redirect or update UI
+  //     navigate('/')
+  //   } else {
+  //     console.error('Login failed');
+  //     // Show error message
+  //   }
+  // };
   return (
     <>
       <LoginBackground>
@@ -111,10 +125,7 @@ export default function Login() {
                 color: "#131F89",
               }}
             >
-              <Link to="/forgetPassword" style={{ width: "100%", height: "100%" }}>
-                {Login.pass}
-              </Link>
-              
+              {Login.pass}
             </Grid>
             <Btn
               bg={"#131F89"}
@@ -170,3 +181,99 @@ export default function Login() {
     </>
   );
 }
+
+// function FormFrame({ children, btnLable, subtitle, title }) {
+
+//     return (
+//         <>
+//             <Container sx={{
+
+//                 display: "flex",
+//                 justifyContent: "center",
+//             }}>
+//                 <Grid container md={5} sx={{
+//                     background: "white",
+//                     flexDirection: "column",
+//                     padding: "2rem ",
+//                     borderRadius: "16px",
+//                     "& > div:not(:last-child)": {
+//                         marginBottom: "1.5rem",
+//                     }
+//                 }}>
+//                     <Grid sx={{
+//                         display: "flex",
+//                         justifyContent: "center"
+//                     }}>
+//                         <img src={logo}></img>
+//                     </Grid>
+//                     <Grid>
+//                         <Box sx={{
+//                             fontFamily: "Tajawal",
+//                             fontSize: "24px",
+//                             fontWeight: " 700",
+//                             lineHeight: " 32px",
+//                             textAlign: 'center',
+//                         }}>
+//                             {title}
+//                         </Box>
+//                         <Box sx={{
+//                             fontFamily: "Tajawal",
+//                             fontSize: "16px",
+//                             fontWeight: " 400",
+//                             lineHeight: " 24px",
+//                             textAlign: 'center',
+//                             color: "#4F4F4F"
+//                         }}>
+//                             {subtitle}
+//                         </Box>
+//                     </Grid>
+//                     {children}
+//                     <Btn bg={"#131F89"} FontColor={"white"}>
+//                      {btnLable}
+//                     </Btn>
+//                     <Grid sx={{
+//                         display: "flex",
+//                         flexDirection: "row-reverse",
+//                         justifyContent: 'center'
+
+//                     }} >
+//                         <Grid item md={3.5} sx={{
+//                             fontFamily: "Tajawal",
+//                             fontSize: "14px",
+//                             fontWeight: " 400",
+//                             lineHeight: " 20px",
+//                             textAlign: 'left',
+//                             color: "#4F4F4F",
+
+//                         }}>لا يوجد لديك حساب  ؟
+//                         </Grid>
+
+//                         <Grid item md={3} sx={{
+
+//                             fontFamily: "Tajawal",
+//                             fontSize: "14px",
+//                             fontWeight: " 700",
+//                             lineHeight: " 20px",
+//                             textAlign: 'left',
+//                             color: "#131F89"
+//                         }}>حساب جديد</Grid>
+//                     </Grid>
+//                     <Grid sx={{
+//                         display: "flex",
+//                         justifyContent: "center",
+//                         fontFamily: "Tajawal",
+//                         fontSize: "14px",
+//                         fontWeight: " 400",
+//                         lineHeight: " 20px",
+//                         textAlign: 'left',
+//                         color: "#4F4F4F",
+
+//                     }} >الرجوع الي الرئيسية</Grid>
+
+//                 </Grid>
+
+//             </Container>
+//         </>
+//     )
+
+// }

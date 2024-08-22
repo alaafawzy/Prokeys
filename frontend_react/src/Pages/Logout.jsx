@@ -1,4 +1,4 @@
-import React, { useState,useEffect  } from "react";
+import React, { useState,useEffect ,useContext } from "react";
 import { Box, Grid } from "@mui/material";
 import InputField from "../components/InputField";
 import LoginBackground from "../components/LoginBackground";
@@ -17,11 +17,12 @@ import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 const Logout = () => {
   const navigate = useNavigate();
-
+  const { user, loading,setUser } = useContext(UserContext);
   useEffect(() => {
     const handleLogout = async () => {
       const success = await logout();
       if (success) {
+        setUser(null)
         navigate('/'); // Redirect to home page if logout is successful
       } else {
         console.error('Logout failed');

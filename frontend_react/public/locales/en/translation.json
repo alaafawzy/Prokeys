@@ -139,7 +139,13 @@
       "customerName": "Qmnia",
       "customerTitle": "Human Resources Generalist",
       "customerFeedback": "Pro keys creativity has been excellent  and I'm really happy that you've got off to such a strong start like i saw with you , wishing to you all completing this success"
-    }
+    },
+    "addFeedback":"Add Feedback",
+    "yourFeedback":"your feedback",
+    "yourRole":"your role",
+    "submitFeedback": "Submit",
+    "successSubmit": "Your feedback added successfully",
+    "errorSubmit": "There is an error"
   },
   "FAQ": {
     "title": "Answering Your Questions and Meeting Your Company's Needs",
@@ -198,11 +204,40 @@
     "subTitle": "Welcome again! Please enter your data",
     "btn": "Login",
     "pass": "Forgot your password ?",
-    "email": "email",
-    "password": "password",
+    "email": "Email",
+    "password": "Password",
     "validation": "Email or Password is incorrect!",
     "create": "New account",
     "account": "don't have an account?"
+  },
+  "ForgetPassword": {
+    "title": "Reset Password",
+    "subTitle": "Welcome again! Please enter your data",
+    "btn": "Reset Password",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "login": "Login",
+    "create": "New account",
+    "account": "don't have an account?",
+    "loginPhrase": "you have an account?",
+    "success": "Password has been changed successfully",
+    "fail" : "An unexpected error occurred."
+  },
+  "ChangePassword": {
+    "title": "Change Password",
+    "subTitle": "Welcome again! Please enter your data",
+    "btn": "Change Password",
+    "email": "Email",
+    "password": "New Password",
+    "confirmPassword": "Confirm Password",
+    "oldPassword": "Old Password",
+    "login": "Login",
+    "create": "New account",
+    "account": "don't have an account?",
+    "loginPhrase": "you have an account?",
+    "success": "Password has been changed successfully",
+    "fail" : "An unexpected error occurred."
   },
   "FormFrame": {
     "mainPage": "Back to main page"
@@ -212,11 +247,15 @@
     "subTitle": "Hey, you! Please enter your data",
     "btn": "Create an account",
     "Name": "Full Name",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
     "Phone": "Phone",
     "Email": "Email",
     "Password": "Password",
     "create": "login",
-    "account": "have an account?"
+    "account": "have an account?",
+    "Image": "Tax record",
+    "Success":"User has been successfully created, Please wait the activation of your acount."
   },
   "freeProducts": {
     "title": "Our Free Products",

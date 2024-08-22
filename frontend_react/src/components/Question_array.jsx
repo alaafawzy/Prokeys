@@ -25,8 +25,8 @@ export function Question_array({ ques, ans = [], bg }) {
       return (
         <>
           {before}{":"}
-          <span >{phrase}</span>
-          <div style={{ marginLeft: theme.direction === "ltr" ? "1.5rem" : "0", paddingRight: theme.direction === "rtl" ? "1.5rem" : "0" }}>
+          <span >{phrase}</span><br/>
+          <div >
             {after}
           </div>
         </>

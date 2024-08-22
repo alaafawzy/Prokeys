@@ -8,9 +8,9 @@ i18n.use(LanguageDetector).use(initReactI18next).use(Backend).init({
     lng: "ar",
     fallbackLng: "ar",
     returnObjects: true,
-    backend: {
-        loadPath: '/static/locales/{{lng}}/translation.json', // Adjust this to match your Vite build output
-      },
+    // backend: {
+    //     loadPath: '/static/locales/{{lng}}/translation.json', // Adjust this to match your Vite build output
+    //   },
 })
 
 // i18n.use(LanguageDetector).use(initReactI18next).use(Backend).init({
