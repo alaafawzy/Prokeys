@@ -48,12 +48,15 @@ export default function ChangePassword() {
     }).then((response) => {
         if (response.status === 200) {
             // Redirect to the home page after login
-            setSuccessMessage(ForgetPassword.success);
+            setSuccessMessage(ChangePassword.success);
+            setTimeout(() => {
+              navigate('/logout'); // Replace with your target route
+          }, 1000); 
         }
     }).catch(err=>{ 
-        if(err=='Invalid credentials'){setErrorMessage(ForgetPassword.fail);}   
+        if(err=='Invalid credentials'){setErrorMessage(ChangePassword.fail);}   
         else{
-          setErrorMessage(ForgetPassword.fail);
+          setErrorMessage(ChangePassword.fail);
         }
         });
   };

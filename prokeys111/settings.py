@@ -24,11 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v-prd9hw6o0fby97ml+!$zj992@x@4z+z&+u0x@^$wg=rc@^fc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
-# ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['111prokeys.com','111prokeys.net','www.111prokeys.com','www.111prokeys.net']
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['111prokeys.com','111prokeys.net','www.111prokeys.com','www.111prokeys.net']
 
 
 # Application definition
@@ -85,22 +85,22 @@ WSGI_APPLICATION = 'prokeys111.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'prokeys111',
-        'USER': 'prokeysdb',
-        'PASSWORD': 'prokeysadmin',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'prokeys111',
+#         'USER': 'prokeysdb',
+#         'PASSWORD': 'prokeysadmin',
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+#     }
+# }
 
 
 # Password validation
