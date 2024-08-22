@@ -213,6 +213,35 @@
     "account": "ليس لديك حساب؟",
     "create": "انشاء حساب"
   },
+  "ForgetPassword": {
+    "title": "استرجاع كلمة السر",
+    "subTitle": "أهلاً بك مرة أخرى! يُرجى إدخال بياناتك",
+    "btn": "استرجاع كلمة السر",
+    "email": "البريد الالكترونى",
+    "login": "تسجيل الدخول",
+    "create": "انشاء حساب",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "account": "ليس لديك حساب؟",
+    "loginPhrase": "لديك حساب؟",
+    "success": "تم استرجاع كلمة المرور بنجاح",
+    "fail" : "لقد حدث مشكلة"
+  },
+  "ChangePassword": {
+    "title": "تغيير كلمة المرور",
+    "subTitle": "أهلاً بك مرة أخرى! يُرجى إدخال بياناتك",
+    "btn": "تغير كلمة السر",
+    "email": "Email",
+    "password": "كلمة المرور الجديدة",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "oldPassword": "كلمة المرور القديمة",
+    "login": "تسجيل الدخول",
+    "create": "انشاء حساب",
+    "account": "don't have an account?",
+    "loginPhrase": "you have an account?",
+    "success": "تم تغيير كلمة المرور بنجاح",
+    "fail" : "لقد حدث مشكلة"
+  },
   "FormFrame": {
     "mainPage": "الرجوع الي الرئيسية"
   },

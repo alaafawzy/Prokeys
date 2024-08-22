@@ -210,6 +210,35 @@
     "create": "New account",
     "account": "don't have an account?"
   },
+  "ForgetPassword": {
+    "title": "Reset Password",
+    "subTitle": "Welcome again! Please enter your data",
+    "btn": "Reset Password",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "login": "Login",
+    "create": "New account",
+    "account": "don't have an account?",
+    "loginPhrase": "you have an account?",
+    "success": "Password has been changed successfully",
+    "fail" : "An unexpected error occurred."
+  },
+  "ChangePassword": {
+    "title": "Change Password",
+    "subTitle": "Welcome again! Please enter your data",
+    "btn": "Change Password",
+    "email": "Email",
+    "password": "New Password",
+    "confirmPassword": "Confirm Password",
+    "oldPassword": "Old Password",
+    "login": "Login",
+    "create": "New account",
+    "account": "don't have an account?",
+    "loginPhrase": "you have an account?",
+    "success": "Password has been changed successfully",
+    "fail" : "An unexpected error occurred."
+  },
   "FormFrame": {
     "mainPage": "Back to main page"
   },
