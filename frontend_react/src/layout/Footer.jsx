@@ -4,6 +4,7 @@ import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import React, { useState, useEffect } from 'react';
 import api from '../../Api'; // Import your Axios instance
+import { Link } from "react-router-dom";
 export default function Footer() {
   const theme = useTheme();
   const { t } = useTranslation();
@@ -195,10 +196,10 @@ export default function Footer() {
           }}
         >
           <Box>{Footer.browse}</Box>
-          <Box>{Footer.home}</Box>
-          <Box>{Footer.who}</Box>
-          <Box>{Footer.bundles}</Box>
-          <Box>{Footer.services}</Box>
+          <Box><Link to="/">{Footer.home}</Link></Box>
+          <Box><Link to="/AboutUs">{Footer.who}</Link></Box>
+          <Box><Link to="/Bundles">{Footer.bundles}</Link></Box>
+          <Box><Link to="/OurServises">{Footer.services}</Link></Box>
         </Grid>
         <Grid
           item
@@ -210,7 +211,7 @@ export default function Footer() {
             order: { xs: "1", md: "3" },
           }}
         >
-          <img src={logo} width={"60%"}/>
+          <Link to="/"><img src={logo} width={"60%"}/></Link>
         </Grid>
       </Grid>
       <Grid

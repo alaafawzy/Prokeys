@@ -50,7 +50,7 @@ export const login = async (email, password) => {
     );
 
     // Return the response data if successful
-    return response.data;
+    return response;
   } catch (error) {
     console.error('Login failed:', error);
     // Handle errors (e.g., return an error message or false)

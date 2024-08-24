@@ -4,9 +4,6 @@ import { Box, Container, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { icons } from "../Data/Samka";
 import CarouselComponent from "../components/Carousel";
-import free1 from "../assets/free1.jpeg"
-import free2 from "../assets/free2.jpeg"
-import free3 from "../assets/free3.jpeg"
 import api from '../../Api';
 export default function Bundles() {
   const { t } = useTranslation();
@@ -14,38 +11,33 @@ export default function Bundles() {
   // const bundles = [Custom, Additional, Basic, Free, Tax];
   
   const [data, setData] = useState([]);
+  const [bundles, setBundles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch('/api/carousel/')
       .then(response => response.json())
       .then(data => setData(data))
       .catch(error => console.error('Error fetching data:', error));
-  }, []);
-  console.log(data);
-  const [bundles, setBundles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    // Fetch data when the component mounts
-    const fetchData = async () => {
-      try {
-        const response = await api.get('/bundles/'); // Adjust endpoint as needed
-        if (Array.isArray(response.data)) {
-          setData(response.data);
-        } else {
-          // Set data to an empty array if the response is not an array
-          setData([]);
+      const fetchData = async () => {
+        try {
+          const response = await api.get('/bundles/'); // Adjust endpoint as needed
+          if (Array.isArray(response.data)) {
+            setBundles(response.data);
+          } else {
+            // Set data to an empty array if the response is not an array
+            setBundles([]);
+          }
+          // setBundles(response.data);
+        } catch (error) {
+          setError(error);
+        } finally {
+          setLoading(false);
         }
-        // setBundles(response.data);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+      };
+  
+      fetchData();
   }, []);
 
   if (loading) return <p>Loading...</p>;

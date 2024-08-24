@@ -22,6 +22,8 @@ export default function Login() {
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
   const [isLoading, setisLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   //   const { checkLoggedIn } = useContext(UserContext);
   const schema = Joi.object({
     Email: Joi.string().required().messages({
@@ -41,12 +43,13 @@ export default function Login() {
     // console.log(data.Password);
     // console.log(data.Email);
     const success  = await login(data.Email,data.Password);
-    if (success) {
+    if (success.status===200) {
       console.log(success.user);
       setUser(success.user);
       navigate('/')
     } else {
       console.error('Login failed');
+      setErrorMessage(success.data);
       // Show error message
     }
   };
@@ -116,6 +119,17 @@ export default function Login() {
               </Link>
               
             </Grid>
+            {successMessage && (
+              <Typography color="success.main" sx={{ marginBottom: 2 }}>
+                {successMessage}
+              </Typography>
+            )}
+
+            {errorMessage && (
+              <Typography color="error.main" sx={{ marginBottom: 2 }}>
+                {errorMessage}
+              </Typography>
+            )}
             <Btn
               bg={"#131F89"}
               FontColor={"white"}
