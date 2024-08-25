@@ -54,7 +54,7 @@ export const login = async (email, password) => {
   } catch (error) {
     console.error('Login failed:', error);
     // Handle errors (e.g., return an error message or false)
-    return null;
+    return error;
   }
 };
 // utils/Http.js
@@ -144,4 +144,25 @@ export const ForgetPasswordApi = async (email) => {
   }
 };
 
+export const ContactUsApi = async (name, company_name,email,phone,details) => {
+  try {
+    const response = await axios.post(
+      '/api/contactus/',
+      // 'http://127.0.0.1:8000/api/register/',
+      { name, company_name,email,phone,details},
+      {
+        withCredentials: true, // Include HttpOnly cookies
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+
+    // Return the response data if successful
+    return response;
+  } catch (error) {
+    // Handle errors (e.g., return an error message or false)
+    return null;
+  }
+};
 

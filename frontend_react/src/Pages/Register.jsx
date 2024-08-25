@@ -106,6 +106,7 @@ export default function Register() {
                 register={register}
                 errors={errors}
                 type="Name"
+                first_name={true}
               />
               <InputField
                 ele="last_name"
@@ -118,7 +119,7 @@ export default function Register() {
               />
               <InputField
                 ele="email"
-                label={`${registerText.Email}`}
+                label="  Email "
                 xs={10}
                 md={5.8}
                 register={register}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container, Grid,Typography } from "@mui/material";
 import InputField, { PhoneField } from "../components/InputField";
 import { useTheme } from "@emotion/react";
 import Btn from "../components/Btn";
@@ -7,10 +7,9 @@ import Joi from "joi";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useTranslation } from "react-i18next";
-import { sendMessage } from "../utils/Http";
 import toast from "react-hot-toast";
 import { matchIsValidTel } from "mui-tel-input";
-
+import {ContactUsApi} from "../../Api"
 export default function Connectwithus() {
   const theme = useTheme();
   const { t } = useTranslation();
@@ -20,11 +19,11 @@ export default function Connectwithus() {
   const [sentMess, setsentMess] = useState(true);
 
   const schema = Joi.object({
-    Name: Joi.string().required().messages({
+    name: Joi.string().required().messages({
       "string.empty": Validation?.Name || "Name is required",
     }),
-    Company: Joi.string().optional().allow("").messages({}),
-    Email: Joi.string()
+    company_name: Joi.string().optional().allow("").messages({}),
+    email: Joi.string()
       .required()
       .email({
         minDomainSegments: 2,
@@ -41,7 +40,7 @@ export default function Connectwithus() {
         "string.empty": Validation?.Phone?.req || "Phone is required",
         "string.pattern.base": Validation?.Phone?.pattern || "Invalid phone number",
       }),
-    Message: Joi.string().messages({
+      details: Joi.string().messages({
       "string.empty": Validation?.Message || "Message is required",
     }),
   });
@@ -58,24 +57,17 @@ export default function Connectwithus() {
     return helpers.error("string.pattern.base");
   }
 
-  const notify = (status) => {
-    if (status) {
-      return toast.success(Contactus.SentSucc);
-    } else {
-      return toast.error(Contactus.SentErr);
-    }
-  };
-
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const onSubmit = async (inputs) => {
-    setisLoading(true);
-    const { data, status } = await sendMessage(inputs);
-    if (status) {
-      reset({ Name: "", Email: "", Phone: "", Company: "", Message: "" });
-      notify(status);
+    console.log(inputs.name)
+    const success  = await ContactUsApi(inputs.name,inputs.company_name,inputs.email,inputs.Phone,inputs.details);
+    
+    if (success.status===200) {
+      setSuccessMessage(Contactus.SentSucc);
     } else {
-      notify(status);
+      setErrorMessage(Contactus.SentErr);
     }
-    setisLoading(false);
   };
 
   return (
@@ -158,7 +150,7 @@ export default function Connectwithus() {
           xs={12}
           md={5.5}
           label={`${Contactus.Name}`}
-          ele="Name"
+          ele="name"
           register={register}
           errors={errors}
           type="Name"
@@ -168,7 +160,7 @@ export default function Connectwithus() {
           xs={12}
           md={5.5}
           label={`${Contactus.Company}`}
-          ele="Company"
+          ele="company_name"
           register={register}
           errors={errors}
           type="Company"
@@ -179,7 +171,7 @@ export default function Connectwithus() {
           xs={12}
           md={12}
           label={`${Contactus.Email}`}
-          ele="Email"
+          ele="email"
           register={register}
           errors={errors}
           type="Email"
@@ -207,12 +199,23 @@ export default function Connectwithus() {
           xs={12}
           md={12}
           label={`${Contactus.Message}`}
-          ele="Message"
+          ele="details"
           register={register}
           errors={errors}
           type="Message"
           multiline
         />
+        {successMessage && (
+              <Typography color="success.main" sx={{ marginBottom: 2 }}>
+                {successMessage}
+              </Typography>
+            )}
+
+            {errorMessage && (
+              <Typography color="error.main" sx={{ marginBottom: 2 }}>
+                {errorMessage}
+              </Typography>
+            )}
         <Btn
           item
           xs={12}

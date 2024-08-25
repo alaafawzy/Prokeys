@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-v-prd9hw6o0fby97ml+!$zj992@x@4z+z&+u0x@^$wg=rc@^fc
 DEBUG = True
 # DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-# ALLOWED_HOSTS = ['111prokeys.com','111prokeys.net','www.111prokeys.com','www.111prokeys.net']
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['111prokeys.com','111prokeys.net','www.111prokeys.com','www.111prokeys.net']
 
 
 # Application definition
@@ -85,22 +85,23 @@ WSGI_APPLICATION = 'prokeys111.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'prokeys111',
-#         'USER': 'prokeysdb',
-#         'PASSWORD': 'prokeysadmin',
-#         'HOST': 'localhost',
-#         'PORT': '5432'
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'prokeys111',
+        'USER': 'prokeysdb',
+        'PASSWORD': 'prokeysadmin',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+}
 
 
 # Password validation
@@ -152,19 +153,15 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ziadmohamed997@gmail.com'
-EMAIL_HOST_PASSWORD = 'hcpxlrgxqvbczkfa'
+EMAIL_HOST = 'mail.privateemail.com'
+EMAIL_HOST_USER = 'info@111prokeys.com'
+EMAIL_HOST_PASSWORD = '4(FbmqxhQ#Fk'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 BUSINESS_EMAIL = 'Business.Development@111prokeys.com'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-# CORS_ALLOW_CREDENTIALS = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-# CORS_ALLOW_ALL_ORIGINS = True
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         #'knox.auth.TokenAuthentication',

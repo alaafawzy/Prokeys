@@ -57,6 +57,7 @@ export default function InputField({
   label,
   multiline,
   errors,
+  first_name,
   onChange,  // Add onChange prop to handle file changes
 }) {
   const theme = useTheme();
@@ -82,7 +83,8 @@ export default function InputField({
           htmlFor={`${label}-input`}
           sx={{
             fontFamily: "Tajawal",
-            right: theme.direction == "ltr" ? " -10px !important" : "",
+            right: first_name?theme.direction == "ltr" ? " -18px !important" : "":theme.direction == "ltr" ? " -10px !important" : "",
+            // right: theme.direction == "ltr" ? " -10px !important" : "",
             left: theme.direction == "ltr" ? "unset" : " 0 !important",
           }}
         >

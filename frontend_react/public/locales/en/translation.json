@@ -4,23 +4,23 @@
     "home": "Home",
     "who": "About us",
     "bundles": "Bundles",
-    "services": "services",
+    "services": "Services",
     "free": "free services",
     "FQA": "FQA",
     "login": "Login",
     "new": "New",
-    "contact": "contact us"
+    "contact": "Contact Us"
   },
   "Footer": {
-    "browse": "browse website",
+    "browse": "Browse website",
     "home": "Home",
     "who": "About us",
     "bundles": "Bundles",
-    "services": "services",
-    "communicate": "communicate with us",
-    "rights": "all right save © 2024 prokeys  ",
+    "services": "Services",
+    "communicate": "Communicate with us",
+    "rights": "All right save © 2024 prokeys  ",
     "location": "Office 43-44, Al Fahedy",
-    "follow": "follow us"
+    "follow": "Follow us"
   },
   "Landing": {
     "title": "Turning <1>accounting challenges</1> into entrepreneurial opportunities, as accounting is a language mastered by our experts",
@@ -208,7 +208,8 @@
     "password": "Password",
     "validation": "Email or Password is incorrect!",
     "create": "New account",
-    "account": "don't have an account?"
+    "account": "don't have an account?",
+    "fail": "Email or password is not correct"
   },
   "ForgetPassword": {
     "title": "Reset Password",
@@ -221,7 +222,7 @@
     "create": "New account",
     "account": "don't have an account?",
     "loginPhrase": "you have an account?",
-    "success": "Password has been changed successfully",
+    "success": "Email sent successfully, check your mail",
     "fail" : "An unexpected error occurred."
   },
   "ChangePassword": {

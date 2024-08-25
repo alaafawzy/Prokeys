@@ -57,7 +57,7 @@ export const sendMessage = async (message) => {
         status: true
     }
     try {
-        let { data } = await axios.post(`${baseUrl}/contact-us/create`, {
+        let { data } = await axios.post(`${baseUrl}/contactus/`, {
 
             "name": message.Name,
             "email": message.Email,

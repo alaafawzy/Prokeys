@@ -13,10 +13,4 @@ i18n.use(LanguageDetector).use(initReactI18next).use(Backend).init({
       },
 })
 
-// i18n.use(LanguageDetector).use(initReactI18next).use(Backend).init({
-//     debug: true,
-//     lng: "ar",
-//     fallbackLng: "ar",
-//     returnObjects: true,
-    
-// })
+

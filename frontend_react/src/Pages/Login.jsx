@@ -1,5 +1,5 @@
 import React, { useState,useContext  } from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid ,Typography} from "@mui/material";
 import InputField from "../components/InputField";
 import LoginBackground from "../components/LoginBackground";
 import FormFrame from "../components/FormFrame";
@@ -43,13 +43,14 @@ export default function Login() {
     // console.log(data.Password);
     // console.log(data.Email);
     const success  = await login(data.Email,data.Password);
+    console.log(success)
     if (success.status===200) {
       console.log(success.user);
       setUser(success.user);
       navigate('/')
     } else {
       console.error('Login failed');
-      setErrorMessage(success.data);
+      setErrorMessage(Login.fail);
       // Show error message
     }
   };
