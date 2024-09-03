@@ -6,6 +6,8 @@ router = DefaultRouter()
 router.register(r'faq', FAQViewSet)
 router.register(r'bundles', BundleViewSet)
 router.register(r'footer', FooterViewSet)
+router.register(r'aboutUs', AboutUsViewSet)
+router.register(r'homeStarting', HomeStartingViewSet)
 
 urlpatterns = [
     path('carousel/', NewsView.as_view(), name='news-list'),

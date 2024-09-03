@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { Grid } from "@mui/material";
 import { Container } from "@mui/material";
 import { Box } from "@mui/material";
@@ -8,11 +8,40 @@ import Btn from "../components/Btn";
 import { Trans, useTranslation } from "react-i18next";
 import { useTheme } from "@emotion/react";
 import { Link } from "react-router-dom";
-
+import api from '../../Api';
 export default function HomeStarting() {
   const { t } = useTranslation();
   const Landing = t("Landing");
   const theme = useTheme();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Fetch data when the component mounts
+    const fetchData = async () => {
+      try {
+        const response = await api.get('/homeStarting/'); // Adjust endpoint as needed
+        console.log(response.data[0]);
+        
+        if (response.data) {
+          setData(response.data[0]);
+        } else {
+          // Set data to an empty array if the response is not an array
+          setData([]);
+        }
+        // setData(response.data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
   return (
     <>
       <Grid>
@@ -76,7 +105,7 @@ export default function HomeStarting() {
                 }}
               >
                 <Trans
-                  i18nKey={Landing.title}
+                  i18nKey={theme.direction=='rtl'?data.arabic_title:data.english_title}
                   components={{ 1: <span id="LandingTitle" /> }}
                 />
               </Box>
@@ -91,7 +120,7 @@ export default function HomeStarting() {
                   color: "#4F4F4F",
                 }}
               >
-                {Landing.info}
+                {theme.direction=='rtl'?data.arabic_description:data.english_description}
               </Box>
               <Link to="/ContactUs">
                 <Btn bg={"#131F89"} FontColor={"white"} p={"1rem"} W={"151px"}>

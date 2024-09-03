@@ -43,6 +43,13 @@ class AllCommentsListView(generics.ListAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
+class AboutUsViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = AboutUs.objects.all()
+    serializer_class = AboutUsSerializer
+
+class HomeStartingViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = HomeStarting.objects.all()
+    serializer_class = HomeStartingSerializer
     
 
 

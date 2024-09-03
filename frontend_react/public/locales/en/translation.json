@@ -31,9 +31,9 @@
   "Systems": "Systems and companies that we deal with",
   "who": {
     "mainTitle": "? Who we are",
-    "mainDesc": "We appoint an integrated team to manage all aspects of your accounting matters, from bookkeeping to tax reporting.",
+    "mainDesc": "We appoint an integrated team to manage all aspects of your accounting matters, from bookkeeping to tax reporting",
     "title": "Dedicate to developing your company",
-    "Desc": "Our team is interested in carefully monitoring your accounting performance, in addition to providing all the necessary support for preparing tax returns, value-added tax, etc."
+    "Desc": "Our team is interested in carefully monitoring your accounting performance, in addition to providing all the necessary support for preparing tax returns, value-added tax, etc"
   },
   "Book": {
     "des": "Click now to book a free session with our experts to build a financial plan that suits your company's needs",
@@ -56,7 +56,7 @@
   "Packages": {
     "Common": {
       "mainTitle": "Choose Your Perfect Package",
-      "mainDesc": "Our accounting packages are specifically designed to meet your company's needs accurately and efficiently, to facilitate the management of financial aspects in an integrated and specialized manner.",
+      "mainDesc": "Our accounting packages are specifically designed to meet your company's needs accurately and efficiently, to facilitate the management of financial aspects in an integrated and specialized manner",
       "contactUs": "Get Started",
       "showMore": "Show more packages"
     },
@@ -71,71 +71,24 @@
       "bullet3": "Inventory management, payroll management",
       "bullet4": "Monthly financial status discussion",
       "bullet5": "Accounting tree evaluation service"
-    },
-    "Additional": {
-      "mainTitle": "Choose Your Perfect Package",
-      "mainDesc": "Our accounting packages are specifically designed to meet your company's needs accurately and efficiently, to facilitate the management of financial aspects in an integrated and specialized manner.",
-      "cardTitle": "Additional package",
-      "cardPrice": "k1950 UAE per month",
-      "cardSale": "10% discount for annual subscription",
-      "contactUs": "Get Started",
-      "showMore": "Show more packages",
-      "bullet1": "All basic package services plus",
-      "bullet2": "To contact the chartered accountant",
-      "bullet3": "Consulting on emerging project challenges"
-    },
-    "Custom": {
-      "mainTitle": "Choose Your Perfect Package",
-      "mainDesc": "Our accounting packages are specifically designed to meet your company's needs accurately and efficiently, to facilitate the management of financial aspects in an integrated and specialized manner.",
-      "cardTitle": "Custom package",
-      "cardPrice": "k3250 UAE per month",
-      "cardSale": "10% discount for annual subscription",
-      "contactUs": "Get Started",
-      "bullet1": "All basic package services plus",
-      "bullet2": "A plan tailored to the client's needs",
-      "bullet3": "Prepare the financial model (one time only)",
-      "bullet4": "Accounting tree evaluation service"
-    },
-    "Tax": {
-      "mainTitle": "Choose Your Perfect Package",
-      "mainDesc": "Our accounting packages are specifically designed to meet your company's needs accurately and efficiently, to facilitate the management of financial aspects in an integrated and specialized manner.",
-      "cardTitle": "Tax package",
-      "cardPrice": "k1500 UAE per month",
-      "cardSale": "10% discount for annual subscription",
-      "contactUs": "Get Started",
-      "bullet1": "Does not include financial reports",
-      "bullet2": "Does not include bank reconciliation (bank balance only)",
-      "bullet3": "Accounting tree evaluation service"
-    },
-    "Free": {
-      "mainTitle": "Choose Your Perfect Package",
-      "mainDesc": "Our accounting packages are specifically designed to meet your company's needs accurately and efficiently, to facilitate the management of financial aspects in an integrated and specialized manner.",
-      "cardTitle": "Freelancing package",
-      "cardPrice": "k600 UAE per month",
-      "cardSale": "10% discount for annual subscription",
-      "contactUs": "Get Started",
-      "bullet1": "Bookkeeping",
-      "bullet2": "Preparing the financial position report, profits and losses",
-      "bullet3": "Bank account matching",
-      "bullet4": "Discussing the financial situation 1 hour/3 months",
-      "bullet5": "Accounting tree service"
     }
+    
   },
   "Feedback": {
     "feed1": {
-      "whatTheySay": "What our customers say about us.",
+      "whatTheySay": "What our customers say about us",
       "customerName": "Ahmed",
       "customerTitle": "Financial controller",
       "customerFeedback": "I wanted to say a massive thank you for the support you have given me and the team over recent period ,all of you working with all the efforts you have , really appreciating "
     },
     "feed2": {
-      "whatTheySay": "What our customers say about us.",
+      "whatTheySay": "What our customers say about us",
       "customerName": "yousef",
       "customerTitle": "Accounting manger",
       "customerFeedback": "Thank you so much for helping out ,It’s such a good chance to know pro keys company, we can take time out when needed and all team member are here to support us"
     },
     "feed3": {
-      "whatTheySay": "What our customers say about us.",
+      "whatTheySay": "What our customers say about us",
       "customerName": "Qmnia",
       "customerTitle": "Human Resources Generalist",
       "customerFeedback": "Pro keys creativity has been excellent  and I'm really happy that you've got off to such a strong start like i saw with you , wishing to you all completing this success"
@@ -150,7 +103,7 @@
   "FAQ": {
     "title": "Answering Your Questions and Meeting Your Company's Needs",
     "q1": "What accounting services do you offer ?",
-    "a1": "We provide comprehensive accounting services including bookkeeping, preparation of monthly and annual financial reports, preparation of tax returns, auditing, financial consulting, and more.",
+    "a1": "We provide comprehensive accounting services including bookkeeping, preparation of monthly and annual financial reports, preparation of tax returns, auditing, financial consulting, and more",
     "q2": "What is the cost of the accounting services you provide?",
     "q3": "Do you provide financial consulting services?",
     "q4": "Can I trust the confidentiality of the information I provide?"
@@ -159,8 +112,8 @@
     "title": "The impact of administrative creativity on financial growth",
     "desc1": "Are you looking for an easy and safe way to manage your financial and administrative affairs? The pro keys on our website provide you with the perfect solution for that! Through an easy user interface that is available around the clock, you can access your monthly, quarterly and annual financial reports with just a few clicks. You do not have to worry about the security of your financial information, as we guarantee that your data is protected with the highest standards of electronic security. Our website is also easy to use and navigate, which makes the experience of obtaining online account services smooth and convenient",
     "desc2": "It is known that accounting is the language of business, and if an organization wants to develop and grow, it must be careful to understand this language",
-    "desc3": "One of the most important accounting services that you can rely on is the corporate accounting systems design service, where you will get an integrated accounting system that guarantees you financial security.",
-    "desc4": "However, if you already own an accounting system for your company, you can use the accounting system evaluation service, which works to clarify the strengths and shortcomings of the accounting system while clarifying the treatment method for the shortcomings so that your system becomes integrated and makes optimal use of it that works to grow the business. Increasing the company's profits.",
+    "desc3": "One of the most important accounting services that you can rely on is the corporate accounting systems design service, where you will get an integrated accounting system that guarantees you financial security",
+    "desc4": "However, if you already own an accounting system for your company, you can use the accounting system evaluation service, which works to clarify the strengths and shortcomings of the accounting system while clarifying the treatment method for the shortcomings so that your system becomes integrated and makes optimal use of it that works to grow the business. Increasing the company's profits",
     "OurTeam": "Our Team",
     "name": "Name",
     "position": "CEO and Founder",
@@ -223,7 +176,7 @@
     "account": "don't have an account?",
     "loginPhrase": "you have an account?",
     "success": "Email sent successfully, check your mail",
-    "fail" : "An unexpected error occurred."
+    "fail" : "An unexpected error occurred"
   },
   "ChangePassword": {
     "title": "Change Password",
@@ -238,7 +191,7 @@
     "account": "don't have an account?",
     "loginPhrase": "you have an account?",
     "success": "Password has been changed successfully",
-    "fail" : "An unexpected error occurred."
+    "fail" : "An unexpected error occurred"
   },
   "FormFrame": {
     "mainPage": "Back to main page"
@@ -256,48 +209,48 @@
     "create": "login",
     "account": "have an account?",
     "Image": "Tax record",
-    "Success":"User has been successfully created, Please wait the activation of your acount."
+    "Success":"User has been successfully created, Please wait the activation of your acount"
   },
   "freeProducts": {
     "title": "Our Free Products",
     "sectionTitle1": "Free Pricing Techniques Guide",
-    "sectionDesc1": "Protect your online store from loss with the Pricing Techniques Guide, which includes a detailed explanation of 13 strategies for pricing your products and services.",
+    "sectionDesc1": "Protect your online store from loss with the Pricing Techniques Guide, which includes a detailed explanation of 13 strategies for pricing your products and services",
     "sectionTitle2": "Free Financial Model Template and Guide",
-    "sectionDesc2": "The financial model is the most important financial document for startups, as it helps you track key performance indicators, forecast your future revenues, and present them to investors.",
+    "sectionDesc2": "The financial model is the most important financial document for startups, as it helps you track key performance indicators, forecast your future revenues, and present them to investors",
     "sectionTitle3": "Free Value Added Tax (VAT) Guide",
-    "sectionDesc3": "Prepare for tax season by using the comprehensive guide to Value Added Tax (VAT) and learn how to prepare your tax return away from your accounting worries.",
+    "sectionDesc3": "Prepare for tax season by using the comprehensive guide to Value Added Tax (VAT) and learn how to prepare your tax return away from your accounting worries",
     "btn": "Download Now"
   },
   "CommonQues": {
     "title1": "Do You Have Questions? We're Here to Help",
     "other": "?Do you have any other questions",
-    "desc": "Can't find the answer you're looking for? Please contact our team.",
+    "desc": "Can't find the answer you're looking for? Please contact our team",
     "btn": "Contact Us"
   },
   "FQA": {
     "Q1": {
       "Question": "Preparing financial statements",
-      "Answer": "Through this service, you will be able to obtain integrated preparation of financial statements, and these lists will be prepared in accordance with well-known international standards, so that you will be able to issue highly accurate financial reports characterized by honesty and objectivity."
+      "Answer": "Through this service, you will be able to obtain integrated preparation of financial statements, and these lists will be prepared in accordance with well-known international standards, so that you will be able to issue highly accurate financial reports characterized by honesty and objectivity"
     },
     "Q2": {
       "Question": "Numbers of financial systems",
-      "Answer": "Also, among the accounting consulting services that you can obtain is the preparation of financial systems in a professional manner, as well as the design of internal control systems, which allows you to monitor all financial transactions that take place within your organization in an easy and simple way, and without the need to exert great effort in auditing."
+      "Answer": "Also, among the accounting consulting services that you can obtain is the preparation of financial systems in a professional manner, as well as the design of internal control systems, which allows you to monitor all financial transactions that take place within your organization in an easy and simple way, and without the need to exert great effort in auditing"
     },
     "Q3": {
       "Question": "Developing accounting policies",
-      "Answer": "Any company or institution, regardless of its activity and the volume of its transactions, must have accounting policies that it follows. These policies clarify all accounting matters and financial activities that must be carried out within the company or institution."
+      "Answer": "Any company or institution, regardless of its activity and the volume of its transactions, must have accounting policies that it follows. These policies clarify all accounting matters and financial activities that must be carried out within the company or institution"
     },
     "Q4": {
       "Question": "Audit services",
-      "Answer": "There are many methods of auditing accounts, including many methods that rely primarily on well-known international standards for auditing accounts. These methods depend on studying the accounting systems that are relied upon within the institution, while carrying out a complete evaluation of these systems, and ensuring the extent of their effectiveness, as well as “The extent of its compatibility with international standards used in accounting."
+      "Answer": "There are many methods of auditing accounts, including many methods that rely primarily on well-known international standards for auditing accounts. These methods depend on studying the accounting systems that are relied upon within the institution, while carrying out a complete evaluation of these systems, and ensuring the extent of their effectiveness, as well as “The extent of its compatibility with international standards used in accounting"
     }
   },
   "OurServises": {
     "title1": "Services",
-    "desc1": "We excel in supporting entrepreneurs and small business owners, allowing us to fully understand the challenges they may face. Through these services, we help you overcome common challenges in the early stages of your project's growth.",
+    "desc1": "We excel in supporting entrepreneurs and small business owners, allowing us to fully understand the challenges they may face. Through these services, we help you overcome common challenges in the early stages of your project's growth",
     "title2": "III PRO.KEYS Services",
-    "desc2": "You can add these services to your package.",
-    "join": "Join our client list and focus on developing and growing your project.",
+    "desc2": "You can add these services to your package",
+    "join": "Join our client list and focus on developing and growing your project",
     "btn": "Contact Us",
     "serv1": {
       "title": "?Why choose us",
@@ -338,11 +291,11 @@
   },
   "Profile/Files": {
     "Service": "Services",
-    "Desc": "Documents and attachments that have been uploaded."
+    "Desc": "Documents and attachments that have been uploaded"
   },  
   "MainFiles/Profile": {
     "title": "Main Files",
-    "Desc": "Documents and attachments that have been uploaded.",
+    "Desc": "Documents and attachments that have been uploaded",
     "ratio1": "TRN Number",
     "ratio2": "Commercial Register",
     "ratio3": "Tax Card",
@@ -351,7 +304,7 @@
   },
   "FilesTable/Profile": {
     "MainTitle": "Attached Files",
-    "MainDesc": "Files and attached resources that have been uploaded.",
+    "MainDesc": "Files and attached resources that have been uploaded",
     "TableTitle1": "File Name",
     "TableTitle2": "Upload Date",
     "TableTitle3": "File Size"

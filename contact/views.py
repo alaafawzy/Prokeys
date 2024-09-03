@@ -20,6 +20,6 @@ class ContactUs(generics.GenericAPIView):
         message = 'A new customer wants to contact with you \n'+' Name: '+str(name)+'\n Comapny Name: '+str(company_name)+'\n Email: '+str(email)+'\n phone: '+str(phone)+'\n Details: '+str(details)
 
         if email:
-            send_mail('New Contact', message, EMAIL_HOST_USER, ['alaafawzy963@gmail.com'])
+            send_mail('New Contact', message, EMAIL_HOST_USER, [EMAIL_HOST_USER])
             return Response(status=200)
         return Response(status=400)

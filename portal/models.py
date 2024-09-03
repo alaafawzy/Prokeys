@@ -64,3 +64,15 @@ class Comment(models.Model):
     user=models.ForeignKey(CustomUser,related_name='comments',on_delete=models.CASCADE)
     role = models.CharField(max_length=255,blank=True)
     description=models.TextField()
+
+class AboutUs(models.Model):
+    english_title = models.CharField(max_length=255)
+    arabic_title = models.CharField(max_length=255)
+    english_description = models.TextField()
+    arabic_description = models.TextField()
+
+class HomeStarting(models.Model):
+    english_title = models.CharField(max_length=255)
+    arabic_title = models.CharField(max_length=255)
+    english_description = models.TextField()
+    arabic_description = models.TextField()

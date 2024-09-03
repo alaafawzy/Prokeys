@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { Grid, Box } from "@mui/material";
 import { Container } from "@mui/material";
-import pic from "../assets/picFrame.jpeg";
 import { Trans, useTranslation } from "react-i18next";
 import { useTheme } from "@emotion/react";
 import { Question_array } from "../components/Question_array";
+import api from '../../Api';
 // import { Question } from "../Sections/FAQ";
 
 export default function AboutUs() {
@@ -12,7 +12,38 @@ export default function AboutUs() {
   const { t } = useTranslation();
   const Who = t("AboutUs");
   const { Q1, Q2, Q3 } = t("AboutUs");
-  
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Fetch data when the component mounts
+    const fetchData = async () => {
+      try {
+        const response = await api.get('/aboutUs/'); // Adjust endpoint as needed
+        console.log(response.data[0]);
+        
+        if (response.data) {
+          setData(response.data[0]);
+        } else {
+          // Set data to an empty array if the response is not an array
+          setData([]);
+        }
+        // setData(response.data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  const textStyle = {
+    whiteSpace: 'pre-line', // preserves newlines
+  };
   return (
     <Grid>
       <Container
@@ -50,12 +81,13 @@ export default function AboutUs() {
               marginBottom: "2rem",
             }}
           >
-            {Who.title}
+            {theme.direction=='rtl'?data.arabic_title:data.english_title}
+            {/* {Who.title} */}
           </Grid>
-          <div>{Who.desc1}</div>
-          <div>{Who.desc2}</div>
+          <div style={textStyle}>{theme.direction=='rtl'?data.arabic_description:data.english_description}</div>
+          {/* <div>{Who.desc2}</div>
           <div>{Who.desc3}</div>
-          <div>{Who.desc4}</div>
+          <div>{Who.desc4}</div> */}
 
           {/* <Grid
             item

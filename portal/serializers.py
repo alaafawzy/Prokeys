@@ -35,3 +35,12 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ['id', 'user_first_name', 'user_last_name', 'role', 'description']
 
+class AboutUsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AboutUs
+        fields ='__all__'
+class HomeStartingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomeStarting
+        fields ='__all__'
+    
