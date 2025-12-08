@@ -4,6 +4,9 @@ from django.utils.text import slugify
 import re
 import os
 from authentication.models import CustomUser
+from ckeditor.fields import RichTextField
+from tinymce.models import HTMLField
+
 # Create your models here.
 def attachment(instance, filename):
     base_name, ext = os.path.splitext(filename)
@@ -70,9 +73,14 @@ class AboutUs(models.Model):
     arabic_title = models.CharField(max_length=255)
     english_description = models.TextField()
     arabic_description = models.TextField()
+    content = RichTextField(null=True,blank=True)
+    content2 = HTMLField(null=True,blank=True)
+    
 
 class HomeStarting(models.Model):
     english_title = models.CharField(max_length=255)
     arabic_title = models.CharField(max_length=255)
+    arabic_subtitle = models.CharField(max_length=400)
+    english_subtitle = models.CharField(max_length=400)
     english_description = models.TextField()
     arabic_description = models.TextField()

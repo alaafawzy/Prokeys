@@ -9,13 +9,14 @@ import { UserContext } from '../context/UserContext';
 import { useNavigate } from "react-router-dom";
 import { AddFeedback } from "../../Api";
 import api from "../../Api";
+import ReviewCarousel from "../components/feedbackCarousel";
 export default function Feedback() {
   const { t } = useTranslation();
   const { feed1,addFeedback,yourRole,yourFeedback ,submitFeedback,successSubmit,errorSubmit} = t("Feedback");
   const theme = useTheme();
-  const { user } = useContext(UserContext);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [feedback, setFeedback] = useState({ text: "", role: "" });
+  // const { user } = useContext(UserContext);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [feedback, setFeedback] = useState({ text: "", role: "" });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [data, setData] = useState([]);
@@ -23,32 +24,32 @@ export default function Feedback() {
   const [error, setError] = useState(null);
   const [refresh, setRefresh] = useState(null);
   const navigate = useNavigate();
-  const handleAddFeedback = () => {
-    if (user) {
-      setIsLoggedIn(true);
-    } else {
-      navigate("/login"); // Redirect to login page
-    }
-  };
-  const handleFeedbackSubmit = async () => {
-  try {
-    setSuccessMessage("");
-    setErrorMessage("");
-    const response = await AddFeedback(feedback.text, feedback.role);
-    console.log(response);
+  // const handleAddFeedback = () => {
+  //   if (user) {
+  //     setIsLoggedIn(true);
+  //   } else {
+  //     navigate("/login"); // Redirect to login page
+  //   }
+  // };
+//   const handleFeedbackSubmit = async () => {
+//   try {
+//     setSuccessMessage("");
+//     setErrorMessage("");
+//     const response = await AddFeedback(feedback.text, feedback.role);
+//     console.log(response);
 
-    if (response.status === 201) { // assuming 201 is the status code for success
-      setSuccessMessage(successSubmit);
-      // setFeedback({ ...feedback, text: "" });
-      setFeedback({ ...feedback, role: "" ,text:""});
-      setRefresh("done");
-    } else {
-      setErrorMessage(errorSubmit);
-    }
-  } catch (error) {
-    setErrorMessage(error.message || "An unexpected error occurred.");
-  }
-};
+//     if (response.status === 201) { // assuming 201 is the status code for success
+//       setSuccessMessage(successSubmit);
+//       // setFeedback({ ...feedback, text: "" });
+//       setFeedback({ ...feedback, role: "" ,text:""});
+//       setRefresh("done");
+//     } else {
+//       setErrorMessage(errorSubmit);
+//     }
+//   } catch (error) {
+//     setErrorMessage(error.message || "An unexpected error occurred.");
+//   }
+// };
 useEffect(() => {
   // Fetch data when the component mounts
   const fetchData = async () => {
@@ -71,14 +72,15 @@ useEffect(() => {
 }, [refresh]);
   return (
     <>
-      <Container
+      <Grid
         sx={{
+          width:"100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignContent: "end",
           textAlign: "end",
-          fontFamily: "Tajawal",
+          fontFamily: "Cairo",
           "& > div:not(:last-child)": {
             marginBottom: "1rem",
           },
@@ -89,37 +91,41 @@ useEffect(() => {
             display: "flex",
             flexDirection: "column",
             textAlign: "center",
+            marginTop:5,
             "& > div:not(:last-child)": {
               marginBottom: "1rem",
             },
           }}
         >
-          <Box sx={{ color: "rgba(19, 31, 137, 1)", fontWeight: "700" }}>
+          <Box sx={{ color: "#27307F", fontWeight: "700",fontSize:"2.2rem" }}>
             {feed1?.whatTheySay}
+          </Box>
+          <Box >
+            {feed1?.subtitle}
           </Box>
 
           <Grid
-            container
+            
             sx={{
-              overflowX: "auto",
+              width:"100%",
               display:'flex',
               flexWrap: "nowrap",
+              marginTop:5,
               // justifyContent: "space-between",
               "& > div:not(:last-child)": {
                 marginBottom: "1rem",
               },
-              flexDirection: {},
             }}
           >
-            {data?.map((feed,idx)=>{
+            {/* {data?.map((feed,idx)=>{
               return (<FeedbackCard svg={icons.feedback}
                 customerName={feed?.user_first_name+" "+feed?.user_last_name}
                 customerFeedback={feed?.description}
                 customerTitle={feed?.role} />)
-            })}
-            
+            })} */}
+            <ReviewCarousel items={data}></ReviewCarousel>
           </Grid>
-          <Button
+          {/* <Button
             sx={{ marginTop: "1rem", alignSelf: "center",color:"white" ,
               background:"#131F89",cursor:"pointer",fontFamily: `${theme.fontFamily}`,
               fontSize: ".8rem",
@@ -132,11 +138,11 @@ useEffect(() => {
               borderRadius: "10px",
             }}
             variant="contained"
-            onClick={handleAddFeedback}
+            // onClick={handleAddFeedback}
           >
             {addFeedback}
-          </Button>
-          {isLoggedIn && (
+          </Button> */}
+          {/* {isLoggedIn && (
             <Box sx={{ marginTop: "1rem", textAlign: "left" }}>
               <TextField
                 fullWidth
@@ -183,9 +189,9 @@ useEffect(() => {
                 {submitFeedback}
               </Button>
             </Box>
-          )}
+          )} */}
         </Box>
-      </Container>
+      </Grid>
     </>
   );
 }
@@ -199,6 +205,7 @@ function FeedbackCard({ svg, customerName, customerTitle, customerFeedback }) {
           sx={{
             textAlign: "center",
             padding: "1rem 0",
+            border:"3px solid #27307F",
             boxShadow: "0px 12px 16px 4px rgba(16, 24, 40, 0.08)",
             borderRadius: "1rem",
             justifyContent: "center",

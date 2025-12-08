@@ -2,60 +2,293 @@ import React from "react";
 import { Box, Container, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Session from "../components/Session";
-
+import { Typography, Button } from "@mui/material";
+import reserve from "../assets/how we work/reserve.png";
+import choice2 from "../assets/how we work/choice2.png";
+import upload from "../assets/how we work/upload.png";
+import leftArrow from "../assets/how we work/leftArrow.png";
+import { useTheme } from "@emotion/react";
 export default function HowWeWork() {
   const { t } = useTranslation();
+  const theme = useTheme();
+  const isEnglish = theme.dir === "ltr";
   const HowWeWork = t("HowWeWork");
+  
+  const arrowStyle = isEnglish ? { transform: "scaleX(-1)" } : {};
+  
+  
   return (
-    <>
-      <Container
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",          
-          alignContent:"end",
-          textAlign: "end",
-          fontFamily: "Tajawal",
-          "& > div:not(:last-child)": {
-            marginBottom: "1rem",
-          },
-        }}
-      >
-        <Box
-          sx={{
-           display:"flex",
-           flexDirection: "column",     
-           textAlign: "center",
-          }}
+    <Box sx={{ py: 10, backgroundColor: "#fff" }}>
+      <Container maxWidth="lg">
+        
+        {/* top title */}
+        <Typography
+          variant="body1"
+          align="center"
+          sx={{ color: "#47C1CA", mb: 1, fontSize: 18 }}
+          fontFamily="Cairo"
         >
-          <Box sx={{ color: "rgba(19, 31, 137, 1)",fontWeight:"700" }}>{HowWeWork.howTitle}</Box>
-          <Box sx={{ fontSize: "24px", color: "rgba(79, 79, 79, 1)" }}>
-            {HowWeWork.howDesc}
-          </Box>
-        </Box>
+          {HowWeWork.howTitle}
+        </Typography>
 
-        <Box
+        <Typography
+          variant="h4"
+          align="center"
+          
           sx={{
-            "& > div:not(:last-child)": {
-              marginBottom: "1rem",
-              borderEnd:"1px solid red"
-            },
+            fontWeight: 700,
+            color: "#27307F",
+            mb: 15,
+            fontFamily: "Cairo",
+            fontSize:"2.2rem"
           }}
+          
         >
-          <Session
-            title={HowWeWork.sesstionTitle1}
-            desc={HowWeWork.sesstionDesc1}
-          />
-          <Session
-            title={HowWeWork.sesstionTitle2}
-            desc={HowWeWork.sesstionDesc2}
-          />
-          <Session
-            title={HowWeWork.sesstionTitle3}
-            desc={HowWeWork.sesstionDesc3}
-          />
+          {HowWeWork.howDesc}
+        </Typography>
+
+        {/* Steps */}
+        <Grid container spacing={4} justifyContent="center" alignItems="flex-start">
+          
+            <Grid item xs={12} sm={6} md={3} >
+              <Box sx={{ textAlign: "center" }}>
+
+                {/* Icon circle */}
+                <Box
+                  sx={{
+                    width: 16,
+                    height: 80,
+                    borderRadius: "50%",
+                    backgroundColor: "#fff",
+                    boxShadow: "0px 12px 40px rgba(0,0,0,0.08)",
+                    mb: 2,
+                    mx: "auto",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img src={upload} alt={HowWeWork.sesstionTitle3} width="250" />
+                </Box>
+
+                {/* Number */}
+                <Typography
+                  sx={{
+                    fontSize: 48,
+                    fontWeight: "bold",
+                    color: "#235789",
+                    mb: 1,
+                    fontFamily: "Cairo",
+                  }}
+                >
+                  {3}
+                </Typography>
+
+                {/* Title */}
+                <Typography
+                  sx={{
+                    fontSize: 21,
+                    fontWeight: "bold",
+                    color: "#27307F",
+                    mb: 1,
+                    fontFamily: "Cairo",
+                  }}
+                >
+                  {HowWeWork.sesstionTitle3}
+                </Typography>
+
+                {/* Description */}
+                <Typography
+                  sx={{
+                    fontSize: 16,
+                    fontWeight:"medium",
+                    color: "#27307F",
+                    lineHeight: "26px",
+                    fontFamily: "Cairo",
+                  }}
+                >
+                  {HowWeWork.sesstionDesc3}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item  md={1} >
+              <Box
+                  sx={{
+                    width: 16,
+                    height: 80,
+                    mb: 2,
+                    mx: "auto",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    mt:20,
+                    
+                  }}
+                >
+                  <img src={leftArrow} alt="left arrow" width="120" style={arrowStyle} />
+                
+                </Box>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} >
+              <Box sx={{ textAlign: "center" }}>
+
+                {/* Icon circle */}
+                <Box
+                  sx={{
+                    width: 16,
+                    height: 80,
+                    borderRadius: "50%",
+                    backgroundColor: "#fff",
+                    boxShadow: "0px 12px 40px rgba(0,0,0,0.08)",
+                    mb: 2,
+                    mx: "auto",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img src={choice2} alt={HowWeWork.sesstionTitle2} width="250" />
+                </Box>
+
+                {/* Number */}
+                <Typography
+                  sx={{
+                    fontSize: 48,
+                    fontWeight: "bold",
+                    color: "#235789",
+                    mb: 1,
+                    fontFamily: "Cairo",
+                  }}
+                >
+                  {2}
+                </Typography>
+
+                {/* Title */}
+                <Typography
+                  sx={{
+                    fontSize: 21,
+                    fontWeight: "bold",
+                    color: "#27307F",
+                    mb: 1,
+                    fontFamily: "Cairo",
+                  }}
+                >
+                  {HowWeWork.sesstionTitle2}
+                </Typography>
+
+                {/* Description */}
+                <Typography
+                  sx={{
+                    fontSize: 16,
+                    fontWeight:"medium",
+                    color: "#27307F",
+                    lineHeight: "26px",
+                    fontFamily: "Cairo",
+                  }}
+                >
+                  {HowWeWork.sesstionDesc2}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item  md={1} >
+              <Box
+                  sx={{
+                    width: 15,
+                    mb: 2,
+                    mx: "auto",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    mt:22,
+                    
+                  }}
+                >
+                  <img src={leftArrow} alt="left arrow" width="120" style={arrowStyle}/>
+                </Box>
+                
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} >
+              <Box sx={{ textAlign: "center" }}>
+
+                {/* Icon circle */}
+                <Box
+                  sx={{
+                    width: 16,
+                    height: 80,
+                    borderRadius: "50%",
+                    backgroundColor: "#fff",
+                    boxShadow: "0px 12px 40px rgba(0,0,0,0.08)",
+                    mb: 2,
+                    mx: "auto",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img src={reserve} alt={HowWeWork.sesstionTitle1} width="250" />
+                </Box>
+
+                {/* Number */}
+                <Typography
+                  sx={{
+                    fontSize: 48,
+                    fontWeight: "bold",
+                    color: "#235789",
+                    mb: 1,
+                    fontFamily: "Cairo",
+                  }}
+                >
+                  {1}
+                </Typography>
+
+                {/* Title */}
+                <Typography
+                  sx={{
+                    fontSize: 21,
+                    fontWeight: "bold",
+                    color: "#27307F",
+                    mb: 1,
+                    fontFamily: "Cairo",
+                  }}
+                >
+                  {HowWeWork.sesstionTitle1}
+                </Typography>
+
+                {/* Description */}
+                <Typography
+                  sx={{
+                    fontSize: 16,
+                    fontWeight:"medium",
+                    color: "#27307F",
+                    lineHeight: "26px",
+                    fontFamily: "Cairo",
+                  }}
+                >
+                  {HowWeWork.sesstionDesc1}
+                </Typography>
+              </Box>
+            </Grid>
+          
+        </Grid>
+
+        {/* Button */}
+        <Box textAlign="center" mt={6}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#47C1CA",
+              px: 4,
+              py: 1.5,
+              fontSize: 18,
+              borderRadius: "8px",
+              fontFamily: "Cairo",
+              "&:hover": { backgroundColor: "#35a9b1" },
+            }}
+          >
+            {HowWeWork.btn}
+          </Button>
         </Box>
       </Container>
-    </>
+    </Box>
   );
 }

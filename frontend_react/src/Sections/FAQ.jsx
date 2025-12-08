@@ -50,7 +50,7 @@ export default function FAQ() {
           justifyContent: "end",
           alignContent: "end",
           textAlign: "end",
-          fontFamily: "Tajawal",
+          fontFamily: "Cairo",
           "& > div:not(:last-child)": {
             marginBottom: "1rem",
           },
@@ -64,9 +64,10 @@ export default function FAQ() {
             "& > div:not(:last-child)": {
               marginBottom: "1rem",
             },
+            fontFamily:"Cairo",
           }}
         >
-          <Box sx={{ color: "rgba(19, 31, 137, 1)", fontWeight: "700" }}>
+          <Box sx={{ color: "#27307F", fontWeight: "700", fontSize:"2.2rem",marginTop:3,marginBottom:3}}>
             {title1}
           </Box>
         </Box>

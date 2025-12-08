@@ -11,6 +11,7 @@ import BookYourSession from "../Sections/BookYourSession";
 import Connectwithus from "../Sections/Connectwithus";
 import HowWeWork from "../Sections/HowWeWork";
 import OurSystems from "../Sections/OurSystems";
+import Bundles from "./Bundles";
 
 export default function Home() {
   return (
@@ -24,12 +25,15 @@ export default function Home() {
       <HomeStarting />
       {/* <OurClient /> */}
       <WhoAreU />
-      <OurSystems />
       <HowWeWork />
-      <BookYourSession />
+
+      <Bundles />
+      <FAQ />
+      <OurSystems />
+      {/* <BookYourSession /> */}
       {/* <Packages numOfBundles={3} /> */}
       <Feedback />
-      <FAQ />
+      
       {/* <Connectwithus /> */}
     </Grid>
   );

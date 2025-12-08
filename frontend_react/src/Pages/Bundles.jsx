@@ -43,15 +43,18 @@ export default function Bundles() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   return (
+    <Grid className="who-we-are pt-3">
     <Container
       sx={{
-        marginY: "2rem",
+        marginY: "4rem",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignContent: "end",
         textAlign: "end",
-        fontFamily: "Tajawal",
+        fontFamily: "Cairo",
+        fontSize: "1rem",
+        color:"#47C1CA",
         "& > div:not(:last-child)": {
           marginBottom: "1rem",
         },
@@ -61,23 +64,26 @@ export default function Bundles() {
         sx={{
           display: "flex",
           flexDirection: "column",
+          fontFamily: "Cairo",
           textAlign: "center",
           "& > div:not(:last-child)": {
             marginBottom: "1rem",
           },
         }}
       >
-        <Box sx={{ color: "rgba(19, 31, 137, 1)", fontWeight: "700" }}>
+        {/* <Box sx={{ color: "rgba(19, 31, 137, 1)", fontWeight: "700" }}>
           <CarouselComponent items={data}></CarouselComponent>
-        </Box>
-        <Box sx={{ color: "rgba(19, 31, 137, 1)", fontWeight: "700" }}>
+        </Box> */}
+        <Box  sx={{ fontFamily: "Cairo",
+                    fontSize: "1rem",
+                    color:"#47C1CA",fontWeight: "medium" }}>
           {Common.mainTitle}
         </Box>
         <Box
           sx={{
-            fontSize: "24px",
-            fontWeight: "500",
-            color: "rgba(79, 79, 79, 1)",
+            fontSize: "2rem",
+            fontWeight: "bold",
+            color: "#27307F",
             padding: {},
           }}
         >
@@ -88,7 +94,7 @@ export default function Bundles() {
         container
         sx={{
           margin: "1rem 0",
-          justifyContent: {xs:"center",md:"end"},
+          justifyContent: {xs:"start",md:"end"},
           gap: "1rem",
         }}
       >
@@ -99,5 +105,6 @@ export default function Bundles() {
         })}
       </Grid>
     </Container>
+    </Grid>
   );
 }

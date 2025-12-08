@@ -21,6 +21,7 @@ import ForgetPassword from "../Pages/ForgetPassword";
 import ConfirmPassword from "../Pages/ConfirmPass";
 import Reset from "../Pages/Reset";
 import ChangePassword from "../Pages/ChangePassword";
+import BundlesPage from "../Pages/BundlesPage";
 
 export default function Routers() {
   let routers = createBrowserRouter([
@@ -32,17 +33,17 @@ export default function Routers() {
         { path: "/AboutUs", element: <AboutUs /> },
         // { path:"/FreeProducts", element: <FreeProducts /> },
         { path: "/FQA", element: <FQA /> },
-        { path: "/Bundles", element: <Bundles /> },
+        { path: "/Bundles", element: <BundlesPage /> },
         { path: "/OurServises", element: <OurServises /> },
         { path: "/ContactUs", element: <CountactUs /> },
         { path:"/Stepper", element: <StepperComp />  },
         { path:"/StepperMobile", element: <StepperMobile />  },
-        { path: "/login",element: <Login /> },
-        { path: "/logout",element: <Logout /> },
-        { path: "/register",element: <Register /> },
-        { path: "/forgetPassword",element: <ForgetPassword /> },
-        { path: "/reset-password/:uid/:token/",element: <Reset /> },
-        { path: "/ChangePassword",element: <ChangePassword /> },
+        // { path: "/login",element: <Login /> },
+        // { path: "/logout",element: <Logout /> },
+        // { path: "/register",element: <Register /> },
+        // { path: "/forgetPassword",element: <ForgetPassword /> },
+        // { path: "/reset-password/:uid/:token/",element: <Reset /> },
+        // { path: "/ChangePassword",element: <ChangePassword /> },
       ],
     },
     

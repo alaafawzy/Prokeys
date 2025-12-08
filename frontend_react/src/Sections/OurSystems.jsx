@@ -1,8 +1,9 @@
 import React from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Hidden } from "@mui/material";
 import { Container } from "@mui/material";
-
+import InfiniteCarousel from "../components/NewCarousel";
 import { useTranslation } from "react-i18next";
+
 import { wafaq, zoho, xero, qyood, odoo, oracle } from "../assets/Systems";
 
 const data = [wafaq, zoho, xero, odoo, qyood, oracle];
@@ -15,8 +16,9 @@ export default function OurSystems() {
       <Grid
         container
         sx={{
-          bgcolor: "rgba(249, 250, 251, 1)",
+          
           paddingTop: "2rem",
+          marginBottom:"4rem",
         }}
       >
         <Container
@@ -30,13 +32,14 @@ export default function OurSystems() {
           <Grid
             container
             sx={{
-              fontFamily: "Tajawal",
-              fontSize: "20px",
-              fontWeight: " 400",
+              fontFamily: "Cairo",
+              fontSize: "2.2rem",
+              fontWeight: " 700",
               lineHeight: " 30px",
               textAlign: "center",
-              color: "rgba(79, 79, 79, 1)",
+              color: "#27307F",
               justifyContent: "center",
+              marginBottom:5,
             }}
           >
             {partners}
@@ -50,15 +53,20 @@ export default function OurSystems() {
               display: "flex",
               justifyContent: { xs: "center", md: "space-between" },
               padding: "1rem 0",
+              bgcolor: "rgba(71, 193, 202, 0.1)",
+              borderRadius:25,
+              overflow:"hidden",
+              marginTop:5,
             }}
           >
-            {data.map((item) => {
+            {/* {data.map((item) => {
               return (
                 <>
                   <SponserData img={item}></SponserData>
                 </>
               );
-            })}
+            })} */}
+            <InfiniteCarousel items={data}></InfiniteCarousel>
           </Grid>
         </Container>
       </Grid>

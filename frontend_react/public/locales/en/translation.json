@@ -7,9 +7,9 @@
     "services": "Services",
     "free": "free services",
     "FQA": "FQA",
-    "login": "Login",
-    "new": "New",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "button":"Reserve Now",
+    "blogs":"Blogs"
   },
   "Footer": {
     "browse": "Browse website",
@@ -20,17 +20,19 @@
     "communicate": "Communicate with us",
     "rights": "All right save © 2024 prokeys  ",
     "location": "Office 43-44, Al Fahedy",
-    "follow": "Follow us"
+    "follow": "Follow us",
+    "btn":"subscribe to the service now",
+    "placeHolder":"subscribe to the email service to get news"
   },
   "Landing": {
     "title": "Turning <1>accounting challenges</1> into entrepreneurial opportunities, as accounting is a language mastered by our experts",
     "info": "Are you looking for an easy and secure way to manage your financial and administrative affairs? ProKeys provides the optimal solution for that on our website! Through a user-friendly interface available around the clock, you can access your monthly, quarterly, and annual financial reports with just a few clicks. There's no need to worry about the security of your financial information, as we guarantee the protection of your data with the highest electronic security standards. Our website also offers ease of use and navigation, making the experience of accessing online account services smooth and convenient.",
-    "btn": "Contact Us"
+    "btn": "ٌReserve you free session"
   },
   "partners": "We are proud to live up to the confidence and aspirations of celebrities",
   "Systems": "Systems and companies that we deal with",
   "who": {
-    "mainTitle": "? Who we are",
+    "mainTitle": "Who we are",
     "mainDesc": "We appoint an integrated team to manage all aspects of your accounting matters, from bookkeeping to tax reporting",
     "title": "Dedicate to developing your company",
     "Desc": "Our team is interested in carefully monitoring your accounting performance, in addition to providing all the necessary support for preparing tax returns, value-added tax, etc"
@@ -41,7 +43,8 @@
   },
   "HowWeWork": {
     "howTitle": "? How We Work",
-    "howDesc": ".We work in a simple and efficient way. Just three steps",
+    "btn":"ٌReserve you free session",
+    "howDesc": "Reserve.. Choose.. Receive",
     "sesstionTitle1": ":Book a Free Session",
     "sesstionDesc1": ".Start by booking a free session and let our specialized team assist you in understanding your needs and identifying the suitable services for you",
     "sesstionTitle2": ":Choose the Right Package",
@@ -77,6 +80,7 @@
   "Feedback": {
     "feed1": {
       "whatTheySay": "What our customers say about us",
+      "subtitle":"We are committed to creating a success story for all our partners.",
       "customerName": "Ahmed",
       "customerTitle": "Financial controller",
       "customerFeedback": "I wanted to say a massive thank you for the support you have given me and the team over recent period ,all of you working with all the efforts you have , really appreciating "
@@ -222,7 +226,7 @@
     "btn": "Download Now"
   },
   "CommonQues": {
-    "title1": "Do You Have Questions? We're Here to Help",
+    "title1": "Common Questions",
     "other": "?Do you have any other questions",
     "desc": "Can't find the answer you're looking for? Please contact our team",
     "btn": "Contact Us"

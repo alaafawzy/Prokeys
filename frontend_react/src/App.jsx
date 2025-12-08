@@ -10,6 +10,7 @@ import createCache from "@emotion/cache";
 import { CacheProvider, useTheme } from "@emotion/react";
 import { Toaster } from "react-hot-toast";
 import { UserProvider } from "./context/UserContext";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const { theme1, setThemeLang } = useContext(ThemeContext);
@@ -21,7 +22,7 @@ function App() {
   return (
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme1}>
-      <UserProvider>
+      
         <RouterProvider router={Routers()} />
         <Toaster
           toastOptions={{
@@ -96,7 +97,6 @@ function App() {
             />
           </svg>
         </Box>
-        </UserProvider>
       </ThemeProvider>
     </CacheProvider>
   );

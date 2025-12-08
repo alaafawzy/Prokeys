@@ -6,6 +6,8 @@ import { SectionDetails } from "../Sections/WhoAreU";
 import Btn from "../components/Btn";
 import { useTheme } from "@emotion/react";
 import { Link } from "react-router-dom";
+import DescriptionSection from "../Sections/DescriptionSection";
+import Feedback from "../Sections/Feedback";
 
 let icon = (
   <svg
@@ -42,6 +44,8 @@ export default function OurServises() {
     t("OurServises");
   const who = t("who");
   return (
+    <>
+    <DescriptionSection/>
     <Container>
       <Grid
         container
@@ -159,5 +163,7 @@ export default function OurServises() {
         </Grid>
       </Grid>
     </Container>
+    <Feedback/>
+    </>
   );
 }

@@ -5,6 +5,9 @@ import { Trans, useTranslation } from "react-i18next";
 import { useTheme } from "@emotion/react";
 import { Question_array } from "../components/Question_array";
 import api from '../../Api';
+import Feedback from '../Sections/Feedback';
+import OurSystems from '../Sections/OurSystems';
+import AboutWithRightPic from '../Sections/AboutRightpic';
 // import { Question } from "../Sections/FAQ";
 
 export default function AboutUs() {
@@ -85,25 +88,7 @@ export default function AboutUs() {
             {/* {Who.title} */}
           </Grid>
           <div style={textStyle}>{theme.direction=='rtl'?data.arabic_description:data.english_description}</div>
-          {/* <div>{Who.desc2}</div>
-          <div>{Who.desc3}</div>
-          <div>{Who.desc4}</div> */}
-
-          {/* <Grid
-            item
-            sx={{
-              fontFamily: "Tajawal",
-              fontSize: "20px",
-              fontWeight: "700",
-              lineHeight: "33px",
-              textAlign: "center",
-              color: "#1A1A1A",
-              background: "#F9FAFB",
-              padding: "2rem",
-            }}
-          >
-            {Who.desc2}
-          </Grid> */}
+          
         </Grid>
         <Grid
           container
@@ -113,7 +98,13 @@ export default function AboutUs() {
             marginBottom: "3rem",
           }}
         >
-          <Question_array
+
+          <AboutWithRightPic />
+          <AboutWithRightPic  imageOnRight={true}/>
+          <AboutWithRightPic />
+          <OurSystems />
+          <Feedback/>
+          {/* <Question_array
             ques={Q1.Question}
             ans={Array.isArray(Q1.Answer) ? Q1.Answer : []}
             bg={"#F9FAFB"}
@@ -127,7 +118,7 @@ export default function AboutUs() {
             ques={Q3.Question}
             ans={Array.isArray(Q3.Answer) ? Q3.Answer : []}
             bg={"#F9FAFB"}
-          />
+          /> */}
         </Grid>
         {/* <Grid
           container

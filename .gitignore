@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 __pycache__/
 env
+venv
+.env
 dist-ssr
 *.local
 staticfiles/
