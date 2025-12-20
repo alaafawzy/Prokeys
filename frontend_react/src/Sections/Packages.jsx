@@ -36,7 +36,7 @@ export default function Packages() {
         }}
       >
         <Box sx={{ color: "rgba(19, 31, 137, 1)", fontWeight: "700" }}>
-          {/* {mainTitle} */}
+         
         </Box>
         <Box
           sx={{

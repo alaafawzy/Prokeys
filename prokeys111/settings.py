@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'portal',
     'ckeditor',
     'tinymce',
+    'blog',
+    'services',
 ]
 
 MIDDLEWARE = [
@@ -180,12 +182,18 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
+    'https://111prokeys.com',
+    'https://www.111prokeys.com',
 ]
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
+    'https://111prokeys.com',
+    'https://www.111prokeys.com',
 ]
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',
+    'https://111prokeys.com',
+    'https://www.111prokeys.com',
     # Add other trusted origins here if needed
 ]
 CORS_ALLOW_CREDENTIALS = True

@@ -1,5 +1,7 @@
 import React from 'react';
 import { useTheme } from "@emotion/react";
+import imge from "../assets/bundlesection.png";
+
 export default function DescriptionSection({ }) {
     const theme = useTheme();
   const isRTL = theme.direction=='rtl'? false :true;
@@ -9,7 +11,7 @@ export default function DescriptionSection({ }) {
       maxWidth: '1200px',
       margin: '0 auto',
       padding: '4rem 2rem',
-      direction: isRTL ? 'rtl' : 'ltr',
+      // direction: isRTL ? 'ltr' : 'rtl',
       fontFamily: 'Arial, sans-serif'
     }}>
       {/* Title */}
@@ -20,7 +22,7 @@ export default function DescriptionSection({ }) {
         textAlign: 'center',
         marginBottom: '4rem'
       }}>
-        اختر باقتك المثالية
+        {isRTL ? 'Our Accounting Bundles' : 'باقاتنا المحاسبية'}
       </h2>
 
       {/* Content Container */}
@@ -44,7 +46,7 @@ export default function DescriptionSection({ }) {
             boxShadow: '0 10px 40px rgba(0,0,0,0.15)'
           }}>
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+              src={imge}
               alt="Professional"
               style={{
                 width: '100%',
@@ -66,9 +68,10 @@ export default function DescriptionSection({ }) {
             marginBottom: '2rem',
             textAlign: isRTL ? 'right' : 'left'
           }}>
-            باقاتنا المحاسبية مصممة خصيصًا لتلبية احتياجات
-            شركتك بدقة وفعالية، لتسهيل إدارة الجوانب المالية
-            بطريقة متكاملة ومتخصصة
+            {isRTL
+              ? 'Discover our tailored accounting bundles designed to meet the unique needs of your business. Whether you are a startup, a growing enterprise, or an established company, we have the perfect solution for you. Our bundles offer a comprehensive range of services including bookkeeping, tax preparation, financial reporting, and more. Each package is crafted to provide maximum value and efficiency, ensuring that your financial operations run smoothly and effectively.'
+              : 'اكتشف باقاتنا المحاسبية المصممة لتلبية الاحتياجات الفريدة لعملك. سواء كنت شركة ناشئة، أو مؤسسة نامية، أو شركة راسخة، لدينا الحل المثالي لك. تقدم باقاتنا مجموعة شاملة من الخدمات بما في ذلك مسك الدفاتر، إعداد الضرائب، التقارير المالية، والمزيد. تم تصميم كل حزمة لتوفير أقصى قيمة وكفاءة، مما يضمن أن عملياتك المالية تسير بسلاسة وفعالية.'
+            }
           </p>
 
           {/* CTA Button */}

@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid } from "@mui/material";
 import { Container } from "@mui/material";
 import { Box,Typography } from "@mui/material";
-import LandingImage from "../assets/LandingBackground.jpeg";
-import linesImg from "../assets/linesBackground.png";
 import landingnew from "../assets/landingnew.png";
-import Btn from "../components/Btn";
 import { Trans, useTranslation } from "react-i18next";
 import { useTheme } from "@emotion/react";
 import { Link } from "react-router-dom";
@@ -70,8 +67,6 @@ export default function HomeStarting() {
                   sx={{
                     width: "100%",
                     height: "100%",
-                    // backgroundPosition: "100%",
-                    // backgroundImage: `url(${linesImg})`,
                     backgroundSize: "cover",
                     position: "absolute",
                   }}
@@ -89,10 +84,6 @@ export default function HomeStarting() {
                 alignItems: "end",
                 textAlign: "end",
                 
-
-                // "& > div:not(:last-child)": {
-                //   marginBottom: "3rem",
-                // },
               }}
             >
               

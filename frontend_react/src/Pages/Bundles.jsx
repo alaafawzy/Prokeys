@@ -14,9 +14,9 @@ export default function Bundles() {
   const [bundles, setBundles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const url = api.defaults.baseURL+'/carousel/';
   useEffect(() => {
-    fetch('/api/carousel/')
+    fetch(url)
       .then(response => response.json())
       .then(data => setData(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -77,7 +77,7 @@ export default function Bundles() {
         <Box  sx={{ fontFamily: "Cairo",
                     fontSize: "1rem",
                     color:"#47C1CA",fontWeight: "medium" }}>
-          {Common.mainTitle}
+          {Common?.mainTitle}
         </Box>
         <Box
           sx={{
@@ -87,7 +87,7 @@ export default function Bundles() {
             padding: {},
           }}
         >
-          {Common.mainDesc}
+          {Common?.mainDesc}
         </Box>
       </Box>
       <Grid
@@ -100,7 +100,7 @@ export default function Bundles() {
       >
         {bundles.map((bundle, index) => {
           return (
-            <PackageCard svg={icons.extraPackage} Bundle={bundle} key={index} />
+            <PackageCard svg={icons?.extraPackage} Bundle={bundle} key={index} />
           );
         })}
       </Grid>

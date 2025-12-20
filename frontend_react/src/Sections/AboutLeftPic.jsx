@@ -1,7 +1,7 @@
 import React from 'react';
 import { Check } from 'lucide-react';
 import { useTheme } from "@emotion/react";
-export default function SkillsImprovementSection({ data ,imageOnRight=false}) {
+export default function SectionsWithLeftPic({ data ,imageOnRight=true}) {
     const theme = useTheme();
   const benefits = [
     'ورش عمل تفاعلية في المحاسبة والإدارة المالية',
@@ -11,8 +11,8 @@ export default function SkillsImprovementSection({ data ,imageOnRight=false}) {
     'تدريب على أفضل الممارسات العالمية',
     'شهادات معتمدة دوليًا'
   ];
-  imageOnRight=theme.direction=='rtl'?(!imageOnRight):(imageOnRight)
-  const lang=theme.direction=='rtl'?'rtl':'ltr';
+  // const lang=theme.direction=='rtl'?'rtl':'ltr';
+  // const rol=
   return (
     <div style={{
       maxWidth: '1200px',
@@ -30,7 +30,7 @@ export default function SkillsImprovementSection({ data ,imageOnRight=false}) {
       }}>
         {/* Left Side - Image */}
         <div style={{
-          order: imageOnRight ? 2 : 1
+          // order: imageOnRight ? 2 : 1
         }}>
           <img
             src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop"
@@ -47,7 +47,7 @@ export default function SkillsImprovementSection({ data ,imageOnRight=false}) {
         {/* Right Side - Content */}
         <div style={{
           // order: imageOnRight ? 1 : 2,
-          textAlign: lang=='rtl'?'right':'left'
+          // textAlign: lang=='rtl'?'right':'left'
         }}>
           {/* Title */}
           <h2 style={{

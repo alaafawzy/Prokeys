@@ -74,7 +74,7 @@ class AboutUs(models.Model):
     english_description = models.TextField()
     arabic_description = models.TextField()
     content = RichTextField(null=True,blank=True)
-    content2 = HTMLField(null=True,blank=True)
+    # content2 = HTMLField(null=True,blank=True)
     
 
 class HomeStarting(models.Model):
@@ -84,3 +84,28 @@ class HomeStarting(models.Model):
     english_subtitle = models.CharField(max_length=400)
     english_description = models.TextField()
     arabic_description = models.TextField()
+
+class AboutSection(models.Model):
+    Name = models.CharField(max_length=255)
+    arabic_title = models.CharField(max_length=255)
+    english_title = models.CharField(max_length=255)
+    arabic_subtitle = models.CharField(max_length=400,blank=True,null=True)
+    english_subtitle = models.CharField(max_length=400,blank=True,null=True)
+    arabic_description = models.TextField()
+    english_description = models.TextField()
+    english_content = RichTextField()
+    arabic_content = RichTextField()
+    section_image = models.FileField(upload_to='about_section', blank=True, null=True,
+        validators=[
+            FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif','webm'])
+        ])
+    
+    def __str__(self):
+        return f"{self.Name}"
+class AboutSectionList(models.Model):
+    aboutSection = models.ForeignKey(AboutSection, related_name='AboutSection', on_delete=models.CASCADE)
+    english_advantage = models.CharField(max_length=500)
+    arabic_advantage = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.english_advantage

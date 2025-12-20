@@ -16,5 +16,11 @@ admin.site.register(Bundle, BundleAdmin)
 admin.site.register(Footer)
 admin.site.register(FAQ)
 admin.site.register(Comment)
+class AboutSectionInline(admin.TabularInline):
+    model = AboutSectionList
+    extra = 1
+class AboutSectionAdmin(admin.ModelAdmin):
+    inlines = [AboutSectionInline]
 admin.site.register(AboutUs)
+admin.site.register(AboutSection,AboutSectionAdmin)
 admin.site.register(HomeStarting)

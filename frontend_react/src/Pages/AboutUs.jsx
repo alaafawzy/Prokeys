@@ -8,7 +8,87 @@ import api from '../../Api';
 import Feedback from '../Sections/Feedback';
 import OurSystems from '../Sections/OurSystems';
 import AboutWithRightPic from '../Sections/AboutRightpic';
+import SectionsWithLeftPic from '../Sections/AboutLeftPic';
+import { Description } from '@mui/icons-material';
 // import { Question } from "../Sections/FAQ";
+const section_data=[{
+  title:"لماذا أخترتنا",
+  subtitle:"نحن شريكك الموثوق في النجاح المالي",
+  Description:"نحن نقدم خدمات متميزة في مجال الإدارة المالية والمحاسبة، مع فريق من الخبراء المتخصصين الذين يضمنون لك الحصول على أفضل النتائج. نستخدم أحدث التقنيات والأساليب لضمان دقة وسرعة تنفيذ جميع العمليات المالية.",
+  benefits:[ 'خبرة تزيد عن 15 عاماً في مجال المحاسبة والإدارة المالية',
+  'فريق متخصص من المحاسبين المعتمدين دولياً',
+  'استخدام أحدث البرامج والتقنيات المحاسبية',
+  'دعم فني متواصل على مدار الساعة',
+  'حلول مخصصة تناسب احتياجات عملك']
+},
+{
+  title:"العديد من الخدمات المالية",
+  subtitle:"خدمات شاملة لجميع احتياجاتك المالية",
+  Description:"نوفر مجموعة واسعة من الخدمات المالية والمحاسبية التي تغطي جميع جوانب عملك. من إعداد القوائم المالية إلى الاستشارات الضريبية، نحن هنا لمساعدتك.",
+  benefits:[ 'خبرة واسعة في المجال المحاسبي والإداري',
+  'إعداد القوائم المالية الشهرية والسنوية',
+  'المراجعة و التدقيق المالى',
+  'الاستشارات الضريبية والزكاة',
+  'إدارة كشوف الرواتب والموارد البشرية',
+  'تصميم وتطوير الأنظمة المحاسبيةالتخطيط المالي الاستراتيجي'],
+},
+{
+  title:"تحسين مهاراتك الإدارية",
+  subtitle:"برامج تدريبية متخصصة للتطوير المهني",
+  Description:"نقدم برامج تدريبية متقدمة لتطوير المهارات الإدارية والمحاسبية لفريق عملك. برامجنا مصممة خصيصاً لتلبية احتياجات السوق الحديث.",
+  benefits:[ 'ورش عمل تفاعلية في المحاسبة والإدارة المالية',
+  'دورات تدريبية معتمدة في الأنظمة المحاسبية الحديثة',
+  'استشارات إدارية لتحسين الأداء المؤسسي',
+  'برامج تطوير القيادات المالية',
+  'تدريب على أفضل الممارسات العالمية',
+  'شهادات معتمدة دولياً'],
+}
+]
+const section_data_en = [
+  {
+    title: "Why Choose Us",
+    subtitle: "Your trusted partner in financial success",
+    description:
+      "We provide outstanding services in financial management and accounting, with a team of specialized experts who ensure you achieve the best results. We use the latest technologies and methods to guarantee accuracy and speed in executing all financial operations.",
+    benefits: [
+      "More than 15 years of experience in accounting and financial management",
+      "A specialized team of internationally certified accountants",
+      "Using the latest accounting software and technologies",
+      "24/7 continuous technical support",
+      "Customized solutions tailored to your business needs"
+    ]
+  },
+  {
+    title: "A Wide Range of Financial Services",
+    subtitle: "Comprehensive services for all your financial needs",
+    description:
+      "We offer a wide range of financial and accounting services that cover all aspects of your business. From preparing financial statements to tax consulting, we are here to help you.",
+    benefits: [
+      "Extensive experience in accounting and administrative fields",
+      "Preparation of monthly and annual financial statements",
+      "Financial review and auditing",
+      "Tax and zakat consulting",
+      "Payroll and human resources management",
+      "Design and development of accounting systems and strategic financial planning"
+    ]
+  },
+  {
+    title: "Improve Your Management Skills",
+    subtitle: "Specialized training programs for professional development",
+    description:
+      "We offer advanced training programs to develop the managerial and accounting skills of your team. Our programs are specifically designed to meet the needs of the modern market.",
+    benefits: [
+      "Interactive workshops in accounting and financial management",
+      "Accredited training courses in modern accounting systems",
+      "Management consulting to improve institutional performance",
+      "Financial leadership development programs",
+      "Training on global best practices",
+      "Internationally recognized certifications"
+    ]
+  }
+];
+
+
 
 export default function AboutUs() {
   const theme = useTheme();
@@ -18,6 +98,7 @@ export default function AboutUs() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -47,6 +128,7 @@ export default function AboutUs() {
   const textStyle = {
     whiteSpace: 'pre-line', // preserves newlines
   };
+  const sec_data=theme.direction=='rtl'?section_data:section_data_en;
   return (
     <Grid>
       <Container
@@ -58,12 +140,13 @@ export default function AboutUs() {
           },
         }}
       >
+        
         <Grid
           continer
           sx={{
             "& > div:not(:first-child)": {
               marginBottom: "1.5rem",
-              fontFamily: "Tajawal",
+              fontFamily: "Cairo",
               fontSize: "1.3rem",
               fontWeight: "400",
               lineHeight: "30px",
@@ -75,33 +158,43 @@ export default function AboutUs() {
           <Grid
             item
             sx={{
-              fontFamily: "Tajawal",
+              fontFamily: "Cairo",
               fontSize: "32px",
               fontWeight: "700",
               lineHeight: "24px",
               textAlign: "center",
               color: "#131F89",
-              marginBottom: "2rem",
+              marginBottom: "3rem",
+              marginTop: "3rem",
             }}
           >
-            {theme.direction=='rtl'?data.arabic_title:data.english_title}
+            {theme.direction=='rtl'?data?.arabic_title:data?.english_title}
             {/* {Who.title} */}
           </Grid>
-          <div style={textStyle}>{theme.direction=='rtl'?data.arabic_description:data.english_description}</div>
+          <div style={textStyle}>{theme.direction=='rtl'?data?.arabic_description:data?.english_description}</div>
           
         </Grid>
         <Grid
           container
           sx={{
             justifyContent: "center",
-            textAlign: "end",
+            // textAlign: "start",
             marginBottom: "3rem",
           }}
         >
-
-          <AboutWithRightPic />
-          <AboutWithRightPic  imageOnRight={true}/>
-          <AboutWithRightPic />
+          {/* <div
+        dangerouslySetInnerHTML={{ __html: data.content }}
+      /> */}
+      {sec_data.map((section, index) =>
+        index % 2 === 0 ? (
+          <AboutWithRightPic key={index} data={section} />
+        ) : (
+          <SectionsWithLeftPic key={index} data={section} />
+        )
+      )}
+          {/* <AboutWithRightPic />
+          <SectionsWithLeftPic />
+          <AboutWithRightPic /> */}
           <OurSystems />
           <Feedback/>
           {/* <Question_array
