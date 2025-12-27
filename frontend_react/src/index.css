@@ -18,4 +18,5 @@ body {
   padding: 0;
   transition: 0.3s;
   overflow-x: hidden;
+  font-family: "Cairo, sans-serif" !important;
 }

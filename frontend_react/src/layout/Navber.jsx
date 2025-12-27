@@ -54,7 +54,7 @@ const Navbar = () => {
               <Link className="nav-link" to={'/Bundles'}>{NavTitles.bundles}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={'/OurServises'}>{NavTitles.services}</Link>
+              <Link className="nav-link" to={'/Services'}>{NavTitles.services}</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to={'/Blogs'}>{NavTitles.blogs}</Link>

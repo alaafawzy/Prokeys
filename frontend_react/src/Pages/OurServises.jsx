@@ -8,6 +8,7 @@ import { useTheme } from "@emotion/react";
 import { Link } from "react-router-dom";
 import DescriptionSection from "../Sections/DescriptionSection";
 import Feedback from "../Sections/Feedback";
+import ServicesSection from "./ServiceSection";
 
 let icon = (
   <svg
@@ -46,123 +47,7 @@ export default function OurServises() {
   return (
     <>
     <DescriptionSection/>
-    <Container>
-      <Grid
-        container
-        sx={{
-          flexDirection: "column",
-          alignItems: "center",
-          margin: "3rem 0",
-          "& > div": {
-            marginBottom: "2rem",
-          },
-        }}
-      >
-        <Grid
-          sx={{
-            fontFamily: "Tajawal",
-            fontSize: "2rem",
-            fontWeight: "700",
-            lineHeight: "24px",
-            color: "#131F89",
-          }}
-        >
-          {title1}
-        </Grid>
-        <Grid
-          sx={{
-            fontFamily: "Tajawal",
-            fontSize: "1.5rem",
-            fontWeight: "500",
-            lineHeight: "30px",
-            color: "#475467",
-            width: "100%",
-            textAlign: "center",
-          }}
-        >
-          {desc1}
-        </Grid>
-        {/* <KnowMore /> */}
-      </Grid>
-
-      <Grid
-        container
-        sx={{
-          flexDirection: "column",
-          alignItems: "center",
-          margin: "3rem 0",
-        }}
-      >
-        <Grid
-          sx={{
-            fontFamily: "Tajawal",
-            fontSize: "24px",
-            fontWeight: "700",
-            lineHeight: "24px",
-            color: "#131F89",
-            textAlign: "center",
-          }}
-        >
-          {desc2}
-        </Grid>
-        {/* <Grid
-            sx={{
-              fontFamily: "Tajawal",
-              fontSize: "32px",
-              fontWeight: "500",
-              lineHeight: "30px",
-              color: "#4F4F4F",
-            }}
-          >
-            {desc2}
-          </Grid> */}
-      </Grid>
-      <Grid
-        container
-        sx={{
-          justifyContent: { xs: "center", md: "space-between" },
-        }}
-      >
-        <SectionDetails SVG={icon} title={serv3.title} desc={serv3.desc} />
-        <SectionDetails SVG={icon} title={serv2.title} desc={serv2.desc} />
-        <SectionDetails SVG={icon} title={serv1.title} desc={serv1.desc} />
-      </Grid>
-      <Grid
-        container
-        sx={{
-          background: "#F9FAFB",
-          justifyContent: "center",
-          alignItems: "baseline",
-          padding: "1rem 0",
-          boxSizing: "border-box",
-          direction: `${theme.direction}`,
-        }}
-      >
-        <Grid item xs={12} md={4}>
-          <Link to="/ContactUs">
-            <Btn bg={"#131F89"} FontColor={"white"} W={"200px"} H={"60px"}>
-              {btn}
-            </Btn>
-          </Link>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            fontFamily: "Tajawal",
-            fontSize: "1.2rem",
-            fontWeight: "700",
-            lineHeight: "30px",
-            color: "#1A1A1A",
-            paddingBottom: "1rem",
-            textAlign: "center",
-          }}
-        >
-          {join}
-        </Grid>
-      </Grid>
-    </Container>
+    <ServicesSection/>
     <Feedback/>
     </>
   );

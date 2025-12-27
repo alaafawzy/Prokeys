@@ -2,8 +2,11 @@
 import React from "react";
 import { Card, CardMedia, CardContent, Typography, Box, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
+import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
+import { useTheme } from "@emotion/react";
 
 export default function BlogCard({ id, title, description, image, created }) {
+    const theme = useTheme();
   return (
     <Card
       component={Link}
@@ -14,21 +17,21 @@ export default function BlogCard({ id, title, description, image, created }) {
         width: "100%",
         boxShadow: "none",
         border: "none",
-        borderTop: "1px solid #ccc",
         textDecoration: "none",
         color: "inherit",
         transition: "box-shadow 0.2s",
         cursor: "pointer",
+        // borderTop: "4px solid #131F89",
         '&:hover': { boxShadow: 3 },
       }}
     >
       <Grid
         container
-        direction={{ xs: "column", md: "row" }}
+        direction={{ xs: "column", md: "row-reverse" }}
         alignItems={{ xs: "center", md: "stretch" }}
         justifyContent={{ xs: "center", md: "flex-start" }}
       >
-        <Grid item xs={12} md={5} sx={{ display: "flex", justifyContent: { xs: "center", md: "flex-start" } }}>
+        <Grid item xs={12} md={4} sx={{ display: "flex", justifyContent: { xs: "center", md: "flex-end" } }}>
           <CardMedia
             component="img"
             image={image}
@@ -45,13 +48,13 @@ export default function BlogCard({ id, title, description, image, created }) {
             }}
           />
         </Grid>
-        <Grid item xs={12} md={7} sx={{ display: "flex", justifyContent: { xs: "center", md: "flex-start" } }}>
+        <Grid item xs={12} md={8} sx={{ display: "flex", justifyContent: { xs: "center", md: "flex-start" } }}>
           <CardContent
             sx={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              alignItems: { xs: "center", md: "flex-start" },
+              alignItems: { xs: "center", md:  "flex-end" },
               height: "100%",
               textAlign: { xs: "center", md: "start" },
               width: "100%",

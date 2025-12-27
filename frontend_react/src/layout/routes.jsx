@@ -25,6 +25,7 @@ import BundlesPage from "../Pages/BundlesPage";
 
 import Blogs from "../Pages/Blogs";
 import BlogDetails from "../Pages/BlogDetails";
+import ServiceDetails from "../Pages/ServiceDetails";
 
 export default function Routers() {
   let routers = createBrowserRouter([
@@ -37,7 +38,8 @@ export default function Routers() {
         // { path:"/FreeProducts", element: <FreeProducts /> },
         { path: "/FQA", element: <FQA /> },
         { path: "/Bundles", element: <BundlesPage /> },
-        { path: "/OurServises", element: <OurServises /> },
+        { path: "/Services", element: <OurServises /> },
+        { path: "/Services/:id", element: <ServiceDetails /> },
         { path: "/ContactUs", element: <CountactUs /> },
         { path: "/Blogs", element: <Blogs /> },
         { path: "/blog/:id", element: <BlogDetails /> },
