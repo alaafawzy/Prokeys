@@ -30,7 +30,7 @@ SECRET_KEY =Prokeys("SECRET_KEY")
 DEBUG = Prokeys.bool("DEBUG", True)
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['111prokeys.com','111prokeys.net','www.111prokeys.com','www.111prokeys.net','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['111prokeys.com','111prokeys.net','www.111prokeys.com','www.111prokeys.net','127.0.0.1','localhost','api.111prokeys.com']
 
 
 # Application definition
@@ -184,16 +184,22 @@ CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:5173',
     'https://111prokeys.com',
     'https://www.111prokeys.com',
+    'http://111prokeys.com',
+    'http://www.111prokeys.com',
 ]
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'https://111prokeys.com',
     'https://www.111prokeys.com',
+    'http://111prokeys.com',
+    'http://www.111prokeys.com',
 ]
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',
     'https://111prokeys.com',
     'https://www.111prokeys.com',
+    'http://111prokeys.com',
+    'http://www.111prokeys.com',
     # Add other trusted origins here if needed
 ]
 CORS_ALLOW_CREDENTIALS = True

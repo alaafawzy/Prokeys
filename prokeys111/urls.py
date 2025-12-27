@@ -25,5 +25,6 @@ urlpatterns = [
     path('api/contactus/', include('contact.urls')),
     path('api/', include('portal.urls')),
     path('api/blog/', include('blog.urls')),
-    re_path('',include('frontend.urls'))
+    path('api/services/', include('services.urls')),
+    # re_path('',include('frontend.urls'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

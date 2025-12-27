@@ -1,97 +1,30 @@
 from rest_framework import serializers
-from .models import *
+from .models import Service, ServiceSection
 
-class NewsSerializer(serializers.ModelSerializer):
+# ...existing code...
+
+class ServiceSectionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = New
-        fields = '__all__'  # This includes all fields of the model. You can specify specific fields like ('name', 'description').
-class FAQSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FAQ
-        fields = ['id', 'english_question', 'arabic_question','english_answer','arabic_answer']
-
-class AdvantageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Advantage
-        fields = ['id', 'bundle', 'english_advantage','arabic_advantage']
-
-class BundleSerializer(serializers.ModelSerializer):
-    advantages = AdvantageSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Bundle
-        fields = ['id', 'english_name', 'arabic_name','advantages']
-
-class FooterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Footer
-        fields = ['id', 'english_address','arabic_address', 'phone']
-
-class CommentSerializer(serializers.ModelSerializer):
-    user_first_name = serializers.CharField(source='user.first_name', read_only=True)
-    user_last_name = serializers.CharField(source='user.last_name', read_only=True)
-
-    class Meta:
-        model = Comment
-        fields = ['id', 'user_first_name', 'user_last_name', 'role', 'description']
-
-
-class HomeStartingSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = HomeStarting
-        fields ='__all__'
-
-
-
-
-
-
-# class AboutUsSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = AboutUs
-#         fields ='__all__'
-
-
-
-class AboutSectionListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AboutSectionList
+        model = ServiceSection
         fields = [
             'id',
-            'english_advantage',
-            'arabic_advantage'
-        ]
-
-
-class AboutSectionSerializer(serializers.ModelSerializer):
-    advantages = AboutSectionListSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = AboutSection
-        fields = [
-            'id',
-            'arabic_title',
-            'english_title',
-            'arabic_subtitle',
-            'english_subtitle',
-            'arabic_description',
-            'english_description',
+            'image',
             'english_content',
             'arabic_content',
-            'advantages'
+            'image_position',
         ]
 
-
-class AboutUsSerializer(serializers.ModelSerializer):
-    about_sections = AboutSectionSerializer(many=True, read_only=True)
+class ServiceSerializer(serializers.ModelSerializer):
+    sections = ServiceSectionSerializer(many=True, read_only=True)
 
     class Meta:
-        model = AboutUs
+        model = Service
         fields = [
             'id',
             'english_title',
             'arabic_title',
             'english_description',
             'arabic_description',
-            'about_sections'
+            'sections',
         ]
+

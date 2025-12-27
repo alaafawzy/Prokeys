@@ -16,10 +16,10 @@ export default function Bundles() {
   const [error, setError] = useState(null);
   const url = api.defaults.baseURL+'/carousel/';
   useEffect(() => {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => setData(data))
-      .catch(error => console.error('Error fetching data:', error));
+    // fetch(url)
+    //   .then(response => response.json())
+    //   .then(data => setData(data))
+    //   .catch(error => console.error('Error fetching data:', error));
       const fetchData = async () => {
         try {
           const response = await api.get('/bundles/'); // Adjust endpoint as needed

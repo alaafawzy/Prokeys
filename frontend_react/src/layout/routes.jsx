@@ -23,6 +23,9 @@ import Reset from "../Pages/Reset";
 import ChangePassword from "../Pages/ChangePassword";
 import BundlesPage from "../Pages/BundlesPage";
 
+import Blogs from "../Pages/Blogs";
+import BlogDetails from "../Pages/BlogDetails";
+
 export default function Routers() {
   let routers = createBrowserRouter([
     {
@@ -36,8 +39,9 @@ export default function Routers() {
         { path: "/Bundles", element: <BundlesPage /> },
         { path: "/OurServises", element: <OurServises /> },
         { path: "/ContactUs", element: <CountactUs /> },
-        { path:"/Stepper", element: <StepperComp />  },
-        { path:"/StepperMobile", element: <StepperMobile />  },
+        { path: "/Blogs", element: <Blogs /> },
+        { path: "/blog/:id", element: <BlogDetails /> },
+        // { path:"/StepperMobile", element: <StepperMobile />  },
         // { path: "/login",element: <Login /> },
         // { path: "/logout",element: <Logout /> },
         // { path: "/register",element: <Register /> },
