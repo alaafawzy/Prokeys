@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Grid, Container, Typography } from "@mui/material";
+import { usePageMetadata } from "../hooks/useMetadata";
 import BlogCard from "../components/BlogCard";
 import api from "../../Api";
 import Connectwithus from "../Sections/Connectwithus";
@@ -8,6 +9,9 @@ import Feedback from "../Sections/Feedback";
 import { useTheme } from "@emotion/react";
 
 export default function Blogs() {
+  // Load metadata for blogs page
+  usePageMetadata('blog');
+
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,7 +20,7 @@ export default function Blogs() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await api.get("/blog/");
+        const response = await api.get("/blog/blogs/");
         setBlogs(response.data);
       } catch (err) {
         setError(err);

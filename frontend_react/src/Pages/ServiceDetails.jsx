@@ -11,17 +11,18 @@ import api from "../../Api"; // adjust path
 import SectionsWithLeftImage from "../Sections/SectionWithLeftImage";
 import SectionsWithRightImage from "../Sections/SectionWithRightImage";
 import { useTheme } from "@emotion/react";
-
+import { useMetadataById } from "../hooks/useMetadata";
 export default function ServiceDetails() {
   const { id } = useParams();
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
+  useMetadataById('services/single-service-metadata', id, 'service');
 
   useEffect(() => {
     const fetchService = async () => {
       try {
-        const response = await api.get(`/services/${id}/`);
+        const response = await api.get(`/services/services/${id}/`);
         setService(response.data);
       } catch (error) {
         console.error("Failed to load service", error);

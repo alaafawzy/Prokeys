@@ -31,7 +31,7 @@ export default function ServicesSection() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await api.get("/services/");
+        const response = await api.get("/services/services/"); // Adjust endpoint as needed
         setServices(response.data);
       } catch (error) {
         console.error("Failed to load services", error);

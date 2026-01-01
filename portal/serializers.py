@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import *
+from about.models import  AboutSection, AboutUs
+from bundles.models import Advantage, Bundle
 
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,7 +22,7 @@ class BundleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bundle
-        fields = ['id', 'english_name', 'arabic_name','advantages']
+        fields = ['id', 'english_name', 'arabic_name','advantages', 'price', 'discount', 'best_seller']
 
 class FooterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,12 +30,9 @@ class FooterSerializer(serializers.ModelSerializer):
         fields = ['id', 'english_address','arabic_address', 'phone']
 
 class CommentSerializer(serializers.ModelSerializer):
-    user_first_name = serializers.CharField(source='user.first_name', read_only=True)
-    user_last_name = serializers.CharField(source='user.last_name', read_only=True)
-
     class Meta:
         model = Comment
-        fields = ['id', 'user_first_name', 'user_last_name', 'role', 'description']
+        fields = ['id', 'english_name', 'arabic_name', 'english_job_title', 'arabic_job_title', 'english_description', 'arabic_description', 'rate', 'created_at']
 
 
 class HomeStartingSerializer(serializers.ModelSerializer):
@@ -42,44 +41,35 @@ class HomeStartingSerializer(serializers.ModelSerializer):
         fields ='__all__'
 
 
-
-
-
-
-# class AboutUsSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = AboutUs
-#         fields ='__all__'
-
-
-
-class AboutSectionListSerializer(serializers.ModelSerializer):
+class SystemPartnerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AboutSectionList
-        fields = [
-            'id',
-            'english_advantage',
-            'arabic_advantage'
-        ]
+        model = SystemPartner
+        fields = ['id', 'name', 'logo', 'logo_alt_text']
+
+
+class PortalMetaTagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MetaTag
+        fields = '__all__'
+
+
+class PortalMetadataSerializer(serializers.ModelSerializer):
+    meta_tags = PortalMetaTagSerializer(many=True, read_only=True)
+    
+    class Meta:
+        model = Metadata
+        fields = ['id', 'page_title', 'meta_tags']
+
+
+
 
 
 class AboutSectionSerializer(serializers.ModelSerializer):
-    advantages = AboutSectionListSerializer(many=True, read_only=True)
+    
 
     class Meta:
         model = AboutSection
-        fields = [
-            'id',
-            'arabic_title',
-            'english_title',
-            'arabic_subtitle',
-            'english_subtitle',
-            'arabic_description',
-            'english_description',
-            'english_content',
-            'arabic_content',
-            'advantages'
-        ]
+        fields = '__all__'
 
 
 class AboutUsSerializer(serializers.ModelSerializer):

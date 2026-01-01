@@ -25,6 +25,8 @@ def sanitize_file_name(filename):
 
     return filename
 
+
+
 class New(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
@@ -32,6 +34,7 @@ class New(models.Model):
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif','webm'])
         ])
+    image_alt_text = models.CharField(max_length=255, blank=True, null=True)
     def __str__(self):
         return f"{self.name}"
 
@@ -44,38 +47,30 @@ class FAQ(models.Model):
     def __str__(self):
         return f"{self.english_question}"
 
-class Bundle(models.Model):
-    english_name = models.CharField(max_length=200)
-    arabic_name = models.CharField(max_length=200)
-    def __str__(self):
-        return self.english_name
-
-class Advantage(models.Model):
-    bundle = models.ForeignKey(Bundle, related_name='advantages', on_delete=models.CASCADE)
-    english_advantage = models.CharField(max_length=500)
-    arabic_advantage = models.CharField(max_length=500)
-
-    def __str__(self):
-        return self.english_advantage
-    
 class Footer(models.Model):
     english_address=models.CharField(max_length=255)
     arabic_address=models.CharField(max_length=255)
     phone = models.CharField(max_length=255)
 
 class Comment(models.Model):
-    user=models.ForeignKey(CustomUser,related_name='comments',on_delete=models.CASCADE)
-    role = models.CharField(max_length=255,blank=True)
-    description=models.TextField()
-
-class AboutUs(models.Model):
-    english_title = models.CharField(max_length=255)
-    arabic_title = models.CharField(max_length=255)
+    english_name = models.CharField(max_length=255)
+    arabic_name = models.CharField(max_length=255)
+    english_job_title = models.CharField(max_length=255, blank=True)
+    arabic_job_title = models.CharField(max_length=255, blank=True)
     english_description = models.TextField()
     arabic_description = models.TextField()
-    content = RichTextField(null=True,blank=True)
-    # content2 = HTMLField(null=True,blank=True)
-    
+    rate = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        help_text="Rating from 1 to 5 stars",default=5
+    )
+    created_at = models.DateField()
+    # is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.english_name} - {self.rate} stars"
 
 class HomeStarting(models.Model):
     english_title = models.CharField(max_length=255)
@@ -84,28 +79,73 @@ class HomeStarting(models.Model):
     english_subtitle = models.CharField(max_length=400)
     english_description = models.TextField()
     arabic_description = models.TextField()
-
-class AboutSection(models.Model):
-    Name = models.CharField(max_length=255)
-    arabic_title = models.CharField(max_length=255)
-    english_title = models.CharField(max_length=255)
-    arabic_subtitle = models.CharField(max_length=400,blank=True,null=True)
-    english_subtitle = models.CharField(max_length=400,blank=True,null=True)
-    arabic_description = models.TextField()
-    english_description = models.TextField()
-    english_content = RichTextField()
-    arabic_content = RichTextField()
-    section_image = models.FileField(upload_to='about_section', blank=True, null=True,
+    image = models.FileField(upload_to='home_starting/', blank=True, null=True,
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif','webm'])
         ])
+    image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    def __str__(self):
+        return f"{self.english_title}"
+
+class WhoWeAre(models.Model):
+    english_title = models.CharField(max_length=255)
+    arabic_title = models.CharField(max_length=255)
+    english_description = models.TextField()
+    arabic_description = models.TextField()
+    image = models.FileField(upload_to='who_we_are/', blank=True, null=True,
+        validators=[
+            FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif','webm'])
+        ])
+    image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    def __str__(self):
+        return f"{self.english_title}"
+    
+class CustomerAndPartner(models.Model):
+    name = models.CharField(max_length=255)
+    image = models.FileField(upload_to='customers_and_partners/', blank=True, null=True,
+        validators=[
+            FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif','webm'])
+        ])
+    image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    def __str__(self):
+        return f"{self.name}"
+
+class SystemPartner(models.Model):
+    name = models.CharField(max_length=255)
+    logo = models.FileField(upload_to='system_partners/', blank=True, null=True,
+        validators=[
+            FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'])
+        ])
+    logo_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    # order = models.IntegerField(default=0, help_text="Display order (lower numbers appear first)")
+    # is_active = models.BooleanField(default=True)
+    
+    # class Meta:
+        # ordering = ['' 'name']
     
     def __str__(self):
-        return f"{self.Name}"
-class AboutSectionList(models.Model):
-    aboutSection = models.ForeignKey(AboutSection, related_name='AboutSection', on_delete=models.CASCADE)
-    english_advantage = models.CharField(max_length=500)
-    arabic_advantage = models.CharField(max_length=500)
+        return f"{self.name}"
 
+class MetaTag(models.Model):
+    ATTRIBUTE_TYPE_CHOICES = (
+        ('name', 'Name'),
+        ('property', 'Property'),
+    )
+    attribute_type = models.CharField(max_length=10, choices=ATTRIBUTE_TYPE_CHOICES,
+                                      help_text="Choose between 'name' or 'property' attribute",default='name')
+    meta_name = models.CharField(max_length=255,
+                                 help_text="Meta tag name (e.g., 'description', 'og:title', 'twitter:card')")
+    meta_content = models.TextField(
+                                    help_text="Meta tag content/value")
+    page = models.ForeignKey('Metadata', related_name='meta_tags', on_delete=models.CASCADE)
+    
     def __str__(self):
-        return self.english_advantage
+        return self.meta_name
+
+
+class Metadata(models.Model):
+    page_title = models.CharField(max_length=255,
+                                  help_text="Page title displayed in browser tab and as main heading")
+    
+    def __str__(self):
+        return self.page_title

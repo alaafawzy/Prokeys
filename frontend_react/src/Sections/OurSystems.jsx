@@ -1,16 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid, Hidden } from "@mui/material";
 import { Container } from "@mui/material";
 import InfiniteCarousel from "../components/NewCarousel";
 import { useTranslation } from "react-i18next";
-
-import { wafaq, zoho, xero, qyood, odoo, oracle } from "../assets/Systems";
-
-const data = [wafaq, zoho, xero, odoo, qyood, oracle];
+import api from "../../Api";
 
 export default function OurSystems() {
   const { t } = useTranslation();
   const partners = t("Systems");
+  const [systemPartners, setSystemPartners] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSystemPartners = async () => {
+      try {
+        const response = await api.get('/system-partners/');
+        setSystemPartners(response.data);
+        setLoading(false);
+      } catch (error) {
+        // console.error("Error fetching system partners:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchSystemPartners();
+  }, []);
+
+  // Extract logo URLs from the fetched data, prepending the base URL
+  // const baseURL = api.defaults.baseURL.replace('/api', '') || 'http://localhost:8000';
+  const data = systemPartners;
+
   return (
     <>
       <Grid
@@ -59,14 +78,13 @@ export default function OurSystems() {
               marginTop:5,
             }}
           >
-            {/* {data.map((item) => {
-              return (
-                <>
-                  <SponserData img={item}></SponserData>
-                </>
-              );
-            })} */}
-            <InfiniteCarousel items={data}></InfiniteCarousel>
+            {loading ? (
+              <Box sx={{ textAlign: 'center', width: '100%', py: 4 }}>Loading...</Box>
+            ) : data.length > 0 ? (
+              <InfiniteCarousel items={data}></InfiniteCarousel>
+            ) : (
+              <Box sx={{ textAlign: 'center', width: '100%', py: 4 }}>No system partners available</Box>
+            )}
           </Grid>
         </Container>
       </Grid>

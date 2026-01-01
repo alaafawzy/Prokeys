@@ -1,8 +1,10 @@
 import React from 'react';
 import { Check } from 'lucide-react';
 import { useTheme } from "@emotion/react";
+import { useNavigate } from 'react-router-dom';
 export default function SectionsWithLeftPic({ data ,imageOnRight=true}) {
     const theme = useTheme();
+    const navigate = useNavigate();
   const benefits = [
     'ورش عمل تفاعلية في المحاسبة والإدارة المالية',
     'دورات تدريبية معتمدة في الأنظمة المحاسبية الحديثة',
@@ -21,20 +23,14 @@ export default function SectionsWithLeftPic({ data ,imageOnRight=true}) {
       direction: theme.direction=='rtl'?'rtl':'ltr',
       fontFamily: 'Arial, sans-serif'
     }}>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '4rem',
-        alignItems: 'center',
-        // order: imageOnRight ? 2 : 1
-      }}>
+      <div className='about-section' >
         {/* Left Side - Image */}
         <div style={{
           // order: imageOnRight ? 2 : 1
         }}>
           <img
-            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop"
-            alt="Business meeting"
+            src={data?.section_image}
+            alt={data?.image_alt_text}
             style={{
               width: '100%',
               height: 'auto',
@@ -59,61 +55,21 @@ export default function SectionsWithLeftPic({ data ,imageOnRight=true}) {
           }}>
             {data?.title}
           </h2>
-
-          {/* Subtitle */}
-          <p style={{
-            fontSize: '1.25rem',
-            color: '#333',
-            marginBottom: '1.5rem',
-            fontWeight: '600'
-          }}>
-            {data?.subtitle}
-          </p>
-
           {/* Description */}
-          <p style={{
-            fontSize: '1rem',
-            color: '#666',
-            lineHeight: 1.8,
-            marginBottom: '2rem'
-          }}>
-            {data?.description}
-          </p>
-
-          {/* Benefits List */}
-          <div style={{
-            marginBottom: '2.5rem'
-          }}>
-            {data?.benefits.map((benefit, index) => (
-              <div
-                key={index}
+          <div 
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.75rem',
-                  marginBottom: '1rem'
-                }}
-              >
-                <div style={{
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  backgroundColor: '#1a237e',
-                  flexShrink: 0
-                }} />
-                <span style={{
                   fontSize: '1rem',
-                  color: '#333',
-                  lineHeight: 1.6
-                }}>
-                  {benefit}
-                </span>
-              </div>
-            ))}
-          </div>
+                  color: '#666',
+                  lineHeight: 1.8,
+                  marginBottom: '2rem'
+                }}
+                dangerouslySetInnerHTML={{ __html: data?.description }}
+                />
+
 
           {/* CTA Button */}
           <button
+            onClick={() => navigate('/ContactUs')}
             style={{
               backgroundColor: '#00bcd4',
               color: 'white',

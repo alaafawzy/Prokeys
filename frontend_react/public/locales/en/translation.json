@@ -22,7 +22,13 @@
     "location": "Office 43-44, Al Fahedy",
     "follow": "Follow us",
     "btn":"subscribe to the service now",
-    "placeHolder":"subscribe to the email service to get news"
+    "placeHolder":"subscribe to the email service to get news",
+    "followUs": "Follow us on social media",
+    "contactUs": "Contact Us",
+    "browseWebsite": "Browse Website",
+    "aboutUs": "About Us",
+    "packages": "Packages",
+    "copyright": "111PRO.KEYS @ 2025. All rights reserved."
   },
   "Landing": {
     "title": "Turning <1>accounting challenges</1> into entrepreneurial opportunities, as accounting is a language mastered by our experts",

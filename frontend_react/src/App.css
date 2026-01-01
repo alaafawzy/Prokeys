@@ -131,7 +131,8 @@ border: none !important;
 }
 .footer-email-input{
   padding-left: 20px !important; 
-  width: 300px !important;
+  width: 20% !important;
+  max-width: 450px !important;
   background: #F2F4F8 !important;
 }
 .footer-logo-text{
@@ -180,4 +181,29 @@ color: #C1C7CD;
 .who-we-are{
   background-color: rgba(71, 193, 202, 0.05);
   padding-bottom: 30px;
+}
+
+@media (max-width: 850px) {
+  .sm-footer-btn{
+    margin-bottom: 20px !important;
+  }
+}
+.about-section {
+  display: grid;
+  /* Mobile first: 1 column by default */
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+/* .change-the-direction{
+  order: 2 !important;
+} */
+@media (min-width: 960px) {
+  .about-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  .change-the-direction{
+    order: 1 !important;
+  }
 }

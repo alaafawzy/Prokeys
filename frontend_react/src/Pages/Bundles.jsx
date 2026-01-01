@@ -95,7 +95,7 @@ export default function Bundles() {
         sx={{
           margin: "1rem 0",
           justifyContent: {xs:"start",md:"end"},
-          gap: "1rem",
+          gap: "0.6rem",
         }}
       >
         {bundles.map((bundle, index) => {

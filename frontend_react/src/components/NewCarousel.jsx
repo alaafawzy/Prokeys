@@ -25,13 +25,13 @@ export default function InfiniteCarousel({ items }) {
   //   "Item 5",
   //   "Item 6",
   // ];
-  console.log(items);
+  // console.log(items);
   
   const loopItems = [...items, ...items,...items,...items,...items];
-  console.log(loopItems)
-  loopItems.map((src, i) => {
-    console.log(src)
-  })
+  // console.log(loopItems)
+  // loopItems.map((src, i) => {
+  //   console.log(src)
+  // })
   // for(it in loopItems){
   //   console.log()
   // }
@@ -49,8 +49,8 @@ const isRTL = theme.dir === "rtl";
           <Box
             key={i}
             component="img"
-            src={src}
-            alt={`carousel-${i}`}
+            src={src.logo}
+            alt={src.logo_alt_text}
             sx={{
               width: 120,
               // height: 120,

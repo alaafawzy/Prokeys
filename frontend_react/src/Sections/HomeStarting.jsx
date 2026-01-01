@@ -21,7 +21,7 @@ export default function HomeStarting() {
     const fetchData = async () => {
       try {
         const response = await api.get('/homeStarting/'); // Adjust endpoint as needed
-        console.log(response.data[0]);
+        // console.log(response.data[0]);
         
         if (response.data) {
           setData(response.data[0]);
@@ -57,7 +57,7 @@ export default function HomeStarting() {
                   width: "100%",
                   height: "100%",
                   backgroundPosition: "100%",
-                  backgroundImage: `url(${landingnew})`,
+                  backgroundImage: `url(${data.image || landingnew})`,
                   backgroundSize: "contain",
                   backgroundRepeat:"no-repeat",
                   position: "relative",

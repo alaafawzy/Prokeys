@@ -8,11 +8,13 @@ import choice2 from "../assets/how we work/choice2.png";
 import upload from "../assets/how we work/upload.png";
 import leftArrow from "../assets/how we work/leftArrow.png";
 import { useTheme } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
 export default function HowWeWork() {
   const { t } = useTranslation();
   const theme = useTheme();
   const isEnglish = theme.dir === "ltr";
   const HowWeWork = t("HowWeWork");
+  const navigate = useNavigate();
   
   const arrowStyle = isEnglish ? { transform: "scaleX(-1)" } : {};
   
@@ -50,7 +52,7 @@ export default function HowWeWork() {
         {/* Steps */}
         <Grid container spacing={4} justifyContent="center" alignItems="flex-start">
           
-            <Grid item xs={12} sm={6} md={3} >
+            <Grid item xs={12} sm={6} md={3} sx={{ order: { xs: 3, md: 0 } }}>
               <Box sx={{ textAlign: "center" }}>
 
                 {/* Icon circle */}
@@ -111,7 +113,7 @@ export default function HowWeWork() {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item  md={1} >
+            <Grid item md={1} sx={{ display: { xs: 'none', md: 'block' } }}>
               <Box
                   sx={{
                     width: 16,
@@ -129,7 +131,7 @@ export default function HowWeWork() {
                 
                 </Box>
             </Grid>
-            <Grid item xs={12} sm={6} md={3} >
+            <Grid item xs={12} sm={6} md={3} sx={{ order: { xs: 2, md: 0 } }}>
               <Box sx={{ textAlign: "center" }}>
 
                 {/* Icon circle */}
@@ -190,7 +192,7 @@ export default function HowWeWork() {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item  md={1} >
+            <Grid item md={1} sx={{ display: { xs: 'none', md: 'block' } }}>
               <Box
                   sx={{
                     width: 15,
@@ -207,7 +209,7 @@ export default function HowWeWork() {
                 </Box>
                 
             </Grid>
-            <Grid item xs={12} sm={6} md={3} >
+            <Grid item xs={12} sm={6} md={3} sx={{ order: { xs: 1, md: 0 } }}>
               <Box sx={{ textAlign: "center" }}>
 
                 {/* Icon circle */}
@@ -275,6 +277,7 @@ export default function HowWeWork() {
         <Box textAlign="center" mt={6}>
           <Button
             variant="contained"
+            onClick={() => navigate('/ContactUs')}
             sx={{
               backgroundColor: "#47C1CA",
               px: 4,

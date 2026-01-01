@@ -1,5 +1,7 @@
 from rest_framework import generics,permissions
-from .models import New
+from .models import *
+from about.models import AboutUs
+from bundles.models import Bundle
 from .serializers import *
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
@@ -25,20 +27,11 @@ class FooterViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = FooterSerializer
 
 class CommentCreateView(generics.CreateAPIView):
-    permission_classes = [IsAuthenticated]
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    # permission_classes = [IsAuthenticated]  # Ensure the user is authenticated
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
 class CommentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        return Comment.objects.filter(user=self.request.user)
 class AllCommentsListView(generics.ListAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
@@ -50,10 +43,40 @@ class AboutUsViewSet(viewsets.ReadOnlyModelViewSet):
 class HomeStartingViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = HomeStarting.objects.all()
     serializer_class = HomeStartingSerializer
+
+
+class SystemPartnerViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = SystemPartner.objects.all()
+    serializer_class = SystemPartnerSerializer
+
+
+class PortalMetadataViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    ViewSet for retrieving Portal page metadata.
+    Provides list and retrieve endpoints for metadata.
+    """
+    queryset = Metadata.objects.all()
+    serializer_class = PortalMetadataSerializer
+
+
+class PortalMetaTagViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    ViewSet for retrieving individual meta tags for Portal pages.
+    """
+    queryset = MetaTag.objects.all()
+    serializer_class = PortalMetaTagSerializer
+
+
+class PortalMetadataByPageView(generics.ListAPIView):
+    """
+    Get metadata for a specific page by page identifier.
+    Example: /api/portal/metadata/?page=home
+    """
+    serializer_class = PortalMetadataSerializer
     
-
-
-
-
-
+    def get_queryset(self):
+        page = self.request.query_params.get('page', None)
+        if page:
+            return Metadata.objects.filter(page_title__icontains=page)
+        return Metadata.objects.all()
 

@@ -8,11 +8,28 @@ import { useTheme } from "@emotion/react";
 import NavButton from "../components/button";
 export default function PackageCard({ Bundle, svg }) {
   const theme = useTheme();
-  const price="30000 ر.س شهرياً";
-  const offer="خصم 20% للاشتراك السنوى";
+  const { t } = useTranslation();
+  const isRTL = theme.direction === 'rtl';
+  
+  // Calculate discounted price if discount exists
+  const originalPrice = Bundle?.price || 0;
+  const discount = Bundle?.discount || 0;
+  const hasDiscount = discount > 0;
+  
+  // Format price with translation
+  const priceText = isRTL 
+    ? `${originalPrice} ر.س شهرياً` 
+    : `${originalPrice} SAR/month`;
+  
+  const offerText = hasDiscount 
+    ? (isRTL 
+        ? `خصم ${discount}% للاشتراك السنوي` 
+        : `${discount}% off for annual subscription`)
+    : null;
+  
   return (
     <>
-      <Grid item xs={11} md={2.9} sx={{ marginY: { xs: ".5rem" } }}>
+      <Grid item xs={11} md={2.9} sx={{ marginY: { xs: ".5rem" }, maxWidth: { xs: "400px", md: "100%" }, mx: "auto" }}>
         <Link to="/ContactUs">
           <Grid
             container
@@ -43,9 +60,7 @@ export default function PackageCard({ Bundle, svg }) {
           >
             <CardInfo
               svg={svg}
-              // cardPrice={Bundle?.cardPrice}
-              // cardSale={Bundle?.cardSale}
-              cardTitle={theme.direction=='rtl'?Bundle?.arabic_name:Bundle?.english_name}
+              cardTitle={isRTL ? Bundle?.arabic_name : Bundle?.english_name}
             />
             <Divider sx={{ width: "80%", borderColor: "#000000", mb:3 ,fontWeight: "bold",borderBottomWidth: 2 }} />
             <Grid
@@ -64,14 +79,21 @@ export default function PackageCard({ Bundle, svg }) {
                 },
               }}
             >
-              <Box sx={{color:"#27307F"}}>{price}</Box>
-              <Box sx={{color:"#333333",fontSize:"1rem"}}>{offer}</Box>
+              <Box sx={{color:"#27307F", fontWeight: "bold", fontSize: "1.2rem"}}>{priceText}</Box>
+              {offerText && <Box sx={{color:"#333333",fontSize:"1rem"}}>{offerText}</Box>}
               <Box sx={{my:2, marginLeft:1}}>
-              <NavButton className="p-3 mb-3" >احجز جلسة مجانية لعرض الباقة</NavButton>
+                <NavButton className="p-3 mb-3">
+                  {isRTL ? "احجز جلسة مجانية لعرض الباقة" : "Book a free session to view the package"}
+                </NavButton>
               </Box>
-              {Bundle?.advantages.map((bullet, index) => {
+              {Bundle?.advantages.map((advantage, index) => {
+                // console.log("Rendering advantage:", advantage.arabic_advantage, advantage.english_advantage);
                 return (
-                  <BulletPoint title={bullet} />
+                  <BulletPoint 
+                    key={index} 
+                    title={advantage} 
+                  />
+                  
                 );
               })}
               {/* {Bundle?.bullet1 && <BulletPoint title={Bundle.bullet1} />}
@@ -100,29 +122,35 @@ export default function PackageCard({ Bundle, svg }) {
   );
 }
 
-function CardInfo({ svg, cardSale = "", cardPrice = "N/A", cardTitle = "No Title" }) {
+function CardInfo({ svg, cardTitle = "No Title" }) {
+  const theme = useTheme();
+  const isRTL = theme.direction === 'rtl';
+  
   return (
     <Grid 
-  container
-  sx={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-end",   // start horizontally
-    textAlign: "start",         // start text alignment
-    gap: "0.5rem",
-    ml:4
-  }}
->
-  <Grid item color="#333333">
-    ريال <br/> فاتورة 
-  </Grid>
+      container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
+        textAlign: "start",
+        gap: "0.5rem",
+        ml: 4
+      }}
+    >
+      {/* <Grid item color="#333333">
+        {isRTL ? (
+          <>ريال <br/> فاتورة</>
+        ) : (
+          <>SAR <br/> Bill</>
+        )}
+      </Grid> */}
 
-  <Grid item>
-    <Box sx={{ fontSize: "20px", color: "#27307F" }}>
-      {cardTitle}
-    </Box>
-  </Grid>
-</Grid>
-
+      <Grid item>
+        <Box sx={{ paddingTop: "20px", fontSize: "20px", color: "#27307F", fontWeight: "bold" }}>
+          {cardTitle}
+        </Box>
+      </Grid>
+    </Grid>
   );
 }

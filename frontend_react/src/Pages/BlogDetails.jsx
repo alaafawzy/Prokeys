@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Typography, Box } from "@mui/material";
+import { useMetadataById } from "../hooks/useMetadata";
 import api from "../../Api";
 import { useTheme } from "@emotion/react";
 
@@ -11,10 +12,13 @@ export default function BlogDetails() {
   const [error, setError] = useState(null);
   const theme = useTheme();
 
+  // Load metadata for the specific blog post
+  useMetadataById('blog/single-blog-metadata', id, 'blog');
+
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await api.get(`/blog/${id}/`);
+        const response = await api.get(`/blog/blogs/${id}/`);
         setBlog(response.data);
       } catch (err) {
         setError(err);

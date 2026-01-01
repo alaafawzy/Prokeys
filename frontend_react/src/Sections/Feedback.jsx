@@ -67,9 +67,10 @@ useEffect(() => {
       setLoading(false);
     }
   };
-  console.log("why?")
+  // console.log("why?")
   fetchData();
 }, [refresh]);
+  // console.log("data",data);
   return (
     <>
       <Grid
