@@ -86,6 +86,7 @@ export default function AboutUs() {
               marginBottom: "1.5rem",
               fontFamily: "Cairo",
               fontSize: "1.3rem",
+              
               fontWeight: "400",
               lineHeight: "30px",
               // textAlign: rtl ? "start" : "end",
@@ -99,7 +100,7 @@ export default function AboutUs() {
               fontFamily: "Cairo",
               fontSize: "32px",
               fontWeight: "700",
-              lineHeight: "24px",
+              lineHeight: "48px",
               textAlign: "center",
               color: "#131F89",
               marginBottom: "3rem",

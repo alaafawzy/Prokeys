@@ -8,6 +8,8 @@ import { useTheme } from "@emotion/react";
 import { Link } from "react-router-dom";
 import api from '../../Api';
 import NavButton from "../components/button";
+import { useNavigate } from "react-router-dom";
+import CTAButton from '../components/CTAButton';
 export default function HomeStarting() {
   const { t } = useTranslation();
   const Landing = t("Landing");
@@ -15,6 +17,7 @@ export default function HomeStarting() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -134,15 +137,22 @@ export default function HomeStarting() {
               >
                 {theme.direction=='rtl'?data.arabic_description:data.english_description}
               </Box>
-              <Link to="/ContactUs">
+              {/* <Link to="/ContactUs">
                 {/* <Btn bg={"#131F89"} FontColor={"white"} p={"1rem"} W={"151px"}>
                   {Landing.btn}
                 </Btn> */}
-                <NavButton className=" d-lg-inline-block d-sm-none">
+                {/* <NavButton className=" d-lg-inline-block d-sm-none">
                   {Landing.btn}
 
                 </NavButton>
-              </Link>
+              </Link>  */}
+              {/* </Grid> */}
+                        <Box sx={{ marginTop: "2rem" , textAlign: "center", marginBottom:"3rem" }}>
+                      <CTAButton
+                        label={t('Book.btn')}
+                        onClick={() => navigate('/ContactUs')}
+                      />
+                    </Box>
             </Grid>
           </Grid>
         </Container>

@@ -28,6 +28,8 @@
     "browseWebsite": "Browse Website",
     "aboutUs": "About Us",
     "packages": "Packages",
+    "blogs": "Blogs",
+    "contact": "Contact",
     "copyright": "111PRO.KEYS @ 2025. All rights reserved."
   },
   "Landing": {
@@ -45,7 +47,7 @@
   },
   "Book": {
     "des": "Click now to book a free session with our experts to build a financial plan that suits your company's needs",
-    "btn": "Book a free session"
+    "btn": "Reserve a free session"
   },
   "HowWeWork": {
     "howTitle": "? How We Work",
@@ -271,7 +273,7 @@
       "desc": "Business accounting, cost accounting, financial statements, financial analysis reports, taxes reports and more financial services to grow your business"
     },
     "serv3": {
-      "title": "improving your management skills",
+      "title": "Improving your management skills",
       "desc": "By creating standard of procedures and customize maps for tracking it, Also planned to assessment your managerial tools and skills"
     }
   },

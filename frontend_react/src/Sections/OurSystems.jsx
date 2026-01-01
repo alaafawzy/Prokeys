@@ -25,10 +25,12 @@ export default function OurSystems() {
 
     fetchSystemPartners();
   }, []);
-
+  
+  // const loopItems = [...data, ...data,...data,...data,...data];
   // Extract logo URLs from the fetched data, prepending the base URL
   // const baseURL = api.defaults.baseURL.replace('/api', '') || 'http://localhost:8000';
   const data = systemPartners;
+  const loopItems = [...data];
 
   return (
     <>
@@ -54,7 +56,7 @@ export default function OurSystems() {
               fontFamily: "Cairo",
               fontSize: "2.2rem",
               fontWeight: " 700",
-              lineHeight: " 30px",
+              lineHeight: " 40px",
               textAlign: "center",
               color: "#27307F",
               justifyContent: "center",
@@ -81,7 +83,7 @@ export default function OurSystems() {
             {loading ? (
               <Box sx={{ textAlign: 'center', width: '100%', py: 4 }}>Loading...</Box>
             ) : data.length > 0 ? (
-              <InfiniteCarousel items={data}></InfiniteCarousel>
+              <InfiniteCarousel items={loopItems}></InfiniteCarousel>
             ) : (
               <Box sx={{ textAlign: 'center', width: '100%', py: 4 }}>No system partners available</Box>
             )}

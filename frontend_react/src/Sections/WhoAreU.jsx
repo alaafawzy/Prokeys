@@ -4,6 +4,7 @@ import { Container } from "@mui/material";
 import { Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import CTAButton from "../components/CTAButton";
 import skills from "../assets/who we are/skills.png";
 import financial from "../assets/who we are/financial.png";
 import whyus from "../assets/who we are/whyus.png";
@@ -75,35 +76,12 @@ export default function WhoAreU() {
             <SectionDetails image={financial} title={serv2?.title} desc={serv2?.desc} second={true}/>
             <SectionDetails image={whyus} title={serv1?.title} desc={serv1?.desc} second={false}/>
           </Grid>
-          <Box sx={{ marginTop: "1.5rem" , textAlign: "center", marginBottom:"3rem" }}>
-        <button
-          onClick={() => navigate('/ContactUs')}
-          style={{
-            backgroundColor: '#00bcd4',
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            padding: '0.75rem 2rem',
-            fontSize: '1rem',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 4px 12px rgba(0,188,212,0.3)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#00acc1';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,188,212,0.4)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#00bcd4';
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,188,212,0.3)';
-          }}
-        >
-          {t('Book.btn')}
-        </button>
-      </Box>
+          <Box sx={{ marginTop: "2rem" , textAlign: "center", marginBottom:"3rem" }}>
+            <CTAButton
+              label={t('Book.btn')}
+              onClick={() => navigate('/ContactUs')}
+            />
+          </Box>
         </Container>
       </Grid>
     </>

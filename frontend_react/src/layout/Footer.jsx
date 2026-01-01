@@ -107,10 +107,12 @@ export default function Footer() {
         <Col md={3} className="mb-3">
             <h6 className="footer-titles">{Footer_text.browseWebsite}</h6>
             <ul className="list-unstyled mt-4 footer-text">
-              <li>{Footer_text.home}</li>
-              <li>{Footer_text.aboutUs}</li>
-              <li>{Footer_text.packages}</li>
-              <li>{Footer_text.services}</li>
+              <li><Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.home}</Link></li>
+              <li><Link to="/AboutUs" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.aboutUs}</Link></li>
+              <li><Link to="/Bundles" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.packages}</Link></li>
+              <li><Link to="/OurServises" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.services}</Link></li>
+              <li><Link to="/ContactUs" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.contact}</Link></li>
+              <li><Link to="/Blogs" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.blogs}</Link></li>
             </ul>
           </Col>
 

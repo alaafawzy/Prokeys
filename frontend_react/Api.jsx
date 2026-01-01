@@ -6,7 +6,7 @@ axios.defaults.withCredentials = true;
 // Create an Axios instance
 const api = axios.create({
   // baseURL: '/api/', // Replace with your backend URL
-  baseURL: '/api', // Replace with your backend URL
+  baseURL: 'http://127.0.0.1:8000/api', // Replace with your backend URL
   timeout: 10000, // Optional timeout
   headers: {
     'Content-Type': 'application/json',

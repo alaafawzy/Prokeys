@@ -13,7 +13,7 @@ export default function DescriptionSection({ }) {
     useEffect(() => {
         const fetchData = async () => {
         try {
-          const response = await api.get('/services/description-section/'); // Services description endpoint
+          const response = await api.get('/bundle/description-section/'); // Adjust endpoint as needed
           if (Array.isArray(response.data)) {
             setDescriptionData(response.data[0]);
           } else {
@@ -72,12 +72,11 @@ export default function DescriptionSection({ }) {
       {/* Content Container */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+        gridTemplateColumns: '1fr 1fr',
         gap: '4rem',
         alignItems: 'center',
         '@media (max-width: 768px)': {
-          gridTemplateColumns: '1fr',
-          flexDirection: 'column-reverse'
+          gridTemplateColumns: '1fr'
         }
       }}>
         {/* Left Side - Circular Image */}
@@ -119,7 +118,7 @@ export default function DescriptionSection({ }) {
             color: '#333',
             lineHeight: 1.8,
             marginBottom: '2rem',
-            textAlign: isRTL ? 'left' : 'right'
+            textAlign: isRTL ? 'right' : 'left'
           }}>
             {description}
           </p>

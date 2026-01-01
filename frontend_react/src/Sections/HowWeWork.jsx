@@ -9,6 +9,7 @@ import upload from "../assets/how we work/upload.png";
 import leftArrow from "../assets/how we work/leftArrow.png";
 import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
+import CTAButton from "../components/CTAButton";
 export default function HowWeWork() {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -273,24 +274,13 @@ export default function HowWeWork() {
           
         </Grid>
 
-        {/* Button */}
-        <Box textAlign="center" mt={6}>
-          <Button
-            variant="contained"
-            onClick={() => navigate('/ContactUs')}
-            sx={{
-              backgroundColor: "#47C1CA",
-              px: 4,
-              py: 1.5,
-              fontSize: 18,
-              borderRadius: "8px",
-              fontFamily: "Cairo",
-              "&:hover": { backgroundColor: "#35a9b1" },
-            }}
-          >
-            {HowWeWork.btn}
-          </Button>
-        </Box>
+        
+              <Box sx={{ marginTop: "2rem" , textAlign: "center", marginBottom:"3rem" }}>
+                <CTAButton
+                  label={t('Book.btn')}
+                  onClick={() => navigate('/ContactUs')}
+                />
+              </Box>
       </Container>
     </Box>
   );

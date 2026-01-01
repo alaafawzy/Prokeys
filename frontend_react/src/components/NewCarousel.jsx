@@ -27,7 +27,7 @@ export default function InfiniteCarousel({ items }) {
   // ];
   // console.log(items);
   
-  const loopItems = [...items, ...items,...items,...items,...items];
+  const loopItems = [...items, ...items, ...items,...items,...items,...items,...items ];
   // console.log(loopItems)
   // loopItems.map((src, i) => {
   //   console.log(src)
@@ -42,7 +42,7 @@ const isRTL = theme.dir === "rtl";
       <Box
         sx={{
           display: "inline-flex",
-          animation: `${isRTL ? scrollRight : scrollLeft} 60s linear infinite`,
+          animation: `${isRTL ? scrollRight : scrollLeft} 120s linear infinite`,
         }}
       >
         {loopItems.map((src, i) => (

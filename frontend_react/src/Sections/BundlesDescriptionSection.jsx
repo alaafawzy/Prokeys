@@ -71,7 +71,7 @@ export default function DescriptionSection({ }) {
       {/* Content Container */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '1fr 1fr',
         gap: '4rem',
         alignItems: 'center'
       }}>
@@ -79,14 +79,18 @@ export default function DescriptionSection({ }) {
         <div style={{
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          order: window.innerWidth < 768 ? 1 : 0
         }}>
           <div style={{
             width: '350px',
             height: '350px',
             borderRadius: '50%',
             overflow: 'hidden',
-            boxShadow: '0 10px 40px rgba(0,0,0,0.15)'
+            boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
+            maxWidth: '100%',
+            width: window.innerWidth < 768 ? 'min(350px, 100%)' : '350px',
+            height: window.innerWidth < 768 ? 'min(350px, 100%)' : '350px'
           }}>
             <img
               src={imageUrl}
@@ -102,14 +106,15 @@ export default function DescriptionSection({ }) {
 
         {/* Right Side - Text Content */}
         <div style={{
-          position: 'relative'
+          position: 'relative',
+          order: window.innerWidth < 768 ? 2 : 0
         }}>
           <p style={{
             fontSize: '1.35rem',
             color: '#333',
             lineHeight: 1.8,
             marginBottom: '2rem',
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'left' : 'right'
           }}>
             {description}
           </p>

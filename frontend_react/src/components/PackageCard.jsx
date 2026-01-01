@@ -6,11 +6,14 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import NavButton from "../components/button";
+import CTAButton from "./CTAButton";
+import { useNavigate } from "react-router-dom";
 export default function PackageCard({ Bundle, svg }) {
   const theme = useTheme();
   const { t } = useTranslation();
   const isRTL = theme.direction === 'rtl';
-  
+  const navigate = useNavigate();
+  const isBestSeller = Boolean(Bundle?.best_seller);
   // Calculate discounted price if discount exists
   const originalPrice = Bundle?.price || 0;
   const discount = Bundle?.discount || 0;
@@ -30,34 +33,65 @@ export default function PackageCard({ Bundle, svg }) {
   return (
     <>
       <Grid item xs={11} md={2.9} sx={{ marginY: { xs: ".5rem" }, maxWidth: { xs: "400px", md: "100%" }, mx: "auto" }}>
-        <Link to="/ContactUs">
+        {/* <Link to="/ContactUs"> */}
           <Grid
             container
             sx={{
+              position: "relative",
               minHeight: "100%",
               textAlign: "center",
               padding: "1rem 0",
-              boxShadow: "0px 12px 16px 4px rgba(16, 24, 40, 0.08)",
+              boxShadow: isBestSeller
+                ? "0px 16px 22px 6px rgba(33, 119, 255, 0.2)"
+                : "0px 12px 16px 4px rgba(16, 24, 40, 0.08)",
               borderRadius: "0.5rem",
               justifyContent: "center",
-              alignItems: "space-between",
+              alignItems: "start",
               fontWeight: "700",
-              background: "white",
-              border: "2px solid #27307F",
+              background: isBestSeller
+                ? "linear-gradient(180deg, #E7F0FF 0%, #D8E7FF 40%, #CFE0FF 70%)"
+                : "white",
+              border: isBestSeller ? "2px solid #5B7BFF" : "2px solid #27307F",
               transition: "0.3s",
               "&:hover": {
-                background: "#fdfdfd",
-                cursor: "pointer",
+                background: isBestSeller ? "linear-gradient(180deg, #E2ECFF 0%, #D3E2FF 40%, #C8DBFF 70%)" : "#fdfdfd",
                 scale: "1.01",
               },
               "& > div:not(:last-child)": {
                 marginBottom: "1rem",
               },
-              "& > div:last-child": {
-                alignSelf: "end",
-              },
             }}
           >
+            {isBestSeller && (
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: -24,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  background: "linear-gradient(90deg, #131F89 100%, #47C1CA 100%)",
+                  
+                  color: "#FFFFFF",
+                  borderRadius: "999px",
+                  zIndex: 10,
+                  px: 2,
+                  py: 2,
+                  fontSize: "0.9rem",
+                  fontWeight: 700,
+                  fontFamily: "Cairo",
+                  boxShadow: "0 8px 18px rgba(31, 122, 205, 0.35)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 0.5,
+
+                }}
+              >
+                
+                <span sx={{color:"white",zIndex:11}} >★</span>
+                <span >{isRTL ? "الأكثر شعبية" : "Most Popular"}</span>
+              </Box>
+              
+            )}
             <CardInfo
               svg={svg}
               cardTitle={isRTL ? Bundle?.arabic_name : Bundle?.english_name}
@@ -69,11 +103,12 @@ export default function PackageCard({ Bundle, svg }) {
                 minHeight: "40%",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "flex-start",
+                justifyContent: "start",
                 alignContent: "end",
                 alignItems: "end",
-                textAlign: "end",
+                textAlign: "start",
                 marginBottom:5,
+                marginLeft:4,
                 "& > div:not(:last-child)": {
                   marginBottom: "0.5rem",
                 },
@@ -81,11 +116,18 @@ export default function PackageCard({ Bundle, svg }) {
             >
               <Box sx={{color:"#27307F", fontWeight: "bold", fontSize: "1.2rem"}}>{priceText}</Box>
               {offerText && <Box sx={{color:"#333333",fontSize:"1rem"}}>{offerText}</Box>}
-              <Box sx={{my:2, marginLeft:1}}>
+              <Box sx={{ textAlign: "center", alignSelf: "center", mt: 1, mr :4 }}>
+                <CTAButton
+                  label={t('Book.btn')}
+                  onClick={() => navigate('/ContactUs')}
+                  // padding="0.75rem 3rem"
+                />
+              </Box>
+              {/* <Box sx={{my:2, marginLeft:1}}>
                 <NavButton className="p-3 mb-3">
                   {isRTL ? "احجز جلسة مجانية لعرض الباقة" : "Book a free session to view the package"}
                 </NavButton>
-              </Box>
+              </Box> */}
               {Bundle?.advantages.map((advantage, index) => {
                 // console.log("Rendering advantage:", advantage.arabic_advantage, advantage.english_advantage);
                 return (
@@ -96,6 +138,7 @@ export default function PackageCard({ Bundle, svg }) {
                   
                 );
               })}
+              <Box sx={{ flexGrow: 1 }} />
               {/* {Bundle?.bullet1 && <BulletPoint title={Bundle.bullet1} />}
               {Bundle?.bullet2 && <BulletPoint title={Bundle.bullet2} />}
               {Bundle?.bullet3 && <BulletPoint title={Bundle.bullet3} />}
@@ -116,7 +159,7 @@ export default function PackageCard({ Bundle, svg }) {
               </Link>
             </Grid> */}
           </Grid>
-        </Link>
+        {/* </Link> */}
       </Grid>
     </>
   );
@@ -135,7 +178,7 @@ function CardInfo({ svg, cardTitle = "No Title" }) {
         alignItems: "flex-end",
         textAlign: "start",
         gap: "0.5rem",
-        ml: 4
+        ml: 4,
       }}
     >
       {/* <Grid item color="#333333">
