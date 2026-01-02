@@ -136,7 +136,7 @@ export default function Footer() {
               <li><Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.home}</Link></li>
               <li><Link to="/AboutUs" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.aboutUs}</Link></li>
               <li><Link to="/Bundles" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.packages}</Link></li>
-              <li><Link to="/Servises" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.services}</Link></li>
+              <li><Link to="/Services" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.services}</Link></li>
               <li><Link to="/ContactUs" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.contact}</Link></li>
               <li><Link to="/Blogs" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.blogs}</Link></li>
             </ul>
