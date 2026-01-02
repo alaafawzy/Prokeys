@@ -106,7 +106,7 @@ useEffect(() => {
           </Box>
 
           <Grid
-            
+            dir = {theme.direction === 'rtl' ? 'ltr' : 'rtl'}
             sx={{
               width:"100%",
               display:'flex',

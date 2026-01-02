@@ -38,7 +38,7 @@ export default function AboutUs() {
         if (aboutResponse.data) {
           setData(aboutResponse.data[0]);
         }
-        
+
         // Fetch About Sections
         const sectionsResponse = await api.get('/about/sections/');
         if (sectionsResponse.data) {
@@ -58,7 +58,7 @@ export default function AboutUs() {
   const textStyle = {
     whiteSpace: 'pre-line', // preserves newlines
   };
-  
+
   // Map API data to component format
   const sec_data = sections?.map(section => ({
     title: rtl ? section.arabic_title : section.english_title,
@@ -68,7 +68,7 @@ export default function AboutUs() {
   }));
   // console.log(sec_data)
   return (
-    <Grid dir={rtl ? 'rtl' : 'ltr'}>
+    <Grid >
       <Container
         sx={{
           width: "100%",
@@ -78,15 +78,16 @@ export default function AboutUs() {
           },
         }}
       >
-        
+
         <Grid
+          dir={rtl ? 'rtl' : 'ltr'}
           continer
           sx={{
             "& > div:not(:first-child)": {
               marginBottom: "1.5rem",
               fontFamily: "Cairo",
               fontSize: "1.3rem",
-              
+
               fontWeight: "400",
               lineHeight: "30px",
               // textAlign: rtl ? "start" : "end",
@@ -108,32 +109,35 @@ export default function AboutUs() {
             }}
           >
             {rtl ? data?.arabic_title : data?.english_title}
-            
-                  </Grid>
-                  <div 
-                  
-                  dangerouslySetInnerHTML={{ 
-                    __html: rtl ? data?.arabic_description : data?.english_description 
-                  }}
-                  />
-                  
-                </Grid>
-                <Grid
-                  container
-                  sx={{
-                  justifyContent: "center",
+
+          </Grid>
+          <div
+
+            dangerouslySetInnerHTML={{
+              __html: rtl ? data?.arabic_description : data?.english_description
+            }}
+          />
+
+        </Grid>
+        <Grid
+          // dir={rtl ? 'rtl' : 'ltr'}
+          container
+          sx={{
+            justifyContent: "center",
             marginBottom: "3rem",
           }}
         >
-      {sec_data?.map((section, index) =>
-        index % 2 === 0 ? (
-          <AboutWithRightPic key={index} data={section} />
-        ) : (
-          <SectionsWithLeftPic key={index} data={section} />
-        )
-      )}
+          {sec_data?.map((section, index) =>
+            index % 2 === 0 ? (
+              <AboutWithRightPic key={index} data={section} />
+            ) : (
+              <SectionsWithLeftPic key={index} data={section} />
+            )
+          )}
           <OurSystems />
-          <Feedback/>
+          {/* <Box dir={rtl ? 'ltr' : 'rtl'} sx={{ width: "100%", marginTop: "4rem" }}> */}
+          <Feedback />
+          {/* </Box> */}
         </Grid>
       </Container>
     </Grid>

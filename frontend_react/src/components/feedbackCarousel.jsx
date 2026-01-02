@@ -71,7 +71,7 @@ export default function TestimonialCarousel({ items = [] }) {
           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
           onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
         >
-          <ChevronLeft size={isMobile ? 24 : 32} color="#333" />
+          {isRTL ? <ChevronLeft size={isMobile ? 24 : 32} color="#333" /> : <ChevronRight size={isMobile ? 24 : 32} color="#333" />}
         </button>
         {/* Testimonials Container */}
         <div style={{
@@ -204,7 +204,7 @@ export default function TestimonialCarousel({ items = [] }) {
           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
           onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
         >
-          <ChevronRight size={isMobile ? 24 : 32} color="#333" />
+          {isRTL ? <ChevronRight size={isMobile ? 24 : 32} color="#333" /> : <ChevronLeft size={isMobile ? 24 : 32} color="#333" />}
         </button>
 
       </div>
