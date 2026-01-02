@@ -32,7 +32,7 @@ export default function PackageCard({ Bundle, svg }) {
   
   return (
     <>
-      <Grid item xs={11} md={2.9} sx={{ marginY: { xs: ".5rem" }, maxWidth: { xs: "400px", md: "100%" }, }}>
+      <Grid item xs={11} md={2.9} sx={{ marginY: { xs: ".5rem" }, maxWidth: { xs: "400px", md: "100%" }, mx: { xs: "auto", md: "unset" } }}>
         {/* <Link to="/ContactUs"> */}
           <Grid
             container
