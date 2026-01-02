@@ -9,6 +9,16 @@ export default function DescriptionSection({ }) {
     const [descriptionData, setDescriptionData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -72,20 +82,16 @@ export default function DescriptionSection({ }) {
       {/* Content Container */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+        gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
         gap: '4rem',
-        alignItems: 'center',
-        '@media (max-width: 768px)': {
-          gridTemplateColumns: '1fr',
-          flexDirection: 'column-reverse'
-        }
+        alignItems: 'center'
       }}>
         {/* Left Side - Circular Image */}
         <div style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          order: window.innerWidth < 768 ? 1 : 0
+          order: isMobile ? 1 : (isRTL ? 2 : 1)
         }}>
           <div style={{
             width: '350px',
@@ -94,8 +100,8 @@ export default function DescriptionSection({ }) {
             overflow: 'hidden',
             boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
             maxWidth: '100%',
-            width: window.innerWidth < 768 ? 'min(350px, 100%)' : '350px',
-            height: window.innerWidth < 768 ? 'min(350px, 100%)' : '350px'
+            width: isMobile ? 'min(350px, 100%)' : '350px',
+            height: isMobile ? 'min(350px, 100%)' : '350px'
           }}>
             <img
               src={imageUrl}
@@ -112,7 +118,7 @@ export default function DescriptionSection({ }) {
         {/* Right Side - Text Content */}
         <div style={{
           position: 'relative',
-          order: window.innerWidth < 768 ? 2 : 0
+          order: isMobile ? 2 : (isRTL ? 1 : 2)
         }}>
           <p style={{
             fontSize: '1.35rem',
