@@ -32,7 +32,7 @@ export default function PackageCard({ Bundle, svg }) {
   
   return (
     <>
-      <Grid item xs={11} md={2.9} sx={{ marginY: { xs: ".5rem" }, maxWidth: { xs: "400px", md: "100%" }, mx: "auto" }}>
+      <Grid item xs={11} md={2.9} sx={{ marginY: { xs: ".5rem" }, maxWidth: { xs: "400px", md: "100%" }, }}>
         {/* <Link to="/ContactUs"> */}
           <Grid
             container
@@ -40,14 +40,18 @@ export default function PackageCard({ Bundle, svg }) {
               position: "relative",
               minHeight: "100%",
               textAlign: "center",
-              padding: "1rem 0",
+              padding: "1rem 1rem",
               boxShadow: isBestSeller
                 ? "0px 16px 22px 6px rgba(33, 119, 255, 0.2)"
                 : "0px 12px 16px 4px rgba(16, 24, 40, 0.08)",
               borderRadius: "0.5rem",
-              justifyContent: "center",
-              alignItems: "start",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "start",
+              alignItems: "end",
               fontWeight: "700",
+              pl: isRTL ? 3 : 0,
+              pr: isRTL ? 0 : 3,
               background: isBestSeller
                 ? "linear-gradient(180deg, #E7F0FF 0%, #D8E7FF 40%, #CFE0FF 70%)"
                 : "white",
@@ -96,7 +100,7 @@ export default function PackageCard({ Bundle, svg }) {
               svg={svg}
               cardTitle={isRTL ? Bundle?.arabic_name : Bundle?.english_name}
             />
-            <Divider sx={{ width: "80%", borderColor: "#000000", mb:3 ,fontWeight: "bold",borderBottomWidth: 2 }} />
+            <Divider sx={{ width: "90%", borderColor: "#000000", mb:3 ,fontWeight: "bold",borderBottomWidth: 2 }} />
             <Grid
               xs={11}
               sx={{
@@ -106,9 +110,10 @@ export default function PackageCard({ Bundle, svg }) {
                 justifyContent: "start",
                 alignContent: "end",
                 alignItems: "end",
-                textAlign: "start",
+                textAlign: "end",
                 marginBottom:5,
-                marginLeft:4,
+                // marginRight:2,
+                // marginLeft:4,
                 "& > div:not(:last-child)": {
                   marginBottom: "0.5rem",
                 },
@@ -116,7 +121,7 @@ export default function PackageCard({ Bundle, svg }) {
             >
               <Box sx={{color:"#27307F", fontWeight: "bold", fontSize: "1.2rem"}}>{priceText}</Box>
               {offerText && <Box sx={{color:"#333333",fontSize:"1rem"}}>{offerText}</Box>}
-              <Box sx={{ textAlign: "center", alignSelf: "center", mt: 1, mr :4 }}>
+              <Box sx={{ textAlign: "center", alignSelf: "center", mt: 1, mr :2 }}>
                 <CTAButton
                   label={t('Book.btn')}
                   onClick={() => navigate('/ContactUs')}
@@ -138,7 +143,7 @@ export default function PackageCard({ Bundle, svg }) {
                   
                 );
               })}
-              <Box sx={{ flexGrow: 1 }} />
+              {/* <Box sx={{ flexGrow: 1 }} /> */}
               {/* {Bundle?.bullet1 && <BulletPoint title={Bundle.bullet1} />}
               {Bundle?.bullet2 && <BulletPoint title={Bundle.bullet2} />}
               {Bundle?.bullet3 && <BulletPoint title={Bundle.bullet3} />}
@@ -178,7 +183,7 @@ function CardInfo({ svg, cardTitle = "No Title" }) {
         alignItems: "flex-end",
         textAlign: "start",
         gap: "0.5rem",
-        ml: 4,
+        // ml: 4,
       }}
     >
       {/* <Grid item color="#333333">

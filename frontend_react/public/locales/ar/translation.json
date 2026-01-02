@@ -1,5 +1,6 @@
 {
   "greeting": "hello world",
+  "bookNow": "احجز جلستك الآن",
   "Navbar": {
     "home": "الرئيسية",
     "who": "من نحن",
@@ -31,10 +32,8 @@
     "followUs": "تابعنا على وسائل التواصل التالية",
     "contactUs": "تواصل معنا",
     "browseWebsite": "تصفح الموقع",
-    "home": "الرئيسية",
     "aboutUs": "من نحن",
     "packages": "الباقات",
-    "services": "الخدمات",
     "contact": "اتصل بنا",
     "blogs": "المدونة",
     "copyright": "111PRO.KEYS @ 2025. جميع الحقوق محفوظة."

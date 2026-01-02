@@ -11,7 +11,7 @@ export default function BulletPoint({title}) {
         <Box sx={{color:"#333333",fontWeight:"medium",fontSize:"1rem"}}>{theme.direction=='rtl'?title?.arabic_advantage:title?.english_advantage}</Box>
         {/* <Box  sx={{margin:"0 1rem "}}>{icons.rightArrow}</Box> */}
         <Box>
-          <CheckIcon sx={{ color: "#00A63E", fontSize: 18, mr: 1 }} />
+          <CheckIcon sx={{ color: "#00A63E", fontSize: 18, mr: theme.direction === 'rtl' ? 1 : 0, ml: theme.direction === 'rtl' ? 0 : 1 }} />
         </Box>
       </Grid>
     </>
