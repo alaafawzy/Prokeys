@@ -71,171 +71,198 @@ export default function Connectwithus() {
   };
 
   return (
-    <Container
-      container
+    <Box
       sx={{
-        direction: `${theme.direction}`,
+        minHeight: "100vh",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        flexWrap: "wrap",
+        padding: "4rem 2rem",
+        direction: theme.direction,
       }}
     >
-      <Grid
-        item
-        xs={12}
-        md={12}
-        sx={{
-          fontFamily: "Tajawal",
-          fontSize: "20px",
-          fontWeight: "500",
-          lineHeight: "30px",
+      {/* Title Section - Standalone */}
+      <Container maxWidth="lg">
+        <Box sx={{ 
           textAlign: "center",
-          padding: "1rem 0",
-        }}
-      >
-        <Box sx={{ color: "#131F89" }}>{Contactus.Title}</Box>
-        <Box>{Contactus.Desc}</Box>
-      </Grid>
-
-      {/* {sentMess ? (
-        <Grid
-          item
-          xs={10}
-          md={6}
-          container
-          sx={{
-            display: "flex",
-            flexDirection: "row-reverse",
-            justifyContent: "space-between",
-          }}
-        >
-          <Box>لقد تم ارسال استفسارك</Box>
-
-          <Btn
-            item
-            xs={12}
-            md={12}
-            bg={"#131F89"}
-            FontColor={"white"}
-            W={"100%"}
-            h={"60px"}
-            component={"button"}
-            type="Submit"
-            onClick={() => {
-              console.log("clickex");
+          marginBottom: "4rem"
+        }}>
+          <Typography
+            variant="h3"
+            sx={{
+              fontFamily: "Cairo",
+              fontSize: { xs: "2rem", md: "2.5rem" },
+              fontWeight: "700",
+              color: "#131F89",
+              marginBottom: "1rem",
             }}
-            isLoading={isLoading}
-            disabled={isLoading}
           >
-            {Contactus.Message}
-          </Btn>
-        </Grid>
-      ) : ( */}
-      <Grid
-        item
-        xs={10}
-        md={6}
-        container
-        component={"form"}
-        onSubmit={handleSubmit(onSubmit)}
+            {Contactus.Title}
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Cairo",
+              fontSize: { xs: "1rem", md: "1.1rem" },
+              color: "#666",
+              lineHeight: 1.8,
+            }}
+          >
+            {Contactus.Desc}
+          </Typography>
+        </Box>
+      </Container>
+
+      {/* Form Section with Full Width Background */}
+      <Box
         sx={{
-          display: "flex",
-          flexDirection: "row-reverse",
-          justifyContent: "space-between",
+          width: "100vw",
+          background: "rgba(71, 193, 202, 0.08)",
+          padding: "4rem 0",
+          marginLeft: "calc(-50vw + 50%)",
+          marginRight: "calc(-50vw + 50%)",
         }}
       >
-        <InputField
-          item
-          xs={12}
-          md={5.5}
-          label={`${Contactus.Name}`}
-          ele="name"
-          register={register}
-          errors={errors}
-          type="Name"
-        />
-        <InputField
-          item
-          xs={12}
-          md={5.5}
-          label={`${Contactus.Company}`}
-          ele="company_name"
-          register={register}
-          errors={errors}
-          type="Company"
-        />
+        <Container maxWidth="md">
+          <Box
+            component="form"
+            onSubmit={handleSubmit(onSubmit)}
+            sx={{
+              background: "transparent",
+              borderRadius: "16px",
+              my: 4,
+              backgroundColor: "#FFFFFF",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+              padding: { xs: "2rem", md: "3rem" },
+            }}
+          >
+          <Grid container spacing={1}>
+            {/* Name and Company Name */}
+            <Grid item xs={12} md={6} order={{sx:1,md:2}}>
+              <InputField
+                label={Contactus.Name}
+                ele="name"
+                register={register}
+                errors={errors}
+                type="Name"
+              />
+            </Grid>
+            <Grid item xs={12} md={6} order={{sx:2,md:1}}>
+              <InputField
+                label={Contactus.Company}
+                ele="company_name"
+                register={register}
+                errors={errors}
+                type="Company"
+              />
+            </Grid>
 
-        <InputField
-          item
-          xs={12}
-          md={12}
-          label={`${Contactus.Email}`}
-          ele="email"
-          register={register}
-          errors={errors}
-          type="Email"
-        />
+            {/* Email */}
+            <Grid item xs={12} order={{sx:3,md:3}}>
+              <InputField
+                label={Contactus.Email}
+                ele="email"
+                register={register}
+                errors={errors}
+                type="Email"
+              />
+            </Grid>
 
-        <PhoneField
-          label={`${Contactus.Phone}`}
-          ele="Phone"
-          register={register("Phone", {
-            validate: {
-              positive: (value) => {
-                matchIsValidTel(value, {
-                  onlyCountries: ["AE", "SA", "EG"],
-                });
-              },
-            },
-          })}
-          errors={errors}
-          type="Phone"
-          control={control}
-        />
+            {/* Phone */}
+            <Grid item xs={12} order={{sx:4,md:4}}>
+              <PhoneField
+                label={Contactus.Phone}
+                ele="Phone"
+                register={register("Phone", {
+                  validate: {
+                    positive: (value) => {
+                      matchIsValidTel(value, {
+                        onlyCountries: ["AE", "SA", "EG"],
+                      });
+                    },
+                  },
+                })}
+                errors={errors}
+                type="Phone"
+                control={control}
+              />
+            </Grid>
 
-        <InputField
-          item
-          xs={12}
-          md={12}
-          label={`${Contactus.Message}`}
-          ele="details"
-          register={register}
-          errors={errors}
-          type="Message"
-          multiline
-        />
-        {successMessage && (
-              <Typography color="success.main" sx={{ marginBottom: 2 }}>
-                {successMessage}
-              </Typography>
+            {/* Message */}
+            <Grid item xs={12} order={{sx:5,md:5}}>
+              <InputField
+                label={Contactus.Message}
+                ele="details"
+                register={register}
+                errors={errors}
+                type="Message"
+                multiline
+              />
+            </Grid>
+
+            {/* Success/Error Messages */}
+            {successMessage && (
+              <Grid item xs={12} order={{sx:6,md:6}}>
+                <Typography
+                  sx={{
+                    color: "#4CAF50",
+                    textAlign: "center",
+                    fontFamily: "Cairo",
+                  }}
+                >
+                  {successMessage}
+                </Typography>
+              </Grid>
             )}
 
             {errorMessage && (
-              <Typography color="error.main" sx={{ marginBottom: 2 }}>
-                {errorMessage}
-              </Typography>
+              <Grid item xs={12} order={{sx:6,md:6}}>
+                <Typography
+                  sx={{
+                    color: "#f44336",
+                    textAlign: "center",
+                    fontFamily: "Cairo",
+                  }}
+                >
+                  {errorMessage}
+                </Typography>
+              </Grid>
             )}
-        <Btn
-          item
-          xs={12}
-          md={12}
-          bg={"#131F89"}
-          FontColor={"white"}
-          W={"100%"}
-          h={"60px"}
-          component={"button"}
-          type="Submit"
-          onClick={() => {
-            console.log("clickex");
-          }}
-          isLoading={isLoading}
-          disabled={isLoading}
-        >
-          {Contactus.Message}
-        </Btn>
-      </Grid>
-      {/* )} */}
-    </Container>
+
+            {/* Submit Button */}
+            <Grid item xs={12} order={{sx:7,md:7}}>
+              <Box
+                component="button"
+                type="submit"
+                disabled={isLoading}
+                sx={{
+                  width: "100%",
+                  padding: "1rem",
+                  background: "linear-gradient(90deg, #00BCD4 0%, #00ACC1 100%)",
+                  color: "#FFFFFF",
+                  border: "none",
+                  borderRadius: "8px",
+                  fontSize: "1.1rem",
+                  fontWeight: "600",
+                  fontFamily: "Cairo",
+                  cursor: isLoading ? "not-allowed" : "pointer",
+                  transition: "all 0.3s ease",
+                  opacity: isLoading ? 0.7 : 1,
+                  "&:hover": {
+                    transform: isLoading ? "none" : "translateY(-2px)",
+                    boxShadow: isLoading
+                      ? "none"
+                      : "0 4px 12px rgba(0, 188, 212, 0.4)",
+                  },
+                }}
+              >
+                {isLoading ? "...جاري الإرسال" : Contactus.Submit || "إرسال"}
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+        </Container>
+      </Box>
+    </Box>
   );
 }
