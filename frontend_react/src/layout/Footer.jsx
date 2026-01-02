@@ -3,10 +3,10 @@ import footer_logo from "../assets/footer_logo.png";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import React, { useState, useEffect } from 'react';
-import api from '../../Api'; // Import your Axios instance
+import api from '../../Api';
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Form, Button, InputGroup } from "react-bootstrap";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaYoutube, FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaYoutube, FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import NavButton from "../components/button";
 import { Widgets, WidthFull } from "@mui/icons-material";
 
@@ -15,36 +15,30 @@ export default function Footer() {
   const { t } = useTranslation();
   const Footer_text = t("Footer");
   const isRTL = theme.direction === 'rtl';
-  const [data, setData] = useState([]);
+  const [footerData, setFooterData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  console.log(Footer)
-  // useEffect(() => {
-  //   // Fetch data when the component mounts
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await api.get('/footer/'); // Adjust endpoint as needed
-  //       if (Array.isArray(response.data)) {
-  //         setData(response.data);
-  //       } else {
-  //         // Set data to an empty array if the response is not an array
-  //         setData([]);
-  //       }
-        
-  //     } catch (error) {
-  //       setError(error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
 
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const fetchFooterData = async () => {
+      try {
+        const response = await api.get('/footer/');
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          setFooterData(response.data[0]);
+        } else if (response.data && !Array.isArray(response.data)) {
+          setFooterData(response.data);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching footer data:', error);
+        setError(error);
+        setLoading(false);
+      }
+    };
 
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error.message}</p>;
-  // const location=theme.direction=='rtl'?data[0]?.arabic_address:data[0]?.english_address
-  // const phone=data[0]?.phone
+    fetchFooterData();
+  }, []);
+  const margin_icons= isRTL ?"ms-3":"me-3";
   return (
     <div className="footer-section">
     <Container >
@@ -78,25 +72,57 @@ export default function Footer() {
           <Col md={5} className="mb-3">
             <h6 className="footer-titles">{Footer_text.followUs}</h6>
             <div className={`d-flex gap-3 justify-content-${isRTL ? 'end' : 'start'} justify-content-md-${isRTL ? 'end' : 'start'} mt-4 footer-text fle`}>
-              <FaYoutube size={24} />
-              <FaFacebook size={24} />
-              <FaTwitter size={24} />
-              <FaInstagram size={24} />
-              <FaLinkedin size={24} />
+              {footerData?.youtube_url && (
+                <a href={footerData.youtube_url} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  <FaYoutube size={24} style={{ cursor: 'pointer' }} />
+                </a>
+              )}
+              {footerData?.facebook_url && (
+                <a href={footerData.facebook_url} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  <FaFacebook size={24} style={{ cursor: 'pointer' }} />
+                </a>
+              )}
+              {footerData?.twitter_url && (
+                <a href={footerData.twitter_url} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  <FaTwitter size={24} style={{ cursor: 'pointer' }} />
+                </a>
+              )}
+              {footerData?.instagram_url && (
+                <a href={footerData.instagram_url} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  <FaInstagram size={24} style={{ cursor: 'pointer' }} />
+                </a>
+              )}
+              {footerData?.linkedin_url && (
+                <a href={footerData.linkedin_url} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  <FaLinkedin size={24} style={{ cursor: 'pointer' }} />
+                </a>
+              )}
+              {footerData?.whatsapp_url && (
+                <a href={footerData.whatsapp_url} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  <FaWhatsapp size={24} style={{ cursor: 'pointer' }} />
+                </a>
+              )}
             </div>
           </Col>
           {/* Contact */}
-          <Col md={4} className="mb-3">
+          <Col md={4} className="mb-3" dir={isRTL ? "ltr" : "rtl"}>
             <h6 className="footer-titles">{Footer_text.contactUs}</h6>
             <div className="mt-4 footer-text">
             <p>
-               info@111prokeys.com <FaEnvelope className="ms-3" style={{color:"#47C1CA"}}/>
+               <a href={`mailto:${footerData?.email || 'info@111prokeys.com'}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                 {footerData?.email || 'info@111prokeys.com'}
+               </a>
+               <FaEnvelope className={margin_icons} style={{color:"#47C1CA"}}/>
             </p>
             <p>
-               +971-507034621 <FaPhone className="ms-3" style={{color:"#47C1CA"}}/>
+               <a href={`tel:${footerData?.phone || '+971-507034621'}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                 {footerData?.phone || '+971-507034621'}
+               </a>
+               <FaPhone className={margin_icons} style={{color:"#47C1CA"}}/>
             </p>
             <p>
-               مكتب 43-44 الفهيدي<FaMapMarkerAlt className="ms-3" style={{color:"#47C1CA"}}/>
+               {isRTL ? (footerData?.arabic_address || 'مكتب 43-44 الفهيدي') : (footerData?.english_address || 'Office 43-44 Al Fahidi')}
+               <FaMapMarkerAlt className={margin_icons} style={{color:"#47C1CA"}}/>
             </p>
             </div>
           </Col>
@@ -110,7 +136,7 @@ export default function Footer() {
               <li><Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.home}</Link></li>
               <li><Link to="/AboutUs" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.aboutUs}</Link></li>
               <li><Link to="/Bundles" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.packages}</Link></li>
-              <li><Link to="/OurServises" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.services}</Link></li>
+              <li><Link to="/Servises" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.services}</Link></li>
               <li><Link to="/ContactUs" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.contact}</Link></li>
               <li><Link to="/Blogs" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.blogs}</Link></li>
             </ul>

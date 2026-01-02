@@ -51,6 +51,16 @@ class Footer(models.Model):
     english_address=models.CharField(max_length=255)
     arabic_address=models.CharField(max_length=255)
     phone = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255, blank=True, null=True)
+    facebook_url = models.URLField(blank=True, null=True)
+    instagram_url = models.URLField(blank=True, null=True)
+    twitter_url = models.URLField(blank=True, null=True)
+    youtube_url = models.URLField(blank=True, null=True)
+    linkedin_url = models.URLField(blank=True, null=True)
+    whatsapp_url = models.URLField(blank=True, null=True)
+    
+    def __str__(self):
+        return "Footer Links"
 
 class Comment(models.Model):
     english_name = models.CharField(max_length=255)

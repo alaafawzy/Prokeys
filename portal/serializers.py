@@ -27,7 +27,7 @@ class BundleSerializer(serializers.ModelSerializer):
 class FooterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Footer
-        fields = ['id', 'english_address','arabic_address', 'phone']
+        fields = ['id', 'english_address','arabic_address', 'phone', 'email', 'facebook_url', 'instagram_url', 'twitter_url', 'youtube_url', 'linkedin_url', 'whatsapp_url']
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
