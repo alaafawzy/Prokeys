@@ -37,12 +37,12 @@ class AboutSection(models.Model):
 class MetaTag(models.Model):
     ATTRIBUTE_TYPE_CHOICES = (
         ('name', 'Name'),
-        ('property', 'Property'),
+        # ('property', 'Property'),
     )
     attribute_type = models.CharField(max_length=10, choices=ATTRIBUTE_TYPE_CHOICES,
                                       help_text="Choose between 'name' or 'property' attribute",default='name')
     meta_name = models.CharField(max_length=255,
-                                 help_text="Meta tag name (e.g., 'description', 'og:title', 'twitter:card')")
+                                 help_text="Meta tag name (e.g., 'description', 'og:title', 'twitter:card')",default='description')
     meta_content = models.TextField(
                                     help_text="Meta tag content/value")
     page = models.ForeignKey('Metadata', related_name='meta_tags', on_delete=models.CASCADE)
