@@ -64,7 +64,8 @@ export default function AboutUs() {
     title: rtl ? section.arabic_title : section.english_title,
     description: rtl ? section.arabic_content : section.english_content,
     section_image: section.section_image,
-    image_alt_text: section.image_alt_text,
+    arabic_alt: section.arabic_alt,
+    english_alt: section.english_alt,
   }));
   // console.log(sec_data)
   return (

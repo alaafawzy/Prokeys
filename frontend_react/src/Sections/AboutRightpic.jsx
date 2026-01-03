@@ -2,6 +2,7 @@ import React from 'react';
 import { Check } from 'lucide-react';
 import { useTheme } from "@emotion/react";
 import { useNavigate } from 'react-router-dom';
+import { getAltText } from '../utils/getAltText';
 export default function SkillsImprovementSection({ data ,imageOnRight=false}) {
     const theme = useTheme();
     const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function SkillsImprovementSection({ data ,imageOnRight=false}) {
         }}>
           <img
             src={data?.section_image}
-            alt={data?.image_alt_text}
+            alt={getAltText(data, theme.direction === 'rtl', data?.english_title)}
             style={{
               width: '100%',
               height: 'auto',

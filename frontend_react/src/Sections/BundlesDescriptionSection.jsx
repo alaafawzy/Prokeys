@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from "@emotion/react";
 import imge from "../assets/bundlesection.png";
 import api from '../../Api';
+import { getAltText } from '../utils/getAltText';
 
 export default function DescriptionSection({ }) {
     const theme = useTheme();
@@ -57,7 +58,7 @@ export default function DescriptionSection({ }) {
             : 'اكتشف باقاتنا المحاسبية المصممة لتلبية الاحتياجات الفريدة لعملك. سواء كنت شركة ناشئة، أو مؤسسة نامية، أو شركة راسخة، لدينا الحل المثالي لك. تقدم باقاتنا مجموعة شاملة من الخدمات بما في ذلك مسك الدفاتر، إعداد الضرائب، التقارير المالية، والمزيد. تم تصميم كل حزمة لتوفير أقصى قيمة وكفاءة، مما يضمن أن عملياتك المالية تسير بسلاسة وفعالية.');
 
     const imageUrl = descriptionData?.image || imge;
-    const altText = descriptionData?.image_alt_text || 'Professional';
+    const altText = getAltText(descriptionData, isRTL, 'Bundles');
 
   return (
     <div style={{

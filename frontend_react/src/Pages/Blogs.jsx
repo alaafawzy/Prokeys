@@ -51,6 +51,8 @@ export default function Blogs() {
                 description={theme.direction === "rtl" ? blog.arabic_description : blog.english_description}
                 image={blog.image}
                 created={blog.created_at || blog.created || blog.date}
+                english_alt={blog.english_alt}
+                arabic_alt={blog.arabic_alt}
               />
             </Grid>
           ))}

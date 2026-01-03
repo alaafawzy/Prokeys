@@ -4,8 +4,9 @@ import { Card, CardMedia, CardContent, Typography, Box, Grid } from "@mui/materi
 import { Link } from "react-router-dom";
 import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 import { useTheme } from "@emotion/react";
+import { getAltText } from "../utils/getAltText";
 
-export default function BlogCard({ id, title, description, image, created }) {
+export default function BlogCard({ id, title, description, image, created, english_alt, arabic_alt }) {
     const theme = useTheme();
   return (
     <Card
@@ -35,7 +36,7 @@ export default function BlogCard({ id, title, description, image, created }) {
           <CardMedia
             component="img"
             image={image}
-            alt={title}
+            alt={getAltText({ english_alt, arabic_alt }, theme.direction === 'rtl', title)}
             sx={{
               width: { xs: 240, md: 240 },
               height: { xs: 200, md: 200 },

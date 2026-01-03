@@ -1,6 +1,7 @@
 import React from 'react';
 import { Check } from 'lucide-react';
 import { useTheme } from "@emotion/react";
+import { getAltText } from '../utils/getAltText';
 export default function SectionWithRightImage({ data ,imageOnRight=false}) {
     const theme = useTheme();
   
@@ -24,7 +25,7 @@ export default function SectionWithRightImage({ data ,imageOnRight=false}) {
         <div>
           <img
             src={data?.image}
-            alt="Business meeting"
+            alt={getAltText(data, theme.direction === 'rtl', 'Service section')}
             style={{
               width: '90%',
               height: 'auto',

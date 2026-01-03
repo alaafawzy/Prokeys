@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { keyframes } from "@mui/system";
 import { useTheme } from "@emotion/react";
+import { getAltText } from "../utils/getAltText";
 
 const scroll = keyframes`
   0% { transform: translateX(0); }
@@ -50,7 +51,7 @@ const isRTL = theme.dir === "rtl";
             key={i}
             component="img"
             src={src.logo}
-            alt={src.logo_alt_text}
+            alt={getAltText(src, isRTL, src.name)}
             sx={{
               width: 120,
               // height: 120,
