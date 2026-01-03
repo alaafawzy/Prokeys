@@ -20,7 +20,16 @@ class MetadataSerializer(serializers.ModelSerializer):
 class DescriptionSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = DescriptionSection
-        fields = ['id', 'english_title', 'arabic_title', 'english_description', 'arabic_description', 'image', 'image_alt_text']
+        fields = [
+            'id',
+            'english_title',
+            'arabic_title',
+            'english_description',
+            'arabic_description',
+            'image',
+            'english_alt',
+            'arabic_alt',
+        ]
 
 
 # class AdvantageSerializer(serializers.ModelSerializer):

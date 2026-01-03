@@ -23,7 +23,9 @@ class AboutSection(models.Model):
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif', 'webm'])
         ])
-    image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    # image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    english_alt = models.CharField(max_length=255, blank=True, null=True)
+    arabic_alt = models.CharField(max_length=255, blank=True, null=True)
     
     def __str__(self):
         return f"{self.english_title}"

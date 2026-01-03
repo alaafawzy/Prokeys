@@ -52,7 +52,9 @@ class DescriptionSection(models.Model):
     english_description = models.TextField()
     arabic_description = models.TextField()
     image = models.ImageField(upload_to='bundles/', blank=True, null=True)
-    image_alt_text = models.CharField(max_length=255, blank=True, null=True, default='Professional')
+    # image_alt_text = models.CharField(max_length=255, blank=True, null=True, default='Professional')
+    english_alt = models.CharField(max_length=255, blank=True, null=True)
+    arabic_alt = models.CharField(max_length=255, blank=True, null=True)
     
     class Meta:
         verbose_name_plural = "Description Sections"

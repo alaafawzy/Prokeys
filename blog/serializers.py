@@ -11,6 +11,8 @@ class BlogSerializer(serializers.ModelSerializer):
             'english_description',
             'arabic_description',
             'image',
+            'english_alt',
+            'arabic_alt',
             'english_content',
             'arabic_content',
         ]

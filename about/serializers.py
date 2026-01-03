@@ -29,4 +29,13 @@ class AboutUsSerializer(serializers.ModelSerializer):
 class AboutSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = AboutSection
-        fields = ['id', 'arabic_title', 'english_title', 'english_content', 'arabic_content', 'section_image', 'image_alt_text']
+        fields = [
+            'id',
+            'arabic_title',
+            'english_title',
+            'english_content',
+            'arabic_content',
+            'section_image',
+            'english_alt',
+            'arabic_alt',
+        ]

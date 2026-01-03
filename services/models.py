@@ -14,7 +14,9 @@ class Service(models.Model):
 class ServiceSection(models.Model):
     service = models.ForeignKey(Service, related_name='sections', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='service_sections/', blank=True, null=True)
-    image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    # image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    english_alt = models.CharField(max_length=255, blank=True, null=True)
+    arabic_alt = models.CharField(max_length=255, blank=True, null=True)
     english_content = RichTextField(null=True, blank=True)
     arabic_content = RichTextField(null=True, blank=True)
 
@@ -78,7 +80,9 @@ class ServicesDescriptionSection(models.Model):
     english_description = models.TextField()
     arabic_description = models.TextField()
     image = models.ImageField(upload_to='services/', blank=True, null=True)
-    image_alt_text = models.CharField(max_length=255, blank=True, null=True, default='Professional')
+    # image_alt_text = models.CharField(max_length=255, blank=True, null=True, default='Professional')
+    english_alt = models.CharField(max_length=255, blank=True, null=True)
+    arabic_alt = models.CharField(max_length=255, blank=True, null=True)
     
     class Meta:
         verbose_name_plural = "Description Sections"

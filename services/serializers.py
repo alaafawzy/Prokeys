@@ -11,7 +11,9 @@ class ServiceSectionSerializer(serializers.ModelSerializer):
             'image',
             'english_content',
             'arabic_content',
-            'image_alt_text',
+            # 'image_alt_text',
+            'english_alt',
+            'arabic_alt',
         ]
 
 class ServiceSerializer(serializers.ModelSerializer):
@@ -60,4 +62,14 @@ class ServicesPageMetadataSerializer(serializers.ModelSerializer):
 class ServicesDescriptionSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = ServicesDescriptionSection
-        fields = ['id', 'english_title', 'arabic_title', 'english_description', 'arabic_description', 'image', 'image_alt_text']
+        fields = [
+            'id',
+            'english_title',
+            'arabic_title',
+            'english_description',
+            'arabic_description',
+            'image',
+            # 'image_alt_text',
+            'english_alt',
+            'arabic_alt',
+        ]

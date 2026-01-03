@@ -34,7 +34,9 @@ class New(models.Model):
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif','webm'])
         ])
-    image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    # image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    english_alt = models.CharField(max_length=255, blank=True, null=True)
+    arabic_alt = models.CharField(max_length=255, blank=True, null=True)
     def __str__(self):
         return f"{self.name}"
 
@@ -93,7 +95,9 @@ class HomeStarting(models.Model):
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif','webm'])
         ])
-    image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    # image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    english_alt = models.CharField(max_length=255, blank=True, null=True)
+    arabic_alt = models.CharField(max_length=255, blank=True, null=True)
     def __str__(self):
         return f"{self.english_title}"
 
@@ -106,7 +110,9 @@ class WhoWeAre(models.Model):
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif','webm'])
         ])
-    image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    # image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    english_alt = models.CharField(max_length=255, blank=True, null=True)
+    arabic_alt = models.CharField(max_length=255, blank=True, null=True)
     def __str__(self):
         return f"{self.english_title}"
     
@@ -116,7 +122,9 @@ class CustomerAndPartner(models.Model):
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif','webm'])
         ])
-    image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    # image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    english_alt = models.CharField(max_length=255, blank=True, null=True)
+    arabic_alt = models.CharField(max_length=255, blank=True, null=True)
     def __str__(self):
         return f"{self.name}"
 
@@ -126,7 +134,9 @@ class SystemPartner(models.Model):
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'])
         ])
-    logo_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    # logo_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    english_alt = models.CharField(max_length=255, blank=True, null=True)
+    arabic_alt = models.CharField(max_length=255, blank=True, null=True)
     # order = models.IntegerField(default=0, help_text="Display order (lower numbers appear first)")
     # is_active = models.BooleanField(default=True)
     

@@ -28,7 +28,9 @@ class Blog(models.Model):
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif','webm'])
         ])
-    image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    # image_alt_text = models.CharField(max_length=255, blank=True, null=True)
+    english_alt = models.CharField(max_length=255, blank=True, null=True)
+    arabic_alt = models.CharField(max_length=255, blank=True, null=True)
     english_content = RichTextField(null=True,blank=True)
     arabic_content = RichTextField(null=True,blank=True)
 

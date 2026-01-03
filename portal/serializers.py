@@ -44,7 +44,7 @@ class HomeStartingSerializer(serializers.ModelSerializer):
 class SystemPartnerSerializer(serializers.ModelSerializer):
     class Meta:
         model = SystemPartner
-        fields = ['id', 'name', 'logo', 'logo_alt_text']
+        fields = ['id', 'name', 'logo', 'english_alt', 'arabic_alt']
 
 
 class PortalMetaTagSerializer(serializers.ModelSerializer):
