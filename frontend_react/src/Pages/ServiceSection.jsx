@@ -16,6 +16,7 @@ import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
 
 import api from "../../Api"; // adjust path
 import { useTheme } from "@emotion/react";
+import { useLangPrefix } from "../hooks/useLangPrefix";
 
 const iconMap = {
   storage: <StorageOutlinedIcon />,
@@ -27,6 +28,7 @@ export default function ServicesSection() {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
+    const prefix = useLangPrefix();
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -118,7 +120,7 @@ export default function ServicesSection() {
                   </Typography>
 
                   <Link
-                    href={`/services/${service.id}`}
+                    href={`${prefix}/Services/${service.id}`}
                     underline="none"
                     sx={{
                       color: "#27307F",
