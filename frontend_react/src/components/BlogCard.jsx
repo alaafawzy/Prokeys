@@ -5,13 +5,15 @@ import { Link } from "react-router-dom";
 import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 import { useTheme } from "@emotion/react";
 import { getAltText } from "../utils/getAltText";
+import { useLangPrefix } from "../hooks/useLangPrefix";
 
 export default function BlogCard({ id, title, description, image, created, english_alt, arabic_alt }) {
     const theme = useTheme();
+    const prefix = useLangPrefix();
   return (
     <Card
       component={Link}
-      to={`/blog/${id}`}
+      to={`${prefix}/blog/${id}`}
       sx={{
         borderRadius: 3,
         m: 2,

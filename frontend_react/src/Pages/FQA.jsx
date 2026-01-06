@@ -6,11 +6,14 @@ import { Question } from "../components/Question";
 import { useTheme } from "@emotion/react";
 import React, { useState, useEffect } from 'react';
 import api from '../../Api';
+import { useLangPrefix } from "../hooks/useLangPrefix";
 export default function FQA() {
   const { t } = useTranslation();
   const { Q1, Q2, Q3, Q4 } = t("FQA");
   const { btn, desc, other, title1 } = t("CommonQues");
   const theme = useTheme();
+  const prefix = useLangPrefix();
+  // const prefix = useLangPrefix();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -104,14 +107,14 @@ export default function FQA() {
             })}
             
           </Grid>
-          <OtherQues btn={btn} desc={desc} other={other} />
+          <OtherQues btn={btn} desc={desc} other={other} prefix={prefix} />
         </Container>
       </Grid>
     </>
   );
 }
 
-function OtherQues({ btn, other, desc }) {
+function OtherQues({ btn, other, desc, prefix }) {
   return (
     <>
       <Grid
@@ -150,7 +153,7 @@ function OtherQues({ btn, other, desc }) {
         >
           {desc}
         </Box>
-        <Link to="/ContactUs">
+        <Link to={`${prefix}/ContactUs`}>
           <Btn bg={"#131F89"} FontColor={"white"} W={"200px"} H={"60px"}>
             {btn}
           </Btn>

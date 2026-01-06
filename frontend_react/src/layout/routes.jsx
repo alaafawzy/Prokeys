@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Root from "./Root";
 import Home from "../Pages/Home";
 import AboutUs from "../Pages/AboutUs";
@@ -30,26 +30,30 @@ import ServiceDetails from "../Pages/ServiceDetails";
 export default function Routers() {
   let routers = createBrowserRouter([
     {
-      path: "",
+      path: "/",
+      element: <Navigate to="/ar" replace />,
+    },
+    {
+      path: "/:lang",
       element: <Root />,
       children: [
         { index: true, element: <Home /> },
-        { path: "/AboutUs", element: <AboutUs /> },
-        // { path:"/FreeProducts", element: <FreeProducts /> },
-        { path: "/FQA", element: <FQA /> },
-        { path: "/Bundles", element: <BundlesPage /> },
-        { path: "/Services", element: <OurServises /> },
-        { path: "/Services/:id", element: <ServiceDetails /> },
-        { path: "/ContactUs", element: <CountactUs /> },
-        { path: "/Blogs", element: <Blogs /> },
-        { path: "/blog/:id", element: <BlogDetails /> },
-        // { path:"/StepperMobile", element: <StepperMobile />  },
-        // { path: "/login",element: <Login /> },
-        // { path: "/logout",element: <Logout /> },
-        // { path: "/register",element: <Register /> },
-        // { path: "/forgetPassword",element: <ForgetPassword /> },
-        // { path: "/reset-password/:uid/:token/",element: <Reset /> },
-        // { path: "/ChangePassword",element: <ChangePassword /> },
+        { path: "AboutUs", element: <AboutUs /> },
+        // { path:"FreeProducts", element: <FreeProducts /> },
+        { path: "FQA", element: <FQA /> },
+        { path: "Bundles", element: <BundlesPage /> },
+        { path: "Services", element: <OurServises /> },
+        { path: "Services/:id", element: <ServiceDetails /> },
+        { path: "ContactUs", element: <CountactUs /> },
+        { path: "Blogs", element: <Blogs /> },
+        { path: "blog/:id", element: <BlogDetails /> },
+        // { path:"StepperMobile", element: <StepperMobile />  },
+        // { path: "login",element: <Login /> },
+        // { path: "logout",element: <Logout /> },
+        // { path: "register",element: <Register /> },
+        // { path: "forgetPassword",element: <ForgetPassword /> },
+        // { path: "reset-password/:uid/:token/",element: <Reset /> },
+        // { path: "ChangePassword",element: <ChangePassword /> },
       ],
     },
     

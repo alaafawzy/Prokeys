@@ -6,6 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/newLogo.svg";
  import NavButton from "../components/button";
 import Switcher from "../components/Switcher";
+import { useLangPrefix } from "../hooks/useLangPrefix";
 const Navbar = () => {
   const location = useLocation();
   const theme = useTheme();
@@ -13,6 +14,7 @@ const Navbar = () => {
   const NavTitles = t("Navbar");
   // const Navbar2 = t("Navbar");
   const navigate = useNavigate();
+  const prefix = useLangPrefix();
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(prev => !prev);
   const close = () => setOpen(false);
@@ -53,7 +55,7 @@ const Navbar = () => {
       `}</style>
       <div className="container-fluid">
         {/* Logo - First on mobile, last on desktop */}
-        <Link className="navbar-brand order-0 order-lg-3" to={"/"}>
+        <Link className="navbar-brand order-0 order-lg-3" to={`${prefix}/`}>
           <img src={logo} alt="Logo" height="72" width="62" />
         </Link>
 
@@ -71,7 +73,7 @@ const Navbar = () => {
 
         {/* Reserve Button - Hidden on mobile, shown on desktop */}
         <div className="order-2 order-lg-0 d-none d-lg-block">
-          <NavButton onClick={() => navigate('/ContactUs')}>
+          <NavButton onClick={() => navigate(`${prefix}/ContactUs`)}>
             {NavTitles.button}
           </NavButton>
         </div>
@@ -83,29 +85,29 @@ const Navbar = () => {
         >
           <ul className="navbar-nav mx-auto gap-lg-4 fw-medium">
             <li className="nav-item">
-              <Link className="nav-link" to={'/'} onClick={close}>{NavTitles.home}</Link>
+              <Link className="nav-link" to={`${prefix}/`} onClick={close}>{NavTitles.home}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={'/AboutUs'} onClick={close}>{NavTitles.who}</Link>
+              <Link className="nav-link" to={`${prefix}/AboutUs`} onClick={close}>{NavTitles.who}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={'/Bundles'} onClick={close}>{NavTitles.bundles}</Link>
+              <Link className="nav-link" to={`${prefix}/Bundles`} onClick={close}>{NavTitles.bundles}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={'/Services'} onClick={close}>{NavTitles.services}</Link>
+              <Link className="nav-link" to={`${prefix}/Services`} onClick={close}>{NavTitles.services}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={'/Blogs'} onClick={close}>{NavTitles.blogs}</Link>
+              <Link className="nav-link" to={`${prefix}/Blogs`} onClick={close}>{NavTitles.blogs}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={'/ContactUs'} onClick={close}>{NavTitles.contact}</Link>
+              <Link className="nav-link" to={`${prefix}/ContactUs`} onClick={close}>{NavTitles.contact}</Link>
             </li>
             <li className="nav-item">
               <Switcher />
             </li>
             {/* Reserve Button - Shown only on mobile */}
             <li className="nav-item d-lg-none mt-3">
-              <NavButton className="w-100" onClick={() => { navigate('/ContactUs'); close(); }}>
+              <NavButton className="w-100" onClick={() => { navigate(`${prefix}/ContactUs`); close(); }}>
                 {NavTitles.button}
               </NavButton>
             </li>

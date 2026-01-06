@@ -3,11 +3,13 @@ import logo from "../assets/logo4.png";
 import { Container, Grid, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useLangPrefix } from "../hooks/useLangPrefix";
 import InputError from "./InputError";
 
 export default function FormFrame({ children, subtitle, title }) {
   const { t } = useTranslation();
   const formFrame = t("FormFrame");
+  const prefix = useLangPrefix();
   return (
     <Container
       sx={{
@@ -69,7 +71,7 @@ export default function FormFrame({ children, subtitle, title }) {
           </Box>
         </Grid>
         {children}
-        <Link to="/">
+        <Link to={`${prefix}/`}>
           <Grid
             sx={{
               display: "flex",

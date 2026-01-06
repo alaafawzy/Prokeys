@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ThemeContext } from "../context/ThemeContext";
 import ReactCountryFlag from "react-country-flag";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // const languages = [
 //   { code: "ar", lang: "AR" },
@@ -17,14 +18,31 @@ export default function Switcher({ xs }) {
   const theme = useTheme();
   const [Lang, setLang] = useState("en");
   const { setThemeLang } = useContext(ThemeContext);
-const [open, setOpen] = useState(false);
-  const changeLanguage = () => {
-    i18n.changeLanguage(i18n.language == "en" ? "ar" : "en");
-    setThemeLang(i18n.dir());
-    setOpen(prev => !prev)
-  };
-
+  const [open, setOpen] = useState(false);
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const changeLanguage = (code) => {
+    const targetLang = code === "en" || code === "ar" ? code : i18n.language === "en" ? "ar" : "en";
+
+    // Update i18n
+    i18n.changeLanguage(targetLang);
+    setThemeLang(i18n.dir());
+
+    // Update URL to include the new language prefix while preserving the rest of the path
+    const segments = location.pathname.split("/");
+    if (segments[1] === "en" || segments[1] === "ar") {
+      segments[1] = targetLang;
+    } else {
+      // No language in URL yet; insert it after leading slash
+      segments.splice(1, 0, targetLang);
+    }
+    const newPath = segments.join("/") || `/${targetLang}`;
+    navigate(newPath, { replace: true });
+
+    setOpen(false);
+  };
 
   useEffect(() => {
     setThemeLang(i18n.dir());

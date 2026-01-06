@@ -8,13 +8,15 @@ import CTAButton from "../components/CTAButton";
 import skills from "../assets/who we are/skills.png";
 import financial from "../assets/who we are/financial.png";
 import whyus from "../assets/who we are/whyus.png";
-
+import { Link } from "react-router-dom";
+import { useLangPrefix } from "../hooks/useLangPrefix";
 
 export default function WhoAreU() {
   const { t } = useTranslation();
   const who = t("who");
   const { serv1, serv2, serv3 } = t("OurServises");
   const navigate = useNavigate();
+  const prefix = useLangPrefix();
   return (
     <>
       <Grid className="who-we-are">
@@ -79,7 +81,7 @@ export default function WhoAreU() {
           <Box sx={{ marginTop: "2rem" , textAlign: "center", marginBottom:"3rem" }}>
             <CTAButton
               label={t('Book.btn')}
-              onClick={() => navigate('/ContactUs')}
+              onClick={() => navigate(`${prefix}/ContactUs`)}
             />
           </Box>
         </Container>
@@ -91,6 +93,7 @@ export default function WhoAreU() {
 export function SectionDetails({ image, title, desc,second }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
+    const prefix = useLangPrefix();
   
   return (
     <Grid
@@ -105,11 +108,13 @@ export function SectionDetails({ image, title, desc,second }) {
       }}
     >
       <Box>
+        {/* <Link to={`${prefix}/ContactUs`}> */}
         <img
           src={image}
           alt={title}
           style={{  height: second?"170px":"150px", objectFit: "contain" }}
         />
+        {/* </Link> */}
       </Box>
 
       <Box

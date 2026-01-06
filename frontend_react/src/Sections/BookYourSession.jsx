@@ -4,10 +4,12 @@ import { Container } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Btn from "../components/Btn";
 import { Link } from "react-router-dom";
+import { useLangPrefix } from "../hooks/useLangPrefix";
 
 export default function BookYourSession() {
   const { t } = useTranslation();
   const Book = t("Book");
+  const prefix = useLangPrefix();
   return (
     <>
       <Grid
@@ -64,7 +66,7 @@ export default function BookYourSession() {
                 justifyContent: "center",
               }}
             >
-              <Link to="/ContactUs">
+              <Link to={`${prefix}/ContactUs`}>
                 <Btn
                   bg={"rgba(19, 31, 137, 1)"}
                   FontColor={"white"}

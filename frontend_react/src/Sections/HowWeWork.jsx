@@ -10,12 +10,14 @@ import leftArrow from "../assets/how we work/leftArrow.png";
 import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import CTAButton from "../components/CTAButton";
+import { useLangPrefix } from "../hooks/useLangPrefix";
 export default function HowWeWork() {
   const { t } = useTranslation();
   const theme = useTheme();
   const isEnglish = theme.dir === "ltr";
   const HowWeWork = t("HowWeWork");
   const navigate = useNavigate();
+  const prefix = useLangPrefix();
   
   const arrowStyle = isEnglish ? { transform: "scaleX(-1)" } : {};
   
@@ -278,7 +280,7 @@ export default function HowWeWork() {
               <Box sx={{ marginTop: "2rem" , textAlign: "center", marginBottom:"3rem" }}>
                 <CTAButton
                   label={t('Book.btn')}
-                  onClick={() => navigate('/ContactUs')}
+                  onClick={() => navigate(`${prefix}/ContactUs`)}
                 />
               </Box>
       </Container>

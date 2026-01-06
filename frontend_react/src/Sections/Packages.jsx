@@ -6,11 +6,13 @@ import PackageCard from "../components/PackageCard";
 import { icons } from "../Data/Samka";
 import Btn from "../components/Btn";
 import { Link } from "react-router-dom";
+import { useLangPrefix } from "../hooks/useLangPrefix";
 
 export default function Packages() {
   const { t } = useTranslation();
   const { Basic, Additional, Custom, Free, Tax, Common } = t("Packages");
   const bundles = [Custom, Additional, Basic];
+  const prefix = useLangPrefix();
   return (
     <Container
       sx={{
@@ -63,7 +65,7 @@ export default function Packages() {
         })}
       </Grid>
       <Grid sx={{ display: "flex", justifyContent: "center" }}>
-        <Link to="/Bundles">
+        <Link to={`${prefix}/Bundles`}>
           <Btn bg="rgba(19, 31, 137, 1)" FontColor="white" H="48px" W="272px">
             {Common?.showMore}
           </Btn>

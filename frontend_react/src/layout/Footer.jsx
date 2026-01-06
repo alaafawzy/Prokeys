@@ -9,12 +9,14 @@ import { Container, Row, Col, Form, Button, InputGroup } from "react-bootstrap";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaYoutube, FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import NavButton from "../components/button";
 import { Widgets, WidthFull } from "@mui/icons-material";
+import { useLangPrefix } from "../hooks/useLangPrefix";
 
 export default function Footer() {
   const theme = useTheme();
   const { t } = useTranslation();
   const Footer_text = t("Footer");
   const isRTL = theme.direction === 'rtl';
+  const prefix = useLangPrefix();
   const [footerData, setFooterData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -133,12 +135,12 @@ export default function Footer() {
         <Col md={3} className="mb-3">
             <h6 className="footer-titles">{Footer_text.browseWebsite}</h6>
             <ul className="list-unstyled mt-4 footer-text">
-              <li><Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.home}</Link></li>
-              <li><Link to="/AboutUs" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.aboutUs}</Link></li>
-              <li><Link to="/Bundles" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.packages}</Link></li>
-              <li><Link to="/Services" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.services}</Link></li>
-              <li><Link to="/ContactUs" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.contact}</Link></li>
-              <li><Link to="/Blogs" style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.blogs}</Link></li>
+              <li><Link to={`${prefix}/`} style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.home}</Link></li>
+              <li><Link to={`${prefix}/AboutUs`} style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.aboutUs}</Link></li>
+              <li><Link to={`${prefix}/Bundles`} style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.packages}</Link></li>
+              <li><Link to={`${prefix}/Services`} style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.services}</Link></li>
+              <li><Link to={`${prefix}/ContactUs`} style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.contact}</Link></li>
+              <li><Link to={`${prefix}/Blogs`} style={{ textDecoration: 'none', color: 'inherit' }}>{Footer_text.blogs}</Link></li>
             </ul>
           </Col>
 

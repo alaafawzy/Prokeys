@@ -3,9 +3,11 @@ import { Check } from 'lucide-react';
 import { useTheme } from "@emotion/react";
 import { useNavigate } from 'react-router-dom';
 import { getAltText } from '../utils/getAltText';
+import { useLangPrefix } from "../hooks/useLangPrefix";
 export default function SkillsImprovementSection({ data ,imageOnRight=false}) {
     const theme = useTheme();
     const navigate = useNavigate();
+  const prefix = useLangPrefix();
   const benefits = [
     'ورش عمل تفاعلية في المحاسبة والإدارة المالية',
     'دورات تدريبية معتمدة في الأنظمة المحاسبية الحديثة',
@@ -71,7 +73,7 @@ export default function SkillsImprovementSection({ data ,imageOnRight=false}) {
           
           {/* CTA Button */}
           <button
-            onClick={() => navigate('/ContactUs')}
+            onClick={() => navigate(`${prefix}/ContactUs`)}
             style={{
               backgroundColor: '#00bcd4',
               color: 'white',

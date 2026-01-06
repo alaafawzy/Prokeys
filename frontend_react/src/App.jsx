@@ -15,7 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const { theme1, setThemeLang } = useContext(ThemeContext);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const cacheRtl = createCache({
     key: "muirtl",
 
@@ -52,7 +52,7 @@ function App() {
         />
         <Box
           component={"a"}
-          href="/ContactUs"
+          href={`/${i18n.language === 'en' ? 'en' : 'ar'}/ContactUs`}
           sx={{
             position: "fixed",
             top: "50%",

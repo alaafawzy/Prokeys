@@ -8,11 +8,13 @@ import { useTheme } from "@emotion/react";
 import NavButton from "../components/button";
 import CTAButton from "./CTAButton";
 import { useNavigate } from "react-router-dom";
+import { useLangPrefix } from "../hooks/useLangPrefix";
 export default function PackageCard({ Bundle, svg }) {
   const theme = useTheme();
   const { t } = useTranslation();
   const isRTL = theme.direction === 'rtl';
   const navigate = useNavigate();
+  const prefix = useLangPrefix();
   const isBestSeller = Boolean(Bundle?.best_seller);
   // Calculate discounted price if discount exists
   const originalPrice = Bundle?.price || 0;
@@ -124,7 +126,7 @@ export default function PackageCard({ Bundle, svg }) {
               <Box sx={{ textAlign: "center", alignSelf: "center", mt: 1, mr :2 }}>
                 <CTAButton
                   label={t('Book.btn')}
-                  onClick={() => navigate('/ContactUs')}
+                  onClick={() => navigate(`${prefix}/ContactUs`)}
                   // padding="0.75rem 3rem"
                 />
               </Box>
@@ -151,18 +153,7 @@ export default function PackageCard({ Bundle, svg }) {
               {Bundle?.bullet5 && <BulletPoint title={Bundle.bullet5} />} */}
             </Grid>
 
-            {/* <Grid xs={12}>
-              <Link to="/ContactUs">
-                <Btn
-                  bg="rgba(19, 31, 137, 1)"
-                  FontColor="white"
-                  H="48px"
-                  m="0 1rem"
-                >
-                  {theme.direction=='rtl'?"تواصل معنا":"Get Started"}
-                </Btn>
-              </Link>
-            </Grid> */}
+            {/* Legacy ContactUs link removed in favor of CTAButton above which already uses localized routing */}
           </Grid>
         {/* </Link> */}
       </Grid>
