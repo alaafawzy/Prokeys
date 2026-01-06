@@ -12,6 +12,8 @@ import SectionsWithLeftImage from "../Sections/SectionWithLeftImage";
 import SectionsWithRightImage from "../Sections/SectionWithRightImage";
 import { useTheme } from "@emotion/react";
 import { useMetadataById } from "../hooks/useMetadata";
+import HowWeWork from "../Sections/HowWeWork";
+import Feedback from "../Sections/Feedback";
 export default function ServiceDetails() {
   const { id } = useParams();
   const [service, setService] = useState(null);
@@ -51,6 +53,7 @@ export default function ServiceDetails() {
   }
 
   return (
+    <>
     <Box sx={{ py: 8 }}>
       <Container>
         {/* Page Title */}
@@ -78,5 +81,8 @@ export default function ServiceDetails() {
         ))}
       </Container>
     </Box>
+    <HowWeWork />
+    <Feedback />
+    </>
   );
 }

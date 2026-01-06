@@ -3,7 +3,7 @@ import { RouterProvider } from "react-router-dom";
 import Routers from "./layout/routes";
 import { Box, ThemeProvider } from "@mui/material";
 import { ThemeContext } from "./context/ThemeContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { prefixer } from "stylis";
 import stylisRTLPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
@@ -21,6 +21,13 @@ function App() {
 
     stylisPlugins: [prefixer, stylisRTLPlugin],
   });
+
+  // Keep <html> lang/dir attributes in sync with current language
+  useEffect(() => {
+    const lang = i18n.language === "en" ? "en" : "ar";
+    document.documentElement.lang = lang;
+    // document.documentElement.dir = i18n.dir();
+  }, [i18n, i18n.language]);
   return (
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme1}>
