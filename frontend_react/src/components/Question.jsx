@@ -3,8 +3,10 @@ import { icons } from "../Data/Samka.jsx";
 import { Accordion, AccordionDetails, AccordionSummary, Grid, Typography,Divider } from "@mui/material";
 import { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useTheme } from "@emotion/react";
 
 export function Question({ ques, ans, bg }) {
+  const theme = useTheme();
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = () => {
@@ -24,6 +26,8 @@ export function Question({ ques, ans, bg }) {
             display: "none",
             
           },
+          direction: theme.direction==='rtl'?'ltr':'rtl',
+          textAlign: "start",
         }}
       >
         <AccordionSummary

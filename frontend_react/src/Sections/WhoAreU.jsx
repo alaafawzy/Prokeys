@@ -10,8 +10,10 @@ import financial from "../assets/who we are/financial.png";
 import whyus from "../assets/who we are/whyus.png";
 import { Link } from "react-router-dom";
 import { useLangPrefix } from "../hooks/useLangPrefix";
+import { useTheme } from "@emotion/react";
 
 export default function WhoAreU() {
+  const theme = useTheme();
   const { t } = useTranslation();
   const who = t("who");
   const { serv1, serv2, serv3 } = t("OurServises");
@@ -29,6 +31,7 @@ export default function WhoAreU() {
               flexDirection: "column",
               alignItems: "center",
               marginBottom: "3rem",
+                direction: theme.direction=='rtl'?'ltr':'rtl',
             }}
           >
             <Box

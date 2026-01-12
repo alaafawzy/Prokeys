@@ -87,7 +87,8 @@ export default function HomeStarting() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "end",
-                textAlign: "end",
+                // textAlign: "end",
+                direction: theme.direction=='rtl'?'ltr':'rtl',
                 
               }}
             >
@@ -125,6 +126,7 @@ export default function HomeStarting() {
                   i18nKey={theme.direction=='rtl'?data.arabic_subtitle:data.english_subtitle}
                   components={{ 1: <span id="LandingTitle" /> }}
                 />
+                
               </Typography>
               <Box
                 sx={{

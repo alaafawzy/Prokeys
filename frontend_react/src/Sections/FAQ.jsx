@@ -71,7 +71,7 @@ export default function FAQ() {
             {title1}
           </Box>
         </Box>
-        <Box>
+        <Box >
             {data?.map((Q,idx)=>{
               return (<Question ques={theme.direction=='rtl'?Q.arabic_question:Q.english_question} ans={theme.direction=='rtl'?Q.arabic_answer:Q.english_answer} bg={"#F9FAFB"} />)
             })}

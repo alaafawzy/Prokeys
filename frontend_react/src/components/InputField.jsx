@@ -31,7 +31,7 @@ const BootstrapInput = styled(InputBase)(({ theme, errors }) => ({
     borderRadius: 4,
     position: "relative",
     border: "1px solid",
-    borderColor: errors ? "red" : "#E0E3E7",
+    borderColor: errors ? "red" : "rgba(0, 0, 0, 0.28)",
     fontSize: 16,
     width: "100%",
     padding:'7px 15px',

@@ -118,14 +118,16 @@ export default function DescriptionSection({ }) {
         {/* Right Side - Text Content */}
         <div style={{
           position: 'relative',
-          order: isMobile ? 2 : (isRTL ? 1 : 2)
+          order: isMobile ? 2 : (isRTL ? 2 : 1)
         }}>
           <p style={{
             fontSize: '1.35rem',
             color: '#333',
             lineHeight: 1.8,
             marginBottom: '2rem',
-            textAlign: isRTL ? 'left' : 'right'
+            // textAlign: isRTL ? 'left' : 'right'
+            direction: isRTL ? 'ltr' : 'rtl',
+            textAlign: 'start'
           }}>
             {description}
           </p>

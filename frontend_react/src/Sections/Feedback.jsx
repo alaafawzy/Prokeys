@@ -80,7 +80,8 @@ useEffect(() => {
           flexDirection: "column",
           justifyContent: "center",
           alignContent: "end",
-          textAlign: "end",
+          // textAlign: "end",
+          direction: theme.direction==='rtl'?'ltr':'rtl',
           fontFamily: "Cairo",
           "& > div:not(:last-child)": {
             marginBottom: "1rem",

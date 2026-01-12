@@ -24,14 +24,16 @@ export default function HowWeWork() {
   
   return (
     <Box sx={{ py: 10, backgroundColor: "#fff" }}>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" 
+                >
         
         {/* top title */}
         <Typography
           variant="body1"
           align="center"
-          sx={{ color: "#47C1CA", mb: 1, fontSize: 18 }}
+          sx={{ color: "#47C1CA", mb: 1, fontSize: 18, }}
           fontFamily="Cairo"
+          
         >
           {HowWeWork.howTitle}
         </Typography>
@@ -53,9 +55,9 @@ export default function HowWeWork() {
         </Typography>
 
         {/* Steps */}
-        <Grid container spacing={4} justifyContent="center" alignItems="flex-start">
+        <Grid container spacing={4} justifyContent="center" alignItems="flex-start" >
           
-            <Grid item xs={12} sm={6} md={3} sx={{ order: { xs: 3, md: 0 } }}>
+            <Grid item xs={12} sm={6} md={3} sx={{ order: { xs: 3, md: 0 } ,direction: theme.direction==='rtl'?'ltr':'rtl'}}>
               <Box sx={{ textAlign: "center" }}>
 
                 {/* Icon circle */}
@@ -71,6 +73,7 @@ export default function HowWeWork() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    
                   }}
                 >
                   <img src={upload} alt={HowWeWork.sesstionTitle3} width="250" />
@@ -134,7 +137,7 @@ export default function HowWeWork() {
                 
                 </Box>
             </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ order: { xs: 2, md: 0 } }}>
+            <Grid item xs={12} sm={6} md={3} sx={{ order: { xs: 2, md: 0 } ,direction: theme.direction==='rtl'?'ltr':'rtl'}}>
               <Box sx={{ textAlign: "center" }}>
 
                 {/* Icon circle */}
@@ -212,7 +215,7 @@ export default function HowWeWork() {
                 </Box>
                 
             </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ order: { xs: 1, md: 0 } }}>
+            <Grid item xs={12} sm={6} md={3} sx={{ order: { xs: 1, md: 0 }, direction: theme.direction==='rtl'?'ltr':'rtl' }}>
               <Box sx={{ textAlign: "center" }}>
 
                 {/* Icon circle */}
