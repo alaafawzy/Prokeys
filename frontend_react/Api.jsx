@@ -2,11 +2,11 @@ import { Description } from '@mui/icons-material';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 axios.defaults.withCredentials = true;
-
+// const API_BASE_URL = '/api';
+export const API_BASE_URL = 'http://127.0.0.1:8000/api';
 // Create an Axios instance
 const api = axios.create({
-  baseURL: '/api/', // Replace with your backend URL
-  // baseURL: 'http://127.0.0.1:8000/api', // Replace with your backend URL
+  baseURL: API_BASE_URL,
   timeout: 10000, // Optional timeout
   headers: {
     'Content-Type': 'application/json',

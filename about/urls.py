@@ -4,12 +4,11 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'metadata', MetadataViewSet)
-router.register(r'meta-tags', MetaTagViewSet)
+# router.register(r'meta-tags', MetaTagViewSet)
 router.register(r'about-us', AboutUsViewSet)
 router.register(r'sections', AboutSectionViewSet)
 # router.register(r'section-items', AboutSectionListViewSet)
 
 urlpatterns = [
-    path('metadata-by-page/', MetadataByPageView.as_view(), name='metadata-by-page'),
     path('', include(router.urls)),
 ]

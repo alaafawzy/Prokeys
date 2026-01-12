@@ -33,57 +33,29 @@ class Blog(models.Model):
     arabic_alt = models.CharField(max_length=255, blank=True, null=True)
     english_content = RichTextField(null=True,blank=True)
     arabic_content = RichTextField(null=True,blank=True)
+    english_page_title_for_metadata = models.CharField(max_length=255,blank=True, null=True,
+                                  help_text="Page title displayed in browser tab and as main heading")
+    arabic_page_title_for_metadata = models.CharField(max_length=255,blank=True, null=True,
+                                  help_text="Page title displayed in browser tab and as main heading")
+    english_page_description_for_metadata = models.TextField(blank=True, null=True,
+                                        help_text="Meta description for SEO purposes")
+    arabic_page_description_for_metadata = models.TextField(blank=True, null=True,
+                                        help_text="Meta description for SEO purposes")
+    
 
     def __str__(self):
         return f"{self.english_title}"
     
 
-class SingleBlogMetaTag(models.Model):
-    ATTRIBUTE_TYPE_CHOICES = (
-        ('name', 'Name'),
-        # ('property', 'Property'),
-    )
-    attribute_type = models.CharField(max_length=10, choices=ATTRIBUTE_TYPE_CHOICES,
-                                      help_text="Choose between 'name' or 'property' attribute",default='name')
-    meta_name = models.CharField(max_length=255,default='description',
-                                 help_text="Meta tag name (e.g., 'description', 'og:title', 'twitter:card')")
-    meta_content = models.TextField(
-                                    help_text="Meta tag content/value")
-    page = models.ForeignKey('SigngleBlogMetadata', related_name='meta_tags', on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.meta_name
-
-
-class SigngleBlogMetadata(models.Model):
-    blog = models.ForeignKey(Blog, related_name='metadata', on_delete=models.CASCADE,
-                             help_text="The blog post this metadata belongs to")
-    page_title = models.CharField(max_length=255,
-                                  help_text="Page title displayed in browser tab and as main heading")
-    
-    def __str__(self):
-        return self.page_title
-    
-class BlogsPageMetaTag(models.Model):
-    ATTRIBUTE_TYPE_CHOICES = (
-        ('name', 'Name'),
-        # ('property', 'Property'),
-    )
-    attribute_type = models.CharField(max_length=10, choices=ATTRIBUTE_TYPE_CHOICES,
-                                      help_text="Choose between 'name' or 'property' attribute",default='name')
-    meta_name = models.CharField(max_length=255, default='description',
-                                 help_text="Meta tag name (e.g., 'description', 'og:title', 'twitter:card')")
-    meta_content = models.TextField(
-                                    help_text="Meta tag content/value")
-    page = models.ForeignKey('BlogsPageMetadata', related_name='meta_tags', on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.meta_name
-
-
 class BlogsPageMetadata(models.Model):
-    page_title = models.CharField(max_length=255,
+    english_page_title_for_metadata = models.CharField(max_length=255,default="Blogs",
                                   help_text="Page title displayed in browser tab and as main heading")
+    arabic_page_title_for_metadata = models.CharField(max_length=255,blank=True, null=True,
+                                  help_text="Page title displayed in browser tab and as main heading")
+    english_page_description_for_metadata = models.TextField(blank=True, null=True,
+                                        help_text="Meta description for SEO purposes")
+    arabic_page_description_for_metadata = models.TextField(blank=True, null=True,
+                                        help_text="Meta description for SEO purposes")
     
     def __str__(self):
-        return self.page_title
+        return self.english_page_title_for_metadata

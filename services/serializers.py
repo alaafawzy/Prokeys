@@ -28,35 +28,17 @@ class ServiceSerializer(serializers.ModelSerializer):
             'english_description',
             'arabic_description',
             'sections',
+            'english_page_title_for_metadata',
+            'arabic_page_title_for_metadata',
+            'english_page_description_for_metadata',
+            'arabic_page_description_for_metadata',
         ]
 
-
-class SingleServiceMetaTagSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SingleServiceMetaTag
-        fields = ['id', 'attribute_type', 'meta_name', 'meta_content']
-
-
-class SigngleServiceMetadataSerializer(serializers.ModelSerializer):
-    meta_tags = SingleServiceMetaTagSerializer(many=True, read_only=True)
-    
-    class Meta:
-        model = SingleServiceMetadata
-        fields = ['id', 'service', 'page_title', 'meta_tags']
-
-
-class ServicesPageMetaTagSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ServicesPageMetaTag
-        fields = ['id', 'attribute_type', 'meta_name', 'meta_content']
-
-
 class ServicesPageMetadataSerializer(serializers.ModelSerializer):
-    meta_tags = ServicesPageMetaTagSerializer(many=True, read_only=True)
     
     class Meta:
         model = ServicesPageMetadata
-        fields = ['id', 'page_title', 'meta_tags']
+        fields = ['id', 'english_page_title_for_metadata', 'arabic_page_title_for_metadata', 'english_page_description_for_metadata', 'arabic_page_description_for_metadata']
 
 
 class ServicesDescriptionSectionSerializer(serializers.ModelSerializer):

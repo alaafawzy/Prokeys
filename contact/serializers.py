@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import MetaTag, Metadata
+from .models import Metadata
 
 
 class DetailedSerializer(serializers.Serializer):
@@ -10,15 +10,8 @@ class DetailedSerializer(serializers.Serializer):
     company_name = serializers.CharField(max_length=255, write_only=True)
 
 
-class MetaTagSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MetaTag
-        fields = '__all__'
-
-
 class MetadataSerializer(serializers.ModelSerializer):
-    meta_tags = MetaTagSerializer(many=True, read_only=True)
 
     class Meta:
         model = Metadata
-        fields = ['id', 'page_title', 'meta_tags']
+        fields = "__all__"

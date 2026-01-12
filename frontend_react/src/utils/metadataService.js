@@ -1,13 +1,34 @@
 import axios from 'axios';
+import { API_BASE_URL } from '../../Api';
 
-const API_BASE_URL = '/api';
-// const API_BASE_URL = 'http://127.0.0.1:8000/api';
+
+// Determine current language (defaults to English)
+const getCurrentLanguage = () => {
+  if (typeof window === 'undefined') return 'en';
+
+  try {
+    const stored = localStorage.getItem('i18nextLng');
+    if (stored) {
+      return stored.toLowerCase().startsWith('ar') ? 'ar' : 'en';
+    }
+  } catch (e) {
+    // ignore access errors and fall back
+  }
+
+  const htmlLang = document.documentElement?.lang;
+  if (htmlLang && htmlLang.toLowerCase().startsWith('ar')) {
+    return 'ar';
+  }
+
+  return 'en';
+};
+
 
 /**
  * Fetch metadata for a specific page
  * @param {string} app - App name (portal, bundles, about, blog)
  * @param {string} pageIdentifier - Page identifier or name
- * @returns {Promise<Object>} Metadata object with meta tags
+ * @returns {Promise<Object>} Metadata object
  */
 export const fetchPageMetadata = async (app) => {
   try {
@@ -17,10 +38,6 @@ export const fetchPageMetadata = async (app) => {
     const response = await axios.get(
       url
     );
-    // console.log("Metadata response:", response.data);
-    // if (response.data && response.data.results && response.data.results.length > 0) {
-    //   return response.data.results[0];
-    // }
     return response.data[0];
   } catch (error) {
     console.error(`Error fetching ${app} metadata for page =:`, error);
@@ -73,14 +90,27 @@ export const fetchMetadataById = async (app, id, filterParam = null) => {
 
 /**
  * Apply metadata to the page (sets title and meta tags)
- * @param {Object} metadata - Metadata object containing page_title and meta_tags
+ * Supports new per-language fields like
+ * english_page_title_for_metadata / arabic_page_title_for_metadata
+ * and english_page_description_for_metadata / arabic_page_description_for_metadata.
+ * Falls back to old shape with page_title + meta_tags if present.
+ * @param {Object} metadata
  */
 export const applyPageMetadata = (metadata) => {
   if (!metadata) return;
 
-  // Set page title
-  if (metadata.page_title) {
-    document.title = metadata.page_title;
+  const lang = getCurrentLanguage();
+
+  // Determine title from new model first, then fall back
+  const title =
+    (lang === 'ar'
+      ? metadata.arabic_page_title_for_metadata
+      : metadata.english_page_title_for_metadata) ||
+    metadata.page_title ||
+    metadata.title;
+
+  if (title) {
+    document.title = title;
   }
 
   // Remove old meta tags (except those we shouldn't touch)
@@ -89,10 +119,26 @@ export const applyPageMetadata = (metadata) => {
   );
   metaTagsToRemove.forEach(tag => tag.remove());
 
-  // Add new meta tags
+  // Determine description from new model, then fall back
+  const description =
+    (lang === 'ar'
+      ? metadata.arabic_page_description_for_metadata
+      : metadata.english_page_description_for_metadata) ||
+    metadata.meta_description ||
+    metadata.description;
+
+  // Primary description meta tag from new model
+  if (description) {
+    const meta = document.createElement('meta');
+    meta.setAttribute('data-managed-by', 'prokeys');
+    meta.setAttribute('name', 'description');
+    meta.content = description;
+    document.head.appendChild(meta);
+  }
+
+  // Backwards-compatibility: apply explicit meta_tags array if present
   if (metadata.meta_tags && Array.isArray(metadata.meta_tags)) {
     metadata.meta_tags.forEach(tag => {
-
       const meta = document.createElement('meta');
       meta.setAttribute('data-managed-by', 'prokeys');
       meta.setAttribute(tag.attribute_type, tag.meta_name);

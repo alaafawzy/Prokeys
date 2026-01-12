@@ -25,3 +25,10 @@ staticfiles/
 *.njsproj
 *.sln
 *.sw?
+
+
+
+db.sqlite3
+media/
+*.sqlite3
+*.pyc

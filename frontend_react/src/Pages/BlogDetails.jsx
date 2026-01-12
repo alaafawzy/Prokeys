@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Typography, Box } from "@mui/material";
-import { useMetadataById } from "../hooks/useMetadata";
 import api from "../../Api";
 import { useTheme } from "@emotion/react";
+import { useTranslation } from "react-i18next";
+import { applyPageMetadata } from "../utils/metadataService";
 
 export default function BlogDetails() {
   const { id } = useParams();
@@ -11,9 +12,7 @@ export default function BlogDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const theme = useTheme();
-
-  // Load metadata for the specific blog post
-  useMetadataById('blog/single-blog-metadata', id, 'blog');
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -28,6 +27,19 @@ export default function BlogDetails() {
     };
     fetchBlog();
   }, [id]);
+
+  // Apply metadata based on the blog object and current language
+  useEffect(() => {
+    if (blog) {
+      applyPageMetadata(blog);
+    }
+
+    return () => {
+      document
+        .querySelectorAll('meta[data-managed-by="prokeys"]')
+        .forEach(tag => tag.remove());
+    };
+  }, [blog, i18n.language]);
 
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">Error loading blog.</Typography>;

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, generics
-from .models import MetaTag, Metadata, AboutUs, AboutSection
-from .serializers import MetaTagSerializer, MetadataSerializer, AboutUsSerializer, AboutSectionSerializer
+from .models import Metadata, AboutUs, AboutSection
+from .serializers import  MetadataSerializer, AboutUsSerializer, AboutSectionSerializer
 
 # Metadata Views
 class MetadataViewSet(viewsets.ReadOnlyModelViewSet):
@@ -11,25 +11,6 @@ class MetadataViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = Metadata.objects.all()
     serializer_class = MetadataSerializer
-
-
-class MetaTagViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    ViewSet for retrieving individual meta tags for About pages.
-    """
-    queryset = MetaTag.objects.all()
-    serializer_class = MetaTagSerializer
-
-
-class MetadataByPageView(generics.ListAPIView):
-    """
-    Get metadata for a specific page by page identifier.
-    Example: /api/about/metadata/?page=about-us
-    """
-    serializer_class = MetadataSerializer
-    
-    def get_queryset(self):
-        return Metadata.objects.all()
 
 
 # About Views

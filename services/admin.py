@@ -1,35 +1,23 @@
 from django.contrib import admin
 
-from blog.models import BlogsPageMetadata
-from services.models import *
+from services.models import Service, ServiceSection, ServicesPageMetadata, ServicesDescriptionSection
 
 
-
-# Register your models here.
-class ServiceSections(admin.TabularInline):
+class ServiceSectionInline(admin.TabularInline):
     model = ServiceSection
     extra = 1
 
+
+@admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
-    inlines = [ServiceSections]
-
-admin.site.register(Service, ServiceAdmin)
+    inlines = [ServiceSectionInline]
 
 
+@admin.register(ServicesDescriptionSection)
+class ServicesDescriptionSectionAdmin(admin.ModelAdmin):
+    list_display = ("english_title", "arabic_title")
 
-class SingleServiceMetaTagInline(admin.TabularInline):
-    model = SingleServiceMetaTag
-    extra = 1   
-class SingleServiceMetaTagAdmin(admin.ModelAdmin):
-    inlines = [SingleServiceMetaTagInline]
-admin.site.register(SingleServiceMetadata, SingleServiceMetaTagAdmin)
 
-class ServicesPageMetaTagInline(admin.TabularInline):
-    model = ServicesPageMetaTag
-    extra = 1
-
-admin.site.register(ServicesDescriptionSection)
-
-class ServicesPageMetaTagAdmin(admin.ModelAdmin):
-    inlines = [ServicesPageMetaTagInline]
-admin.site.register(ServicesPageMetadata, ServicesPageMetaTagAdmin)
+@admin.register(ServicesPageMetadata)
+class ServicesPageMetadataAdmin(admin.ModelAdmin):
+    list_display = ("english_page_title_for_metadata", "arabic_page_title_for_metadata")

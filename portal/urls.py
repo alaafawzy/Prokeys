@@ -10,14 +10,12 @@ router.register(r'aboutUs', AboutUsViewSet)
 router.register(r'homeStarting', HomeStartingViewSet)
 router.register(r'system-partners', SystemPartnerViewSet)
 router.register(r'metadata', PortalMetadataViewSet)
-router.register(r'meta-tags', PortalMetaTagViewSet)
 
 urlpatterns = [
     path('carousel/', NewsView.as_view(), name='news-list'),
     path('comment/', CommentCreateView.as_view(), name='comment-list-create'),
-    path('yarb/', CommentCreateView.as_view(), name='comment'),
+    # path('yarb/', CommentCreateView.as_view(), name='comment'),
     path('comments/<int:pk>/', CommentDetailView.as_view(), name='comment-detail'),
     path('all-comments/', AllCommentsListView.as_view(), name='all-comments-list'),
-    path('metadata-by-page/', PortalMetadataByPageView.as_view(), name='portal-metadata-by-page'),
     path('', include(router.urls)),
 ]

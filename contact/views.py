@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics, viewsets
 
-from .models import MetaTag, Metadata
-from .serializers import DetailedSerializer, MetaTagSerializer, MetadataSerializer
+from .models import  Metadata
+from .serializers import DetailedSerializer, MetadataSerializer
 from django.core.mail import BadHeaderError, send_mail
 from rest_framework.response import Response
 from prokeys111.settings import EMAIL_HOST_USER
@@ -32,9 +32,3 @@ class MetadataViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Metadata.objects.all()
     serializer_class = MetadataSerializer
 
-
-class MetaTagViewSet(viewsets.ReadOnlyModelViewSet):
-    """ViewSet for retrieving individual meta tags for the Contact page."""
-
-    queryset = MetaTag.objects.all()
-    serializer_class = MetaTagSerializer

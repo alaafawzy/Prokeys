@@ -21,29 +21,19 @@ class Advantage(models.Model):
         return self.english_advantage
 
 
-class MetaTag(models.Model):
-    ATTRIBUTE_TYPE_CHOICES = (
-        ('name', 'Name'),
-        # ('property', 'Property'),
-    )
-    attribute_type = models.CharField(max_length=10, choices=ATTRIBUTE_TYPE_CHOICES,
-                                      help_text="Choose between 'name' or 'property' attribute",default='name')
-    meta_name = models.CharField(max_length=255, default='description',
-                                 help_text="Meta tag name (e.g., 'description', 'og:title', 'twitter:card')")
-    meta_content = models.TextField(
-                                    help_text="Meta tag content/value")
-    page = models.ForeignKey('Metadata', related_name='meta_tags', on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.meta_name
-
-
 class Metadata(models.Model):
-    page_title = models.CharField(max_length=255,
+    
+    english_page_title_for_metadata = models.CharField(max_length=255,default="Bundles",
                                   help_text="Page title displayed in browser tab and as main heading")
+    arabic_page_title_for_metadata = models.CharField(max_length=255,blank=True, null=True,
+                                  help_text="Page title displayed in browser tab and as main heading")
+    english_page_description_for_metadata = models.TextField(blank=True, null=True,
+                                        help_text="Meta description for SEO purposes")
+    arabic_page_description_for_metadata = models.TextField(blank=True, null=True,
+                                        help_text="Meta description for SEO purposes")
     
     def __str__(self):
-        return self.page_title
+        return self.english_page_title_for_metadata
 
 
 class DescriptionSection(models.Model):

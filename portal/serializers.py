@@ -47,18 +47,14 @@ class SystemPartnerSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'logo', 'english_alt', 'arabic_alt']
 
 
-class PortalMetaTagSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MetaTag
-        fields = '__all__'
+
 
 
 class PortalMetadataSerializer(serializers.ModelSerializer):
-    meta_tags = PortalMetaTagSerializer(many=True, read_only=True)
     
     class Meta:
         model = Metadata
-        fields = ['id', 'page_title', 'meta_tags']
+        fields = '__all__'
 
 
 

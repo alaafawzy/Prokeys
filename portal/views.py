@@ -59,24 +59,4 @@ class PortalMetadataViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PortalMetadataSerializer
 
 
-class PortalMetaTagViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    ViewSet for retrieving individual meta tags for Portal pages.
-    """
-    queryset = MetaTag.objects.all()
-    serializer_class = PortalMetaTagSerializer
-
-
-class PortalMetadataByPageView(generics.ListAPIView):
-    """
-    Get metadata for a specific page by page identifier.
-    Example: /api/portal/metadata/?page=home
-    """
-    serializer_class = PortalMetadataSerializer
-    
-    def get_queryset(self):
-        page = self.request.query_params.get('page', None)
-        if page:
-            return Metadata.objects.filter(page_title__icontains=page)
-        return Metadata.objects.all()
 

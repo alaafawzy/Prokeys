@@ -11,21 +11,6 @@ class ServiceSectionViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = ServiceSection.objects.all()
 	serializer_class = ServiceSectionSerializer
 
-class SingleServiceMetadataViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    ViewSet for retrieving metadata for individual service posts.
-    Supports filtering by service ID using ?service=<id> query parameter
-    """
-    queryset = SingleServiceMetadata.objects.all()
-    serializer_class = SigngleServiceMetadataSerializer
-    
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        service_id = self.request.query_params.get('service', None)
-        if service_id is not None:
-            queryset = queryset.filter(service_id=service_id)
-        return queryset
-
 class ServicesPageMetadataViewSet(viewsets.ReadOnlyModelViewSet):
     """
     ViewSet for retrieving metadata for the services list page.

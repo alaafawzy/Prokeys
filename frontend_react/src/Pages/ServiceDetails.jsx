@@ -11,7 +11,8 @@ import api from "../../Api"; // adjust path
 import SectionsWithLeftImage from "../Sections/SectionWithLeftImage";
 import SectionsWithRightImage from "../Sections/SectionWithRightImage";
 import { useTheme } from "@emotion/react";
-import { useMetadataById } from "../hooks/useMetadata";
+import { useTranslation } from "react-i18next";
+import { applyPageMetadata } from "../utils/metadataService";
 import HowWeWork from "../Sections/HowWeWork";
 import Feedback from "../Sections/Feedback";
 export default function ServiceDetails() {
@@ -19,7 +20,7 @@ export default function ServiceDetails() {
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
-  useMetadataById('services/single-service-metadata', id, 'service');
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     const fetchService = async () => {
@@ -35,6 +36,19 @@ export default function ServiceDetails() {
 
     fetchService();
   }, [id]);
+
+  // Apply metadata based on the service object and current language
+  useEffect(() => {
+    if (service) {
+      applyPageMetadata(service);
+    }
+
+    return () => {
+      document
+        .querySelectorAll('meta[data-managed-by="prokeys"]')
+        .forEach(tag => tag.remove());
+    };
+  }, [service, i18n.language]);
 
   if (loading) {
     return (

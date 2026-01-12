@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   fetchPageMetadata,
   fetchMetadataById,
@@ -10,6 +11,8 @@ import {
  * @param {string} app - App name (portal, bundles, about, blog)
  */
 export const usePageMetadata = (app) => {
+  const { i18n } = useTranslation();
+
   useEffect(() => {
     const loadMetadata = async () => {
       const metadata = await fetchPageMetadata(app);
@@ -28,7 +31,7 @@ export const usePageMetadata = (app) => {
         tag.remove();
       });
     };
-  }, [app]);
+  }, [app, i18n.language]);
 };
 
 /**
@@ -38,6 +41,8 @@ export const usePageMetadata = (app) => {
  * @param {string} filterParam - Optional filter parameter (e.g., 'service' for filtering by service ID)
  */
 export const useMetadataById = (app, id, filterParam = null) => {
+  const { i18n } = useTranslation();
+
   useEffect(() => {
     const loadMetadata = async () => {
       const metadata = await fetchMetadataById(app, id, filterParam);
@@ -56,5 +61,5 @@ export const useMetadataById = (app, id, filterParam = null) => {
         tag.remove();
       });
     };
-  }, [app, id, filterParam]);
+  }, [app, id, filterParam, i18n.language]);
 };
