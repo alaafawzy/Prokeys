@@ -1,0 +1,27 @@
+/* Styling for ServiceSection inline blocks in Service admin */
+
+.inline-group .inline-related {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    background-color: #fafafa;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+/* Slight visual rhythm between every two sections */
+.inline-group .inline-related:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.inline-group .inline-related h3 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.inline-group .inline-related .form-row {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
