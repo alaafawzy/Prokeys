@@ -23,6 +23,8 @@ class ServiceSerializer(serializers.ModelSerializer):
         model = Service
         fields = [
             'id',
+            'english_slug',
+            'arabic_slug',
             'english_title',
             'arabic_title',
             'english_description',

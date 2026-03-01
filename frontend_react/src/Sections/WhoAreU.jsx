@@ -11,14 +11,16 @@ import whyus from "../assets/who we are/whyus.png";
 import { Link } from "react-router-dom";
 import { useLangPrefix } from "../hooks/useLangPrefix";
 import { useTheme } from "@emotion/react";
+import { getPagePathsForLang } from "../config/pagePaths";
 
 export default function WhoAreU() {
   const theme = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const who = t("who");
   const { serv1, serv2, serv3 } = t("OurServises");
   const navigate = useNavigate();
   const prefix = useLangPrefix();
+  const paths = getPagePathsForLang(i18n.language);
   return (
     <>
       <Grid className="who-we-are">
@@ -84,7 +86,7 @@ export default function WhoAreU() {
           <Box sx={{ marginTop: "2rem" , textAlign: "center", marginBottom:"3rem" }}>
             <CTAButton
               label={t('Book.btn')}
-              onClick={() => navigate(`${prefix}/ContactUs`)}
+              onClick={() => navigate(`${prefix}/${paths.contact}`)}
             />
           </Box>
         </Container>

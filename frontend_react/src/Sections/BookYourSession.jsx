@@ -5,11 +5,13 @@ import { useTranslation } from "react-i18next";
 import Btn from "../components/Btn";
 import { Link } from "react-router-dom";
 import { useLangPrefix } from "../hooks/useLangPrefix";
+import { getPagePathsForLang } from "../config/pagePaths";
 
 export default function BookYourSession() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const Book = t("Book");
   const prefix = useLangPrefix();
+  const paths = getPagePathsForLang(i18n.language);
   return (
     <>
       <Grid
@@ -66,7 +68,7 @@ export default function BookYourSession() {
                 justifyContent: "center",
               }}
             >
-              <Link to={`${prefix}/ContactUs`}>
+              <Link to={`${prefix}/${paths.contact}`}>
                 <Btn
                   bg={"rgba(19, 31, 137, 1)"}
                   FontColor={"white"}

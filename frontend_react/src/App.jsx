@@ -12,6 +12,7 @@ import { Toaster } from "react-hot-toast";
 import { UserProvider } from "./context/UserContext";
 import { useTranslation } from "react-i18next";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { getPagePathsForLang } from "./config/pagePaths";
 
 function App() {
   const { theme1, setThemeLang } = useContext(ThemeContext);
@@ -28,6 +29,11 @@ function App() {
     document.documentElement.lang = lang;
     // document.documentElement.dir = i18n.dir();
   }, [i18n, i18n.language]);
+
+  const currentLang = i18n.language === "en" ? "en" : "ar";
+  const paths = getPagePathsForLang(currentLang);
+  const contactPath = paths.contact;
+
   return (
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme1}>
@@ -59,7 +65,7 @@ function App() {
         />
         <Box
           component={"a"}
-          href={`/${i18n.language === 'en' ? 'en' : 'ar'}/ContactUs`}
+          href={`/${currentLang}/${contactPath}`}
           sx={{
             position: "fixed",
             top: "50%",

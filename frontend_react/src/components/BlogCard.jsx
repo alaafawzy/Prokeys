@@ -6,14 +6,21 @@ import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 import { useTheme } from "@emotion/react";
 import { getAltText } from "../utils/getAltText";
 import { useLangPrefix } from "../hooks/useLangPrefix";
+import { useTranslation } from "react-i18next";
+import { getPagePathsForLang } from "../config/pagePaths";
 
-export default function BlogCard({ id, title, description, image, created, english_alt, arabic_alt }) {
+export default function BlogCard({ id, englishSlug, arabicSlug, title, description, image, created, english_alt, arabic_alt }) {
     const theme = useTheme();
     const prefix = useLangPrefix();
+    const { i18n } = useTranslation();
+    const paths = getPagePathsForLang(i18n.language);
+
+    const slug = i18n.language === "en" ? (englishSlug || id) : (arabicSlug || id);
+    const detailPath = paths.blogDetails.replace(":slug", slug);
   return (
     <Card
       component={Link}
-      to={`${prefix}/blog/${id}`}
+      to={`${prefix}/${detailPath}`}
       sx={{
         borderRadius: 3,
         m: 2,

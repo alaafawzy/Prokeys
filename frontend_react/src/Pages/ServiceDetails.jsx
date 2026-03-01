@@ -16,7 +16,7 @@ import { applyPageMetadata } from "../utils/metadataService";
 import HowWeWork from "../Sections/HowWeWork";
 import Feedback from "../Sections/Feedback";
 export default function ServiceDetails() {
-  const { id } = useParams();
+  const { slug, lang } = useParams();
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
@@ -25,7 +25,7 @@ export default function ServiceDetails() {
   useEffect(() => {
     const fetchService = async () => {
       try {
-        const response = await api.get(`/services/services/${id}/`);
+        const response = await api.get(`/services/services/by-slug/${slug}/?lang=${lang || 'ar'}`);
         setService(response.data);
       } catch (error) {
         console.error("Failed to load service", error);
@@ -35,7 +35,7 @@ export default function ServiceDetails() {
     };
 
     fetchService();
-  }, [id]);
+  }, [slug, lang]);
 
   // Apply metadata based on the service object and current language
   useEffect(() => {

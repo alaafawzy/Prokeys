@@ -1,6 +1,13 @@
-from django.urls import path,include
-from .views import *
+from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+
+from .views import (
+    ServiceViewSet,
+    ServiceSectionViewSet,
+    ServicesPageMetadataViewSet,
+    ServicesDescriptionSectionViewSet,
+    ServiceBySlugView,
+)
 
 
 router = DefaultRouter()
@@ -12,4 +19,6 @@ router.register(r'description-section', ServicesDescriptionSectionViewSet, basen
 
 urlpatterns = [
     path('', include(router.urls)),
+    # Use <str:slug> so Arabic (Unicode) slugs are accepted
+    path('services/by-slug/<str:slug>/', ServiceBySlugView.as_view(), name='service-by-slug'),
 ]

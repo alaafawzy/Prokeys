@@ -11,8 +11,9 @@ import NavButton from "../components/button";
 import { useNavigate } from "react-router-dom";
 import CTAButton from '../components/CTAButton';
 import { useLangPrefix } from "../hooks/useLangPrefix";
+import { getPagePathsForLang } from "../config/pagePaths";
 export default function HomeStarting() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const Landing = t("Landing");
   const theme = useTheme();
   const [data, setData] = useState([]);
@@ -20,6 +21,7 @@ export default function HomeStarting() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const prefix = useLangPrefix();
+  const paths = getPagePathsForLang(i18n.language);
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -154,7 +156,7 @@ export default function HomeStarting() {
                         <Box sx={{ marginTop: "2rem" , textAlign: "center", marginBottom:"3rem" }}>
                       <CTAButton
                         label={t('Book.btn')}
-                        onClick={() => navigate(`${prefix}/ContactUs`)}
+                        onClick={() => navigate(`${prefix}/${paths.contact}`)}
                       />
                     </Box>
             </Grid>

@@ -4,10 +4,12 @@ import { useTheme } from "@emotion/react";
 import { useNavigate } from 'react-router-dom';
 import { getAltText } from '../utils/getAltText';
 import { useLangPrefix } from "../hooks/useLangPrefix";
+import { getPagePathsForLang } from "../config/pagePaths";
 export default function SectionsWithLeftPic({ data ,imageOnRight=true}) {
     const theme = useTheme();
     const navigate = useNavigate();
   const prefix = useLangPrefix();
+  const paths = getPagePathsForLang(theme.direction === 'rtl' ? 'ar' : 'en');
   const benefits = [
     'ورش عمل تفاعلية في المحاسبة والإدارة المالية',
     'دورات تدريبية معتمدة في الأنظمة المحاسبية الحديثة',
@@ -72,7 +74,7 @@ export default function SectionsWithLeftPic({ data ,imageOnRight=true}) {
 
           {/* CTA Button */}
           <button
-            onClick={() => navigate(`${prefix}/ContactUs`)}
+            onClick={() => navigate(`${prefix}/${paths.contact}`)}
             style={{
               backgroundColor: '#00bcd4',
               color: 'white',

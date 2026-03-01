@@ -7,14 +7,16 @@ import logo from "../assets/newLogo.svg";
  import NavButton from "../components/button";
 import Switcher from "../components/Switcher";
 import { useLangPrefix } from "../hooks/useLangPrefix";
+import { getPagePathsForLang } from "../config/pagePaths";
 const Navbar = () => {
   const location = useLocation();
   const theme = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const NavTitles = t("Navbar");
   // const Navbar2 = t("Navbar");
   const navigate = useNavigate();
   const prefix = useLangPrefix();
+  const paths = getPagePathsForLang(i18n.language);
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(prev => !prev);
   const close = () => setOpen(false);
@@ -73,7 +75,7 @@ const Navbar = () => {
 
         {/* Reserve Button - Hidden on mobile, shown on desktop */}
         <div className="order-2 order-lg-0 d-none d-lg-block">
-          <NavButton onClick={() => navigate(`${prefix}/ContactUs`)}>
+          <NavButton onClick={() => navigate(`${prefix}/${paths.contact}`)}>
             {NavTitles.button}
           </NavButton>
         </div>
@@ -88,26 +90,26 @@ const Navbar = () => {
               <Link className="nav-link" to={`${prefix}/`} onClick={close}>{NavTitles.home}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={`${prefix}/AboutUs`} onClick={close}>{NavTitles.who}</Link>
+              <Link className="nav-link" to={`${prefix}/${paths.about}`} onClick={close}>{NavTitles.who}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={`${prefix}/Bundles`} onClick={close}>{NavTitles.bundles}</Link>
+              <Link className="nav-link" to={`${prefix}/${paths.bundles}`} onClick={close}>{NavTitles.bundles}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={`${prefix}/Services`} onClick={close}>{NavTitles.services}</Link>
+              <Link className="nav-link" to={`${prefix}/${paths.services}`} onClick={close}>{NavTitles.services}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={`${prefix}/Blogs`} onClick={close}>{NavTitles.blogs}</Link>
+              <Link className="nav-link" to={`${prefix}/${paths.blogs}`} onClick={close}>{NavTitles.blogs}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={`${prefix}/ContactUs`} onClick={close}>{NavTitles.contact}</Link>
+              <Link className="nav-link" to={`${prefix}/${paths.contact}`} onClick={close}>{NavTitles.contact}</Link>
             </li>
             <li className="nav-item">
               <Switcher />
             </li>
             {/* Reserve Button - Shown only on mobile */}
             <li className="nav-item d-lg-none mt-3">
-              <NavButton className="w-100" onClick={() => { navigate(`${prefix}/ContactUs`); close(); }}>
+              <NavButton className="w-100" onClick={() => { navigate(`${prefix}/${paths.contact}`); close(); }}>
                 {NavTitles.button}
               </NavButton>
             </li>

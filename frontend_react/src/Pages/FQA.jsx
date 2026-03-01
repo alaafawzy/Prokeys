@@ -7,12 +7,14 @@ import { useTheme } from "@emotion/react";
 import React, { useState, useEffect } from 'react';
 import api from '../../Api';
 import { useLangPrefix } from "../hooks/useLangPrefix";
+import { getPagePathsForLang } from "../config/pagePaths";
 export default function FQA() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { Q1, Q2, Q3, Q4 } = t("FQA");
   const { btn, desc, other, title1 } = t("CommonQues");
   const theme = useTheme();
   const prefix = useLangPrefix();
+  const paths = getPagePathsForLang(i18n.language);
   // const prefix = useLangPrefix();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -153,7 +155,7 @@ function OtherQues({ btn, other, desc, prefix }) {
         >
           {desc}
         </Box>
-        <Link to={`${prefix}/ContactUs`}>
+        <Link to={`${prefix}/${paths.contact}`}>
           <Btn bg={"#131F89"} FontColor={"white"} W={"200px"} H={"60px"}>
             {btn}
           </Btn>

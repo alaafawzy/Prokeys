@@ -35,8 +35,8 @@ class ServiceSectionInline(admin.StackedInline):
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ("english_title", "arabic_title", "section_count")
-    search_fields = ("english_title", "arabic_title")
+    list_display = ("english_title", "arabic_title", "english_slug", "arabic_slug", "section_count")
+    search_fields = ("english_title", "arabic_title", "english_slug", "arabic_slug")
     inlines = [ServiceSectionInline]
 
     def section_count(self, obj):

@@ -7,12 +7,14 @@ import { icons } from "../Data/Samka";
 import Btn from "../components/Btn";
 import { Link } from "react-router-dom";
 import { useLangPrefix } from "../hooks/useLangPrefix";
+import { getPagePathsForLang } from "../config/pagePaths";
 
 export default function Packages() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { Basic, Additional, Custom, Free, Tax, Common } = t("Packages");
   const bundles = [Custom, Additional, Basic];
   const prefix = useLangPrefix();
+  const paths = getPagePathsForLang(i18n.language);
   return (
     <Container
       sx={{
@@ -65,7 +67,7 @@ export default function Packages() {
         })}
       </Grid>
       <Grid sx={{ display: "flex", justifyContent: "center" }}>
-        <Link to={`${prefix}/Bundles`}>
+        <Link to={`${prefix}/${paths.bundles}`}>
           <Btn bg="rgba(19, 31, 137, 1)" FontColor="white" H="48px" W="272px">
             {Common?.showMore}
           </Btn>

@@ -1,5 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import i18n from "i18next";
+import "../utils/i18n"; // ensure i18n is initialized
+import { getPagePathsForLang } from "../config/pagePaths";
 import Root from "./Root";
 import Home from "../Pages/Home";
 import AboutUs from "../Pages/AboutUs";
@@ -28,6 +31,9 @@ import BlogDetails from "../Pages/BlogDetails";
 import ServiceDetails from "../Pages/ServiceDetails";
 
 export default function Routers() {
+  const currentLang = i18n.language === "en" ? "en" : "ar";
+  const paths = getPagePathsForLang(currentLang);
+
   let routers = createBrowserRouter([
     {
       path: "/",
@@ -38,15 +44,15 @@ export default function Routers() {
       element: <Root />,
       children: [
         { index: true, element: <Home /> },
-        { path: "AboutUs", element: <AboutUs /> },
+        { path: paths.about, element: <AboutUs /> },
         // { path:"FreeProducts", element: <FreeProducts /> },
-        { path: "FQA", element: <FQA /> },
-        { path: "Bundles", element: <BundlesPage /> },
-        { path: "Services", element: <OurServises /> },
-        { path: "Services/:id", element: <ServiceDetails /> },
-        { path: "ContactUs", element: <CountactUs /> },
-        { path: "Blogs", element: <Blogs /> },
-        { path: "blog/:id", element: <BlogDetails /> },
+        { path: paths.faq, element: <FQA /> },
+        { path: paths.bundles, element: <BundlesPage /> },
+        { path: paths.services, element: <OurServises /> },
+        { path: paths.serviceDetails, element: <ServiceDetails /> },
+        { path: paths.contact, element: <CountactUs /> },
+        { path: paths.blogs, element: <Blogs /> },
+        { path: paths.blogDetails, element: <BlogDetails /> },
         // { path:"StepperMobile", element: <StepperMobile />  },
         // { path: "login",element: <Login /> },
         // { path: "logout",element: <Logout /> },

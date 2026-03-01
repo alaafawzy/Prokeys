@@ -9,12 +9,14 @@ import NavButton from "../components/button";
 import CTAButton from "./CTAButton";
 import { useNavigate } from "react-router-dom";
 import { useLangPrefix } from "../hooks/useLangPrefix";
+import { getPagePathsForLang } from "../config/pagePaths";
 export default function PackageCard({ Bundle, svg }) {
   const theme = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isRTL = theme.direction === 'rtl';
   const navigate = useNavigate();
   const prefix = useLangPrefix();
+  const paths = getPagePathsForLang(i18n.language);
   const isBestSeller = Boolean(Bundle?.best_seller);
   // Calculate discounted price if discount exists
   const originalPrice = Bundle?.price || 0;
@@ -126,7 +128,7 @@ export default function PackageCard({ Bundle, svg }) {
               <Box sx={{ textAlign: "center", alignSelf: "center", mt: 1, mr :2 }}>
                 <CTAButton
                   label={t('Book.btn')}
-                  onClick={() => navigate(`${prefix}/ContactUs`)}
+                  onClick={() => navigate(`${prefix}/${paths.contact}`)}
                   // padding="0.75rem 3rem"
                 />
               </Box>

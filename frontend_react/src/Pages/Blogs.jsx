@@ -47,6 +47,8 @@ export default function Blogs() {
               }}>
               <BlogCard
                 id={blog.id}
+                englishSlug={blog.english_slug}
+                arabicSlug={blog.arabic_slug}
                 title={theme.direction === "rtl" ? blog.arabic_title : blog.english_title}
                 description={theme.direction === "rtl" ? blog.arabic_description : blog.english_description}
                 image={blog.image}

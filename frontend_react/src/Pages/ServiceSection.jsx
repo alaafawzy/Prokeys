@@ -6,7 +6,6 @@ import {
   CardContent,
   Typography,
   Box,
-  Link,
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 
@@ -17,6 +16,9 @@ import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
 import api from "../../Api"; // adjust path
 import { useTheme } from "@emotion/react";
 import { useLangPrefix } from "../hooks/useLangPrefix";
+import { useTranslation } from "react-i18next";
+import { getPagePathsForLang } from "../config/pagePaths";
+import { Link as RouterLink } from "react-router-dom";
 
 const iconMap = {
   storage: <StorageOutlinedIcon />,
@@ -28,7 +30,9 @@ export default function ServicesSection() {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
-    const prefix = useLangPrefix();
+  const prefix = useLangPrefix();
+  const { i18n } = useTranslation();
+  const paths = getPagePathsForLang(i18n.language);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -119,20 +123,25 @@ export default function ServicesSection() {
                     {theme.direction === "rtl" ? service.arabic_description : service.english_description}
                   </Typography>
 
-                  <Link
-                    href={`${prefix}/Services/${service.id}`}
-                    underline="none"
+                  <Box
+                    component={RouterLink}
+                    to={`${prefix}/${paths.serviceDetails.replace(
+                      ":slug",
+                      i18n.language === "en"
+                        ? service.english_slug
+                        : service.arabic_slug
+                    )}`}
                     sx={{
                       color: "#27307F",
                       fontWeight: "bold",
                       fontSize: 14,
-                      
+                      textDecoration: "none",
                     }}
                   >
                     {theme.direction === "rtl"
                       ? ` \u2190  استكشف المزيد `  // ← arrow after Arabic
                       : `Explore More \u2192`}
-                  </Link>
+                  </Box>
                 </CardContent>
               </Card>
             </Grid>

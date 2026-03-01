@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { applyPageMetadata } from "../utils/metadataService";
 
 export default function BlogDetails() {
-  const { id } = useParams();
+  const { slug, lang } = useParams();
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,7 +17,7 @@ export default function BlogDetails() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await api.get(`/blog/blogs/${id}/`);
+        const response = await api.get(`/blog/blogs/by-slug/${slug}/?lang=${lang || 'ar'}`);
         setBlog(response.data);
       } catch (err) {
         setError(err);
@@ -26,7 +26,7 @@ export default function BlogDetails() {
       }
     };
     fetchBlog();
-  }, [id]);
+  }, [slug, lang]);
 
   // Apply metadata based on the blog object and current language
   useEffect(() => {

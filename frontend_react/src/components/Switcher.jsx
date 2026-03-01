@@ -3,7 +3,6 @@ import { Box, Grid } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ThemeContext } from "../context/ThemeContext";
-import ReactCountryFlag from "react-country-flag";
 import { useLocation, useNavigate } from "react-router-dom";
 
 // const languages = [
@@ -11,9 +10,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 //   { code: "en", lang: "EN" },
 // ];
 const languages = [
-    { code: "en", country: "US", label: "English" },
-    { code: "ar", country: "SA", label: "العربية" },
-  ];
+  { code: "en", label: "English" },
+  { code: "ar", label: "العربية" },
+];
 export default function Switcher({ xs }) {
   const theme = useTheme();
   const [Lang, setLang] = useState("en");
@@ -30,16 +29,8 @@ export default function Switcher({ xs }) {
     i18n.changeLanguage(targetLang);
     setThemeLang(i18n.dir());
 
-    // Update URL to include the new language prefix while preserving the rest of the path
-    const segments = location.pathname.split("/");
-    if (segments[1] === "en" || segments[1] === "ar") {
-      segments[1] = targetLang;
-    } else {
-      // No language in URL yet; insert it after leading slash
-      segments.splice(1, 0, targetLang);
-    }
-    const newPath = segments.join("/") || `/${targetLang}`;
-    navigate(newPath, { replace: true });
+    // Always go to the home page of the selected language
+    navigate(`/${targetLang}`, { replace: true });
 
     setOpen(false);
   };
@@ -47,7 +38,8 @@ export default function Switcher({ xs }) {
   useEffect(() => {
     setThemeLang(i18n.dir());
   }, [i18n, i18n.language]);
-const currentLanguage = languages.find(l => l.code === i18n.language) || languages[0];
+  const currentLanguage =
+    languages.find((l) => l.code === i18n.language) || languages[0];
   return (
     <div className="position-relative">
       {/* Trigger */}
@@ -55,21 +47,18 @@ const currentLanguage = languages.find(l => l.code === i18n.language) || languag
         className="btn p-0 border-0"
         onClick={() => setOpen(prev => !prev)}
         style={{
-          width: 40,
-          height: 40,
-          // background: "#006c35",
-          
-          // overflow: "hidden",
+          minWidth: 60,
+          height: 32,
+          padding: "0 8px",
           display: "flex",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
+          borderRadius: 16,
+          backgroundColor: "transparent",
+          fontSize: 14,
         }}
       >
-        <ReactCountryFlag
-          countryCode={currentLanguage.country}
-          svg
-          style={{ fontSize: "28px" , height:"100%", width:"100%" ,borderRadius: "50%", }}
-        />
+        <span>{currentLanguage.label}</span>
       </button>
 
       {/* Dropdown */}
@@ -89,11 +78,6 @@ const currentLanguage = languages.find(l => l.code === i18n.language) || languag
               onClick={() => changeLanguage(lang.code)}
               className="d-flex align-items-center gap-2 w-100 btn btn-light text-start mb-1"
             >
-              <ReactCountryFlag
-                countryCode={lang.country}
-                svg
-                style={{ fontSize: "22px" }}
-              />
               <span>{lang.label}</span>
             </button>
           ))}
