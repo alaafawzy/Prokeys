@@ -160,3 +160,44 @@ class Metadata(models.Model):
     
     def __str__(self):
         return self.english_page_title_for_metadata
+
+
+class PagePath(models.Model):
+    """Configurable base paths for key frontend pages per language."""
+
+    PAGE_KEY_CHOICES = [
+        ("about", "About page"),
+        ("faq", "FAQ page"),
+        ("bundles", "Bundles page"),
+        ("services", "Services page"),
+        ("contact", "Contact page"),
+        ("blogs", "Blogs page"),
+    ]
+
+    key = models.CharField(
+        max_length=50,
+        choices=PAGE_KEY_CHOICES,
+        unique=True,
+        help_text="Logical page key used by the frontend (e.g. 'about').",
+    )
+    english_path = models.SlugField(
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text="Optional English URL path segment, e.g. 'AboutUs'. If empty, frontend default is used.",
+        allow_unicode=True,
+    )
+    arabic_path = models.SlugField(
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text="Optional Arabic URL path segment. If empty, frontend default is used.",
+        allow_unicode=True,
+    )
+
+    class Meta:
+        verbose_name = "Page path"
+        verbose_name_plural = "Page paths"
+
+    def __str__(self):
+        return f"{self.get_key_display()}"

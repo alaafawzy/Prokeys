@@ -57,6 +57,17 @@ class PortalMetadataSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class PagePathSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PagePath
+        fields = [
+            'id',
+            'key',
+            'english_path',
+            'arabic_path',
+        ]
+
+
 
 
 

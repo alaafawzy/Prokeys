@@ -12,3 +12,4 @@ admin.site.register(SystemPartner)
 
 
 admin.site.register(Metadata)
+admin.site.register(PagePath)

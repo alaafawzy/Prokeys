@@ -10,6 +10,7 @@ router.register(r'aboutUs', AboutUsViewSet)
 router.register(r'homeStarting', HomeStartingViewSet)
 router.register(r'system-partners', SystemPartnerViewSet)
 router.register(r'metadata', PortalMetadataViewSet)
+router.register(r'page-paths', PagePathViewSet, basename='page-paths')
 
 urlpatterns = [
     path('carousel/', NewsView.as_view(), name='news-list'),

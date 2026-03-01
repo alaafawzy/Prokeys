@@ -59,4 +59,11 @@ class PortalMetadataViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PortalMetadataSerializer
 
 
+class PagePathViewSet(viewsets.ReadOnlyModelViewSet):
+    """Read-only API for configurable page paths used by the frontend."""
+
+    queryset = PagePath.objects.all()
+    serializer_class = PagePathSerializer
+
+
 
