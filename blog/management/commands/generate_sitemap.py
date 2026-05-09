@@ -25,7 +25,7 @@ from portal.models import PagePath
 # ---------------------------------------------------------------------------
 # Site configuration
 # ---------------------------------------------------------------------------
-SITE_DOMAIN = "https://www.111prokeys.com"
+SITE_DOMAIN = "https://www.protaxkeys.com"
 
 # Fallback paths used when a key has no DB entry or its path field is empty.
 # These match the frontend defaults in pagePaths.js.
@@ -166,8 +166,22 @@ def build_sitemap_xml() -> str:
     return "\n".join(lines)
 
 
+def build_robots_txt() -> str:
+    """Build and return robots.txt content pointing to the sitemap."""
+    return (
+        "User-agent: *\n"
+        "Allow: /\n"
+        "\n"
+        "# Block admin and API endpoints from indexing\n"
+        "Disallow: /admin/\n"
+        "Disallow: /api/\n"
+        "\n"
+        f"Sitemap: {SITE_DOMAIN}/sitemap.xml\n"
+    )
+
+
 class Command(BaseCommand):
-    help = "Generate sitemap.xml from the database and write it to disk."
+    help = "Generate sitemap.xml and robots.txt from the database and write them to disk."
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -176,24 +190,37 @@ class Command(BaseCommand):
             help="Absolute path where sitemap.xml will be written "
                  "(default: <project-root>/sitemap.xml)",
         )
+        parser.add_argument(
+            "--robots-output",
+            default=os.path.join(settings.BASE_DIR, "robots.txt"),
+            help="Absolute path where robots.txt will be written "
+                 "(default: <project-root>/robots.txt)",
+        )
 
     def handle(self, *args, **options):
-        output_path: str = options["output"]
+        output_path: str        = options["output"]
+        robots_output_path: str = options["robots_output"]
 
+        # --- sitemap.xml ---
         self.stdout.write("Building sitemap from DB …")
         xml = build_sitemap_xml()
-
         with open(output_path, "w", encoding="utf-8") as fh:
             fh.write(xml)
 
-        db_paths       = _load_page_paths()
+        # --- robots.txt ---
+        self.stdout.write("Building robots.txt …")
+        robots = build_robots_txt()
+        with open(robots_output_path, "w", encoding="utf-8") as fh:
+            fh.write(robots)
+
         services_count = Service.objects.filter(english_slug__isnull=False).exclude(english_slug="").count()
         blogs_count    = Blog.objects.filter(english_slug__isnull=False).exclude(english_slug="").count()
-        static_count   = len(PAGE_META)  # home + 6 static pages
+        static_count   = len(PAGE_META)
         total_urls     = static_count * 2 + services_count * 2 + blogs_count * 2
 
         self.stdout.write(self.style.SUCCESS(
             f"sitemap.xml written to {output_path}\n"
+            f"robots.txt  written to {robots_output_path}\n"
             f"  Page paths source : DB (PagePath model) with fallback to defaults\n"
             f"  Static pages      : {static_count * 2} URLs ({static_count} pages × 2 langs)\n"
             f"  Services          : {services_count * 2} URLs ({services_count} services × 2 langs)\n"

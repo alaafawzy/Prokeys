@@ -19,13 +19,30 @@ from django.urls import path
 from django.urls import path,include,re_path
 from django.conf.urls.static import static
 from django.conf import settings
-from django.views.static import serve as static_serve
+from django.http import HttpResponse
 import os
+
+def serve_sitemap(request):
+    sitemap_path = os.path.join(settings.BASE_DIR, 'sitemap.xml')
+    try:
+        with open(sitemap_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        return HttpResponse(content, content_type='application/xml; charset=utf-8')
+    except FileNotFoundError:
+        return HttpResponse('Sitemap not found. Run: python manage.py generate_sitemap', status=404)
+
+def serve_robots(request):
+    robots_path = os.path.join(settings.BASE_DIR, 'robots.txt')
+    try:
+        with open(robots_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        return HttpResponse(content, content_type='text/plain; charset=utf-8')
+    except FileNotFoundError:
+        return HttpResponse('robots.txt not found. Run: python manage.py generate_sitemap', status=404)
+
 urlpatterns = [
-    # Serve the pre-generated sitemap.xml file written by the generate_sitemap command
-    path('sitemap.xml', static_serve,
-         {'document_root': settings.BASE_DIR, 'path': 'sitemap.xml'},
-         name='sitemap'),
+    path('sitemap.xml', serve_sitemap, name='sitemap'),
+    path('robots.txt', serve_robots, name='robots'),
     path('admin/', admin.site.urls),
     path('api/', include('authentication.urls')),
     path('api/contactus/', include('contact.urls')),
