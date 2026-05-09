@@ -19,7 +19,13 @@ from django.urls import path
 from django.urls import path,include,re_path
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.static import serve as static_serve
+import os
 urlpatterns = [
+    # Serve the pre-generated sitemap.xml file written by the generate_sitemap command
+    path('sitemap.xml', static_serve,
+         {'document_root': settings.BASE_DIR, 'path': 'sitemap.xml'},
+         name='sitemap'),
     path('admin/', admin.site.urls),
     path('api/', include('authentication.urls')),
     path('api/contactus/', include('contact.urls')),

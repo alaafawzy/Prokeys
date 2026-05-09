@@ -5,6 +5,7 @@ import api from "../../Api";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { applyPageMetadata } from "../utils/metadataService";
+import MathJaxContent from "../components/MathJaxContent";
 
 export default function BlogDetails() {
   const { slug, lang } = useParams();
@@ -64,7 +65,7 @@ export default function BlogDetails() {
         direction: theme.direction=='rtl'?'ltr':'rtl',
         },
     }}>
-        <div dangerouslySetInnerHTML={{ __html: theme.direction=='rtl'?blog?.arabic_content:blog?.english_content }} />
+        <MathJaxContent html={theme.direction=='rtl'?blog?.arabic_content:blog?.english_content} />
       </Box>
     </Container>
   );

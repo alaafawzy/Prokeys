@@ -234,7 +234,7 @@ CKEDITOR_CONFIGS = {
             '/',
             {'name': 'styles', 'items': ['Styles', 'Format',  'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
-            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks', 'Preview']},
+            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks', 'Preview', 'Mathjax']},
             
         ],
         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
@@ -244,7 +244,7 @@ CKEDITOR_CONFIGS = {
         # 'filebrowserWindowHeight': 725,
         # 'filebrowserWindowWidth': 940,
         # 'toolbarCanCollapse': True,
-        # 'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'mathJaxLib': 'https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_HTML',
         'tabSpaces': 4,
         'extraPlugins': ','.join([
             'uploadimage', # the upload image feature
@@ -260,7 +260,8 @@ CKEDITOR_CONFIGS = {
             'clipboard',
             'dialog',
             'dialogui',
-            'elementspath'
+            'elementspath',
+            'mathjax'
         ]),
     }
 }

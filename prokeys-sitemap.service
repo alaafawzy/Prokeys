@@ -1,0 +1,30 @@
+# /etc/systemd/system/prokeys-sitemap.service
+#
+# Runs the Django generate_sitemap management command once.
+# This unit is triggered by prokeys-sitemap.timer — do NOT set [Install]
+# here; enable the .timer unit instead.
+#
+# SETUP:
+#   1. Copy this file to /etc/systemd/system/prokeys-sitemap.service
+#   2. Edit WorkingDirectory, ExecStart and the User/Group to match your server.
+#   3. Run: sudo systemctl daemon-reload
+#   4. Enable & start the timer (see prokeys-sitemap.timer).
+
+[Unit]
+Description=Regenerate 111prokeys sitemap.xml from the database
+After=network.target postgresql.service
+
+[Service]
+Type=oneshot
+
+# ── Adjust these three lines to match your deployment ──────────────────────
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/prokeys
+
+# Activate the virtualenv and run the command
+ExecStart=/var/www/prokeys/env/bin/python manage.py generate_sitemap
+
+# Optional: write stdout/stderr to the journal (visible with journalctl -u prokeys-sitemap)
+StandardOutput=journal
+StandardError=journal

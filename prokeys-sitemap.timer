@@ -1,0 +1,31 @@
+# /etc/systemd/system/prokeys-sitemap.timer
+#
+# Fires prokeys-sitemap.service automatically — default: every hour.
+# Change OnCalendar to any systemd calendar expression you like, e.g.:
+#   *:0/30        → every 30 minutes
+#   daily         → once a day at midnight
+#   hourly        → every hour  (current setting)
+#
+# SETUP:
+#   1. Copy this file to /etc/systemd/system/prokeys-sitemap.timer
+#   2. sudo systemctl daemon-reload
+#   3. sudo systemctl enable --now prokeys-sitemap.timer
+#   4. Verify: systemctl status prokeys-sitemap.timer
+#              systemctl list-timers prokeys-sitemap.timer
+
+[Unit]
+Description=Run prokeys-sitemap.service every hour
+Requires=prokeys-sitemap.service
+
+[Timer]
+# Run 2 minutes after boot (to give the DB time to be ready)
+OnBootSec=2min
+
+# Then every hour
+OnCalendar=hourly
+Persistent=true          # Run immediately on next boot if the last run was missed
+
+Unit=prokeys-sitemap.service
+
+[Install]
+WantedBy=timers.target
