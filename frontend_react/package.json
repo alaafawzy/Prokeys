@@ -1,15 +1,18 @@
 {
-  "name": "prokey",
+  "name": "prokey-nextjs",
+  "version": "0.0.1",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "next": "^14.0.0",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -20,7 +23,6 @@
     "axios": "^1.6.8",
     "bootstrap": "^5.3.8",
     "dompurify": "^3.3.0",
-    "http-proxy-middleware": "^3.0.0",
     "i18next": "^23.10.1",
     "i18next-browser-languagedetector": "^7.2.1",
     "i18next-http-backend": "^2.5.0",
@@ -28,10 +30,8 @@
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.556.0",
     "mui-tel-input": "^5.1.2",
-    "react": "^18.2.0",
     "react-bootstrap": "^2.10.10",
     "react-country-flag": "^3.1.0",
-    "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.51.3",
     "react-hot-toast": "^2.4.1",
@@ -39,23 +39,23 @@
     "react-icons": "^5.5.0",
     "react-material-ui-carousel": "^3.4.2",
     "react-player": "^2.15.1",
-    "react-router-dom": "^6.22.3",
     "react-slick": "^0.31.0",
     "react-toastify": "^10.0.5",
     "slick-carousel": "^1.8.1",
-    "styles": "^0.2.1",
     "stylis": "^4.3.1",
-    "stylis-plugin-rtl": "^2.1.1"
+    "stylis-plugin-rtl": "^2.1.1",
+    "next-i18next": "^14.0.0"
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@types/node": "^20.0.0",
+    "@types/dompurify": "^3.0.5",
+    "typescript": "^5.0.0",
     "eslint": "^8.57.0",
+    "eslint-config-next": "^14.0.0",
     "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.6",
-    "vite": "^5.2.0"
+    "eslint-plugin-react-hooks": "^4.6.0"
   }
 }
