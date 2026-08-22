@@ -180,13 +180,15 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES':[
         'rest_framework.permissions.AllowAny'
     ],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'PAGE_SIZE': 10,
 }
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:5173',
     'http://localhost:3000',
     'http://127.0.0.1:5173',
+    'https://protaxkeys.com',
+    'https://www.protaxkeys.com',
     'https://111prokeys.com',
     'https://www.111prokeys.com',
     'http://111prokeys.com',
@@ -195,6 +197,8 @@ CORS_ORIGIN_WHITELIST = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://localhost:3000',
+    'https://protaxkeys.com',
+    'https://www.protaxkeys.com',
     'https://111prokeys.com',
     'https://www.111prokeys.com',
     'http://111prokeys.com',
@@ -203,6 +207,8 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',
     'http://localhost:3000',
+    'https://protaxkeys.com',
+    'https://www.protaxkeys.com',
     'https://111prokeys.com',
     'https://www.111prokeys.com',
     'http://111prokeys.com',
@@ -270,3 +276,4 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
